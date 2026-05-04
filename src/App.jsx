@@ -888,7 +888,7 @@ function MainApp({ user, profile, onLogout }) {
               {[
                 { icon:"👨‍💻", bg:"rgba(52,199,89,0.08)", text:"Projekt powstał hobbystycznie, gdzieś między jednym a drugim zadaniem w pracy. Przetestowaliśmy go na zawrotnej grupie trzech osób i… chyba działa 🙂 Teraz pałeczka przechodzi na Was, to Wy jesteście ekipą testową." },
                 { icon:"⚠️", bg:"rgba(255,149,0,0.08)", text:"Administrator nie daje gwarancji, że wszystko pójdzie idealnie 😉 Możliwe drobne potknięcia po drodze, ale liczymy, że wspólnie dociągniemy temat do finału mistrzostw." },
-                { icon:"✉️", bg:"rgba(0,122,255,0.1)", email:"bleiddxxx@gmail.com" },
+                { icon:"✉️", bg:"rgba(0,122,255,0.1)", email:"bleiddwnpl@gmail.com" },
               ].map((s,i,arr) => (
                 <div key={i} className="r-row" style={{ borderBottom:i<arr.length-1?"1px solid rgba(255,255,255,0.04)":"none" }}>
                   <div className="r-icon" style={{ background:s.bg }}>{s.icon}</div>
