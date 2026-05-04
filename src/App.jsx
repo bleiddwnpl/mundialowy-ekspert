@@ -52,7 +52,7 @@ const css = `
 body { background: #060f07; font-family: 'Inter', sans-serif; }
 ::-webkit-scrollbar { width: 0; }
 
-/* ── AUTH SCREEN ─────────────────────────────────────── */
+/* ── AUTH ────────────────────────────────────────────── */
 .auth-screen {
   min-height: 100vh;
   position: relative;
@@ -62,16 +62,13 @@ body { background: #060f07; font-family: 'Inter', sans-serif; }
   justify-content: flex-end;
 }
 
-/* Foto tło — stałe, bez parallax */
 .photo-bg {
-  position: fixed;
-  inset: 0;
+  position: fixed; inset: 0;
   background-image: url('${PHOTO_URL}');
   background-size: cover;
   background-position: center center;
 }
 
-/* Wielowarstwowe nakładki */
 .overlay-1 {
   position: fixed; inset: 0;
   background: linear-gradient(
@@ -85,17 +82,13 @@ body { background: #060f07; font-family: 'Inter', sans-serif; }
 }
 
 .overlay-glow {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  height: 60%;
+  position: fixed; bottom: 0; left: 0; right: 0; height: 60%;
   background: radial-gradient(ellipse at 50% 100%, rgba(0,180,60,0.1) 0%, transparent 70%);
 }
 
-/* ── HERO ─────────────────────────────────────────────── */
 .auth-hero {
   position: relative; z-index: 5;
-  padding: 0 28px;
-  margin-bottom: 24px;
+  padding: 0 28px; margin-bottom: 24px;
   animation: heroReveal 1.2s cubic-bezier(0.16,1,0.3,1) both;
 }
 
@@ -105,8 +98,7 @@ body { background: #060f07; font-family: 'Inter', sans-serif; }
 }
 
 .hero-eyebrow {
-  display: flex; align-items: center; gap: 8px;
-  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
   animation: fadeSlide 0.8s 0.2s both;
 }
 
@@ -120,11 +112,7 @@ body { background: #060f07; font-family: 'Inter', sans-serif; }
 
 .hero-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 64px;
-  line-height: 0.88;
-  color: #fff;
-  letter-spacing: 2px;
-  margin-bottom: 12px;
+  font-size: 64px; line-height: 0.88; color: #fff; letter-spacing: 2px; margin-bottom: 12px;
   animation: titleReveal 1s 0.1s cubic-bezier(0.16,1,0.3,1) both;
   text-shadow: 0 4px 40px rgba(0,0,0,0.6);
 }
@@ -134,37 +122,25 @@ body { background: #060f07; font-family: 'Inter', sans-serif; }
   to   { opacity:1; transform:translateY(0) skewY(0deg); }
 }
 
-.hero-title-green {
-  color: #4cde6e;
-  filter: drop-shadow(0 0 20px rgba(76,222,110,0.4));
-}
+.hero-title-green { color: #4cde6e; filter: drop-shadow(0 0 20px rgba(76,222,110,0.4)); }
 
-/* ── ZMIANA: pogrubiona i biała tagline ─────────────── */
 .hero-sub {
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 15px; font-weight: 700;
   color: rgba(255,255,255,0.92);
-  letter-spacing: 0.2px;
-  line-height: 1.6;
+  letter-spacing: 0.2px; line-height: 1.6;
   text-shadow: 0 2px 12px rgba(0,0,0,0.8);
   animation: fadeSlide 0.8s 0.3s both;
 }
 
-/* ── FORM CARD ───────────────────────────────────────── */
 .auth-card {
   position: relative; z-index: 5;
   margin: 0 16px 48px;
   background: rgba(8,20,10,0.72);
   border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 24px;
-  padding: 22px;
+  border-radius: 24px; padding: 22px;
   backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
   animation: cardReveal 1s 0.35s cubic-bezier(0.16,1,0.3,1) both;
-  box-shadow:
-    0 0 0 1px rgba(76,222,110,0.08),
-    0 24px 60px rgba(0,0,0,0.5),
-    inset 0 1px 0 rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 1px rgba(76,222,110,0.08), 0 24px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
 @keyframes cardReveal {
@@ -173,56 +149,33 @@ body { background: #060f07; font-family: 'Inter', sans-serif; }
 }
 
 .card-top-accent {
-  position: absolute;
-  top: 0; left: 50%; transform: translateX(-50%);
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
   width: 60%; height: 1px;
   background: linear-gradient(90deg, transparent, rgba(76,222,110,0.4), transparent);
 }
 
 .auth-seg {
-  display: flex;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.07);
+  display: flex; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07);
   border-radius: 14px; padding: 3px; margin-bottom: 16px;
 }
 
 .seg-btn {
-  flex: 1; padding: 10px; text-align: center;
-  font-size: 14px; font-weight: 600;
-  color: rgba(255,255,255,0.35);
-  border-radius: 12px; border: none; background: transparent;
+  flex: 1; padding: 10px; text-align: center; font-size: 14px; font-weight: 600;
+  color: rgba(255,255,255,0.35); border-radius: 12px; border: none; background: transparent;
   font-family: 'Inter', sans-serif; cursor: pointer; transition: all 0.22s;
 }
 
-.seg-btn.active {
-  background: linear-gradient(135deg, #1a6b30, #4cde6e);
-  color: #000;
-  box-shadow: 0 4px 16px rgba(76,222,110,0.25);
-}
+.seg-btn.active { background: linear-gradient(135deg, #1a6b30, #4cde6e); color: #000; box-shadow: 0 4px 16px rgba(76,222,110,0.25); }
 
 .auth-field { position: relative; margin-bottom: 10px; }
-
-.field-icon {
-  position: absolute; left: 14px; top: 50%;
-  transform: translateY(-50%); font-size: 16px;
-  opacity: 0.4; pointer-events: none;
-}
+.field-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 16px; opacity: 0.4; pointer-events: none; }
 
 .auth-input {
   width: 100%; padding: 13px 16px 13px 42px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.09);
-  border-radius: 13px; color: #fff;
-  font-family: 'Inter', sans-serif; font-size: 15px;
-  outline: none; transition: all 0.22s;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 13px; color: #fff; font-family: 'Inter', sans-serif; font-size: 15px; outline: none; transition: all 0.22s;
 }
-
-.auth-input:focus {
-  background: rgba(255,255,255,0.09);
-  border-color: rgba(76,222,110,0.4);
-  box-shadow: 0 0 0 3px rgba(76,222,110,0.08);
-}
-
+.auth-input:focus { background: rgba(255,255,255,0.09); border-color: rgba(76,222,110,0.4); box-shadow: 0 0 0 3px rgba(76,222,110,0.08); }
 .auth-input::placeholder { color: rgba(255,255,255,0.22); }
 
 .auth-error { color: #ff453a; font-size: 12px; text-align: center; margin-bottom: 8px; font-weight: 500; }
@@ -230,21 +183,12 @@ body { background: #060f07; font-family: 'Inter', sans-serif; }
 .auth-cta {
   width: 100%; padding: 15px;
   background: linear-gradient(135deg, #1e7a38, #4cde6e);
-  border: none; border-radius: 14px;
-  color: #000; font-family: 'Inter', sans-serif;
-  font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 4px;
-  transition: all 0.2s;
-  box-shadow: 0 8px 28px rgba(76,222,110,0.3);
-  position: relative; overflow: hidden;
+  border: none; border-radius: 14px; color: #000;
+  font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700;
+  cursor: pointer; margin-top: 4px; transition: all 0.2s;
+  box-shadow: 0 8px 28px rgba(76,222,110,0.3); position: relative; overflow: hidden;
 }
-
-.auth-cta::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 50%);
-  pointer-events: none;
-}
-
+.auth-cta::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 50%); pointer-events: none; }
 .auth-cta:hover { transform: translateY(-1px); box-shadow: 0 12px 36px rgba(76,222,110,0.4); }
 .auth-cta:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
 
@@ -252,13 +196,11 @@ body { background: #060f07; font-family: 'Inter', sans-serif; }
 .main-app {
   min-height: 100vh; background: #060f07;
   max-width: 480px; margin: 0 auto;
-  padding-bottom: 90px; font-family: 'Inter', sans-serif;
+  padding-bottom: 100px; font-family: 'Inter', sans-serif;
 }
 
-.app-header {
-  position: relative; overflow: hidden;
-  padding: 0 0 18px; min-height: 180px;
-}
+/* Header */
+.app-header { position: relative; overflow: hidden; padding: 0 0 20px; min-height: 195px; }
 
 .header-photo {
   position: absolute; inset: -20px -10px 0;
@@ -269,171 +211,279 @@ body { background: #060f07; font-family: 'Inter', sans-serif; }
 
 .header-photo-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(6,15,7,0.4) 0%, rgba(6,15,7,0.6) 50%, #060f07 100%);
+  background: linear-gradient(180deg, rgba(6,15,7,0.35) 0%, rgba(6,15,7,0.55) 50%, #060f07 100%);
 }
 
-.header-content { position: relative; z-index: 2; padding: 20px 20px 0; }
+.header-content { position: relative; z-index: 2; padding: 22px 20px 0; }
 
 .hdr-top {
   display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
-.hdr-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: #fff; letter-spacing: 2px; }
+/* ── LOGO WIĘKSZY ─── */
+.hdr-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; /* było 22px */
+  color: #fff; letter-spacing: 2.5px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
 .hdr-logo span { color: #4cde6e; }
-.hdr-right { display: flex; align-items: center; gap: 8px; }
+
+.hdr-right { display: flex; align-items: center; gap: 10px; }
 
 .user-pill {
   display: flex; align-items: center; gap: 7px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(76,222,110,0.15);
-  border-radius: 20px; padding: 5px 12px 5px 6px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(76,222,110,0.2);
+  border-radius: 20px; padding: 6px 14px 6px 7px;
 }
 
-.u-av { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #000; flex-shrink: 0; }
-.u-name { font-size: 13px; color: rgba(255,255,255,0.8); font-weight: 500; }
-.u-logout { font-size: 11px; color: rgba(255,255,255,0.22); background: none; border: none; cursor: pointer; font-family: inherit; }
+.u-av { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #000; flex-shrink: 0; }
 
+/* ── NAZWA UŻYTKOWNIKA JAŚNIEJSZA ─── */
+.u-name { font-size: 14px; color: rgba(255,255,255,0.9); font-weight: 600; }
+
+/* ── WYLOGUJ JAŚNIEJSZY ─── */
+.u-logout {
+  font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,0.65); /* było 0.22 */
+  background: none; border: none; cursor: pointer; font-family: inherit;
+  transition: color 0.2s;
+}
+.u-logout:hover { color: #fff; }
+
+/* Stats */
 .stats-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
 
 .stat-box {
-  background: rgba(0,0,0,0.4);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 14px; padding: 10px 12px;
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px; padding: 11px 13px;
   backdrop-filter: blur(10px);
 }
 
-.stat-lbl { font-size: 9px; color: rgba(255,255,255,0.35); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
-.stat-val { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: #fff; letter-spacing: 1px; line-height: 1; }
+/* ── STAT LABEL JAŚNIEJSZY ─── */
+.stat-lbl {
+  font-size: 10px; font-weight: 700;
+  color: rgba(255,255,255,0.65); /* było 0.35 */
+  text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px;
+}
+
+/* ── STAT VALUE WIĘKSZY ─── */
+.stat-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; color: #fff; letter-spacing: 1px; line-height: 1;
+}
 .stat-val.green { color: #4cde6e; filter: drop-shadow(0 0 8px rgba(76,222,110,0.4)); }
 
+/* Nav */
 .bottom-nav {
   position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
   width: 100%; max-width: 480px;
   background: rgba(6,15,7,0.97);
-  border-top: 1px solid rgba(76,222,110,0.08);
-  display: flex; z-index: 50; backdrop-filter: blur(20px); padding-bottom: 8px;
+  border-top: 1px solid rgba(76,222,110,0.1);
+  display: flex; z-index: 50; backdrop-filter: blur(20px);
+  padding: 10px 0 14px;
 }
 
-.nav-item { flex: 1; padding: 12px 4px 6px; background: transparent; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.nav-ic { width: 48px; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 26px; transition: background 0.2s; }
-.nav-item.active .nav-ic { background: rgba(76,222,110,0.1); }
-.nav-lbl { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.4); transition: color 0.2s; }
+.nav-item {
+  flex: 1; padding: 6px 4px 4px;
+  background: transparent; border: none; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+
+.nav-ic {
+  width: 48px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 12px; font-size: 26px; transition: background 0.2s;
+}
+
+.nav-item.active .nav-ic { background: rgba(76,222,110,0.12); }
+
+/* ── NAV LABEL JAŚNIEJSZY I WIĘKSZY ─── */
+.nav-lbl {
+  font-size: 11px; font-weight: 600;
+  color: rgba(255,255,255,0.5); /* było 0.22 */
+  transition: color 0.2s;
+}
 .nav-item.active .nav-lbl { color: #4cde6e; }
+
 .nav-dot { width: 4px; height: 4px; background: #4cde6e; border-radius: 50%; display: none; }
 .nav-item.active .nav-dot { display: block; }
 
-.content { padding: 14px; }
+/* Content */
+.content { padding: 16px; }
 
-.sec-hdr { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.28); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; padding: 0 2px; }
+/* ── SECTION HEADER JAŚNIEJSZY ─── */
+.sec-hdr {
+  font-size: 12px; font-weight: 700;
+  color: rgba(255,255,255,0.65); /* było 0.28 */
+  letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: 12px; padding: 0 2px;
+}
 
-.m-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 20px; margin-bottom: 10px; overflow: hidden; transition: border-color 0.2s, transform 0.15s; }
-.m-card:hover { border-color: rgba(76,222,110,0.2); transform: translateY(-1px); }
-.m-top { padding: 9px 14px; background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; }
-.grp-badge { font-size: 11px; color: #4cde6e; background: rgba(76,222,110,0.08); border: 1px solid rgba(76,222,110,0.18); padding: 3px 10px; border-radius: 20px; font-weight: 600; }
-.m-time { font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 500; }
+/* Match card */
+.m-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px; margin-bottom: 12px; overflow: hidden;
+  transition: border-color 0.2s, transform 0.15s;
+}
+.m-card:hover { border-color: rgba(76,222,110,0.25); transform: translateY(-1px); }
+
+.m-top {
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.grp-badge {
+  font-size: 11px; color: #4cde6e;
+  background: rgba(76,222,110,0.1);
+  border: 1px solid rgba(76,222,110,0.2);
+  padding: 3px 10px; border-radius: 20px; font-weight: 700;
+}
+
+/* ── DATA I GODZINA JAŚNIEJSZA ─── */
+.m-time {
+  font-size: 13px;
+  color: rgba(255,255,255,0.75); /* było 0.3 */
+  font-weight: 600;
+}
+
 .m-body { padding: 14px; }
+
 .teams { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
 .team { display: flex; align-items: center; gap: 8px; flex: 1; }
 .team.r { flex-direction: row-reverse; }
 .tflag { font-size: 26px; }
-.tname { font-size: 15px; font-weight: 600; color: #fff; }
+.tname { font-size: 15px; font-weight: 700; color: #fff; }
 .team.r .tname { text-align: right; }
-.vsep { width: 6px; height: 6px; background: rgba(255,255,255,0.08); border-radius: 50%; flex-shrink: 0; }
+.vsep { width: 6px; height: 6px; background: rgba(255,255,255,0.15); border-radius: 50%; flex-shrink: 0; }
+
 .odds { display: flex; gap: 8px; }
-.odd { flex: 1; border-radius: 12px; padding: 10px 6px; text-align: center; background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.07); cursor: pointer; transition: all 0.18s; }
-.odd:hover:not(:disabled) { background: rgba(76,222,110,0.08); border-color: rgba(76,222,110,0.3); }
-.odd.sel { background: rgba(76,222,110,0.12); border-color: #4cde6e; }
-.odd.ok { background: rgba(52,199,89,0.1); border-color: #34c759; }
+
+.odd {
+  flex: 1; border-radius: 12px; padding: 10px 6px; text-align: center;
+  background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.1);
+  cursor: pointer; transition: all 0.18s;
+}
+.odd:hover:not(:disabled) { background: rgba(76,222,110,0.1); border-color: rgba(76,222,110,0.4); }
+.odd.sel { background: rgba(76,222,110,0.15); border-color: #4cde6e; }
+.odd.ok { background: rgba(52,199,89,0.12); border-color: #34c759; }
 .odd.no { opacity: 0.3; }
 .odd:disabled { cursor: default; }
-.odd-l { font-size: 10px; color: rgba(255,255,255,0.3); font-weight: 600; }
-.odd.sel .odd-l { color: rgba(76,222,110,0.7); }
+
+.odd-l { font-size: 11px; color: rgba(255,255,255,0.55); font-weight: 600; }
+.odd.sel .odd-l { color: rgba(76,222,110,0.8); }
 .odd.ok .odd-l { color: #34c759; }
-.odd-v { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: #fff; letter-spacing: 0.5px; margin-top: 1px; }
+
+.odd-v { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: #fff; letter-spacing: 0.5px; margin-top: 2px; }
 .odd.sel .odd-v { color: #4cde6e; }
 .odd.ok .odd-v { color: #34c759; }
-.tip-ok { margin-top: 10px; background: rgba(76,222,110,0.07); border: 1px solid rgba(76,222,110,0.15); border-radius: 10px; padding: 8px 12px; font-size: 13px; color: #4cde6e; font-weight: 600; }
-.locked { margin-top: 10px; font-size: 12px; color: #ff453a; text-align: center; font-weight: 500; }
-.res-badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
-.res-w { background: rgba(52,199,89,0.12); color: #34c759; }
-.res-l { background: rgba(255,59,48,0.1); color: #ff3b30; }
-.res-n { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.25); }
 
-.lb-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 20px; overflow: hidden; }
-.lb-row { display: flex; align-items: center; gap: 12px; padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.tip-ok {
+  margin-top: 10px; background: rgba(76,222,110,0.08);
+  border: 1px solid rgba(76,222,110,0.2);
+  border-radius: 10px; padding: 8px 12px;
+  font-size: 13px; color: #4cde6e; font-weight: 600;
+}
+
+.locked { margin-top: 10px; font-size: 13px; color: #ff453a; text-align: center; font-weight: 600; }
+
+.res-badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+.res-w { background: rgba(52,199,89,0.15); color: #34c759; }
+.res-l { background: rgba(255,59,48,0.12); color: #ff3b30; }
+.res-n { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.45); }
+
+/* Leaderboard */
+.lb-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; overflow: hidden; }
+.lb-row { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .lb-row:last-child { border-bottom: none; }
-.lb-row.me { background: rgba(76,222,110,0.04); border-left: 2px solid #4cde6e; }
-.lb-rank { font-size: 18px; width: 28px; text-align: center; flex-shrink: 0; }
-.lb-rank-n { font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: rgba(255,255,255,0.18); }
-.lb-av { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #000; flex-shrink: 0; }
-.lb-name { font-size: 15px; font-weight: 600; color: #fff; }
+.lb-row.me { background: rgba(76,222,110,0.05); border-left: 2px solid #4cde6e; }
+.lb-rank { font-size: 20px; width: 30px; text-align: center; flex-shrink: 0; }
+.lb-rank-n { font-family: 'Bebas Neue', sans-serif; font-size: 17px; color: rgba(255,255,255,0.35); }
+.lb-av { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; color: #000; flex-shrink: 0; }
+.lb-name { font-size: 16px; font-weight: 600; color: #fff; }
 .lb-me { font-size: 9px; color: #4cde6e; background: rgba(76,222,110,0.12); padding: 1px 6px; border-radius: 6px; font-weight: 700; margin-left: 4px; }
-.lb-sub { font-size: 11px; color: rgba(255,255,255,0.25); margin-top: 1px; }
-.lb-pts { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 0.5px; }
+.lb-sub { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+.lb-pts { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 0.5px; }
 .lb-pts.top { color: #4cde6e; filter: drop-shadow(0 0 8px rgba(76,222,110,0.3)); }
 .lb-pts.norm { color: #fff; }
-.lb-pts-lbl { font-size: 9px; color: rgba(255,255,255,0.22); font-weight: 600; text-align: right; }
+.lb-pts-lbl { font-size: 10px; color: rgba(255,255,255,0.4); font-weight: 600; text-align: right; }
 
-.r-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 20px; overflow: hidden; margin-bottom: 10px; }
-.r-row { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+/* Rules */
+.r-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; overflow: hidden; margin-bottom: 10px; }
+.r-row { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .r-row:last-child { border-bottom: none; }
-.r-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
-.r-title { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 4px; }
-.r-text { font-size: 13px; color: rgba(255,255,255,0.72); line-height: 1.6; }
+.r-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.r-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 5px; }
 
-.prize-row { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+/* ── TEKST REGULAMIN JAŚNIEJSZY ─── */
+.r-text {
+  font-size: 13px;
+  color: rgba(255,255,255,0.72); /* było 0.38 */
+  line-height: 1.65;
+}
+
+.prize-row { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .prize-row:last-child { border-bottom: none; }
-.prize-ic { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; }
+.prize-ic { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 28px; }
 .prize-name { font-size: 16px; font-weight: 600; color: #fff; }
-.prize-amt { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; }
+.prize-amt { font-family: 'Bebas Neue', sans-serif; font-size: 30px; letter-spacing: 1px; }
 
-.adm-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+/* Admin */
+.adm-row { display: flex; align-items: center; justify-content: space-between; padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .adm-row:last-child { border-bottom: none; }
-.adm-name { font-size: 14px; font-weight: 600; color: #fff; }
-.adm-time { font-size: 11px; color: rgba(255,255,255,0.28); margin-top: 2px; }
-.adm-res { font-size: 11px; color: #4cde6e; margin-top: 2px; font-weight: 500; }
-.adm-edit { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09); color: rgba(255,255,255,0.6); padding: 6px 12px; border-radius: 10px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit; }
-.adm-result { background: rgba(76,222,110,0.08); border: 1px solid rgba(76,222,110,0.2); color: #4cde6e; padding: 6px 12px; border-radius: 10px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit; }
+.adm-name { font-size: 14px; font-weight: 700; color: #fff; }
+.adm-time { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+.adm-res { font-size: 12px; color: #4cde6e; margin-top: 2px; font-weight: 600; }
+.adm-edit { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.8); padding: 7px 13px; border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; }
+.adm-result { background: rgba(76,222,110,0.1); border: 1px solid rgba(76,222,110,0.25); color: #4cde6e; padding: 7px 13px; border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; }
 
+/* Modal */
 .mo { position: fixed; inset: 0; background: rgba(0,0,0,0.75); display: flex; align-items: flex-end; justify-content: center; z-index: 100; backdrop-filter: blur(20px); }
-.mb { background: #0f1a10; border: 1px solid rgba(255,255,255,0.1); border-radius: 24px 24px 0 0; padding: 28px 24px; width: 100%; max-width: 480px; max-height: 92vh; overflow-y: auto; }
-.mh { width: 36px; height: 4px; background: rgba(255,255,255,0.12); border-radius: 2px; margin: 0 auto 20px; }
+.mb { background: #0f1a10; border: 1px solid rgba(255,255,255,0.12); border-radius: 24px 24px 0 0; padding: 28px 24px; width: 100%; max-width: 480px; max-height: 92vh; overflow-y: auto; }
+.mh { width: 36px; height: 4px; background: rgba(255,255,255,0.15); border-radius: 2px; margin: 0 auto 20px; }
 .mt { font-size: 19px; font-weight: 700; color: #fff; margin-bottom: 4px; }
-.ms { font-size: 13px; color: rgba(255,255,255,0.3); margin-bottom: 20px; }
-.res-btn { flex: 1; padding: 16px 8px; background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.09); border-radius: 14px; color: rgba(255,255,255,0.5); cursor: pointer; font-family: inherit; font-size: 20px; font-weight: 700; transition: all 0.18s; }
-.res-btn:hover { background: rgba(76,222,110,0.1); border-color: #4cde6e; color: #4cde6e; }
-.mi { width: 100%; padding: 13px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: 12px; color: #fff; font-family: inherit; font-size: 15px; outline: none; transition: border-color 0.2s; }
-.mi:focus { border-color: rgba(76,222,110,0.35); }
-.mi::placeholder { color: rgba(255,255,255,0.2); }
+.ms { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+.res-btn { flex: 1; padding: 16px 8px; background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 14px; color: rgba(255,255,255,0.7); cursor: pointer; font-family: inherit; font-size: 20px; font-weight: 700; transition: all 0.18s; }
+.res-btn:hover { background: rgba(76,222,110,0.12); border-color: #4cde6e; color: #4cde6e; }
+.mi { width: 100%; padding: 13px 16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; color: #fff; font-family: inherit; font-size: 15px; outline: none; transition: border-color 0.2s; }
+.mi:focus { border-color: rgba(76,222,110,0.4); }
+.mi::placeholder { color: rgba(255,255,255,0.3); }
 .m-primary { width: 100%; padding: 15px; background: linear-gradient(135deg, #1e7a38, #4cde6e); border: none; border-radius: 14px; color: #000; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 6px 24px rgba(76,222,110,0.25); }
-.m-secondary { width: 100%; padding: 13px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; color: rgba(255,255,255,0.45); font-family: inherit; font-size: 15px; font-weight: 500; cursor: pointer; }
+.m-secondary { width: 100%; padding: 13px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; color: rgba(255,255,255,0.6); font-family: inherit; font-size: 15px; font-weight: 500; cursor: pointer; }
 
-.toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: rgba(10,20,12,0.95); border: 1px solid rgba(76,222,110,0.2); color: #fff; padding: 10px 20px; border-radius: 50px; font-size: 14px; font-weight: 500; z-index: 200; white-space: nowrap; animation: toastIn 0.25s ease; backdrop-filter: blur(20px); }
+/* Toast */
+.toast { position: fixed; bottom: 110px; left: 50%; transform: translateX(-50%); background: rgba(10,20,12,0.96); border: 1px solid rgba(76,222,110,0.25); color: #fff; padding: 11px 22px; border-radius: 50px; font-size: 14px; font-weight: 600; z-index: 200; white-space: nowrap; animation: toastIn 0.25s ease; backdrop-filter: blur(20px); }
 @keyframes toastIn { from { opacity:0; transform:translateX(-50%) translateY(8px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }
 
-.chat-wrap { display: flex; flex-direction: column; height: calc(100vh - 200px); }
+/* Chat */
+.chat-wrap { display: flex; flex-direction: column; height: calc(100vh - 210px); }
 .chat-msgs { flex: 1; overflow-y: auto; padding: 0 0 8px; }
 .chat-date { text-align: center; margin: 14px 0 10px; }
-.chat-date span { font-size: 11px; color: rgba(255,255,255,0.22); background: rgba(255,255,255,0.05); padding: 3px 12px; border-radius: 20px; }
+.chat-date span { font-size: 11px; color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.06); padding: 3px 12px; border-radius: 20px; }
 .cbw { display: flex; flex-direction: column; margin-bottom: 2px; }
 .crow { display: flex; align-items: flex-end; gap: 6px; }
 .crow.me { flex-direction: row-reverse; }
-.cav { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #000; flex-shrink: 0; }
-.cb { padding: 9px 13px; border-radius: 18px; max-width: 76%; word-break: break-word; font-size: 15px; line-height: 1.4; }
+.cav { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #000; flex-shrink: 0; }
+.cb { padding: 10px 14px; border-radius: 18px; max-width: 76%; word-break: break-word; font-size: 15px; line-height: 1.4; }
 .cb.mine { background: linear-gradient(135deg, #1e7a38, #4cde6e); color: #000; font-weight: 500; border-bottom-right-radius: 4px; }
-.cb.theirs { background: rgba(255,255,255,0.08); color: #fff; border-bottom-left-radius: 4px; }
-.csender { font-size: 10px; color: rgba(255,255,255,0.22); margin-left: 32px; margin-top: 2px; }
-.ctime { font-size: 10px; color: rgba(255,255,255,0.18); margin-top: 2px; text-align: right; }
-.chat-bar { padding: 8px 0 16px; display: flex; gap: 8px; align-items: center; border-top: 1px solid rgba(255,255,255,0.06); }
-.chat-in { flex: 1; padding: 11px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 22px; color: #fff; font-family: inherit; font-size: 15px; outline: none; }
-.chat-in:focus { border-color: rgba(76,222,110,0.25); }
-.chat-in::placeholder { color: rgba(255,255,255,0.18); }
-.chat-send { width: 38px; height: 38px; background: linear-gradient(135deg, #1e7a38, #4cde6e); border: none; border-radius: 50%; color: #000; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+.cb.theirs { background: rgba(255,255,255,0.09); color: #fff; border-bottom-left-radius: 4px; }
+.csender { font-size: 11px; color: rgba(255,255,255,0.45); margin-left: 34px; margin-top: 2px; }
+.ctime { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 2px; text-align: right; }
+.chat-bar { padding: 8px 0 16px; display: flex; gap: 8px; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); }
+.chat-in { flex: 1; padding: 12px 16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 22px; color: #fff; font-family: inherit; font-size: 15px; outline: none; }
+.chat-in:focus { border-color: rgba(76,222,110,0.3); }
+.chat-in::placeholder { color: rgba(255,255,255,0.3); }
+.chat-send { width: 40px; height: 40px; background: linear-gradient(135deg, #1e7a38, #4cde6e); border: none; border-radius: 50%; color: #000; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: 700; }
 .chat-send:disabled { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.2); }
-.empty { text-align: center; padding: 60px 0; color: rgba(255,255,255,0.25); }
+.empty { text-align: center; padding: 60px 0; color: rgba(255,255,255,0.35); }
 .empty-i { font-size: 44px; margin-bottom: 12px; }
-.empty-t { font-size: 17px; font-weight: 600; color: rgba(255,255,255,0.4); }
+.empty-t { font-size: 17px; font-weight: 600; color: rgba(255,255,255,0.5); }
 .empty-s { font-size: 14px; margin-top: 4px; }
 `;
 
@@ -492,11 +542,9 @@ function AuthScreen({ onAuth }) {
     <>
       <style>{css}</style>
       <div className="auth-screen">
-        {/* Stałe tło — bez parallax */}
         <div className="photo-bg" />
         <div className="overlay-1" />
         <div className="overlay-glow" />
-
         <div className="auth-hero">
           <div className="hero-eyebrow">
             <div className="eyebrow-line" />
@@ -506,13 +554,11 @@ function AuthScreen({ onAuth }) {
             MUNDIALOWY<br/>
             <span className="hero-title-green">EKSPERT</span>
           </div>
-          {/* Pogrubiona i biała tagline */}
           <div className="hero-sub">
             Typuj mecze ze znajomymi.<br/>
             Kursy bukmacherskie. Prawdziwa rywalizacja.
           </div>
         </div>
-
         <div className="auth-card">
           <div className="card-top-accent" />
           <div className="auth-seg">
@@ -715,8 +761,8 @@ function MainApp({ user, profile, onLogout }) {
     <>
       <style>{css}</style>
       <div style={{ minHeight:"100vh", background:"#060f07", display:"flex", alignItems:"center", justifyContent:"center", flexDirection:"column", gap:12 }}>
-        <div style={{ width:48, height:48, background:"linear-gradient(135deg,#1e7a38,#4cde6e)", borderRadius:14, display:"flex", alignItems:"center", justifyContent:"center", fontSize:24 }}>⚽</div>
-        <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:13, color:"rgba(76,222,110,0.5)", letterSpacing:3 }}>ŁADOWANIE</div>
+        <div style={{ width:52, height:52, background:"linear-gradient(135deg,#1e7a38,#4cde6e)", borderRadius:16, display:"flex", alignItems:"center", justifyContent:"center", fontSize:26 }}>⚽</div>
+        <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:14, color:"rgba(76,222,110,0.6)", letterSpacing:3 }}>ŁADOWANIE</div>
       </div>
     </>
   );
@@ -802,7 +848,7 @@ function MainApp({ user, profile, onLogout }) {
                 return (
                   <div key={match.id} className="m-card" style={{ opacity:0.85 }}>
                     <div className="m-top">
-                      <span style={{ fontSize:11, color:"rgba(255,255,255,0.25)", fontWeight:600 }}>{match.group_name}</span>
+                      <span style={{ fontSize:11, color:"rgba(255,255,255,0.5)", fontWeight:600 }}>{match.group_name}</span>
                       <span className={`res-badge ${isCor&&tip?"res-w":tip?"res-l":"res-n"}`}>
                         {tip ? (isCor ? `+${parseFloat(match[`odds_${tip.pick}`]).toFixed(2)} pkt ✓` : "0 pkt ✗") : "Brak typu"}
                       </span>
@@ -811,8 +857,8 @@ function MainApp({ user, profile, onLogout }) {
                       <div className="teams">
                         <div className="team"><span className="tflag">{match.home_flag}</span><span className="tname">{match.home}</span></div>
                         <div style={{ textAlign:"center", padding:"0 8px" }}>
-                          <div style={{ fontSize:9, color:"rgba(255,255,255,0.25)", textTransform:"uppercase", letterSpacing:1 }}>Wynik</div>
-                          <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:22, color:"#4cde6e" }}>{PICK_LABELS[match.result]}</div>
+                          <div style={{ fontSize:10, color:"rgba(255,255,255,0.5)", textTransform:"uppercase", letterSpacing:1 }}>Wynik</div>
+                          <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:24, color:"#4cde6e" }}>{PICK_LABELS[match.result]}</div>
                         </div>
                         <div className="team r"><span className="tflag">{match.away_flag}</span><span className="tname">{match.away}</span></div>
                       </div>
@@ -820,7 +866,7 @@ function MainApp({ user, profile, onLogout }) {
                         {["home","draw","away"].map(pick => (
                           <button key={pick} className={`odd ${pick===match.result?"ok":tip?.pick===pick?"no":""}`} disabled>
                             <div className="odd-l">{PICK_LABELS[pick]}</div>
-                            <div className="odd-v" style={{ color:pick===match.result?"#34c759":"rgba(255,255,255,0.25)" }}>{parseFloat(match[`odds_${pick}`]).toFixed(2)}</div>
+                            <div className="odd-v" style={{ color:pick===match.result?"#34c759":"rgba(255,255,255,0.35)" }}>{parseFloat(match[`odds_${pick}`]).toFixed(2)}</div>
                           </button>
                         ))}
                       </div>
@@ -860,10 +906,10 @@ function MainApp({ user, profile, onLogout }) {
             <div className="r-card" style={{ marginBottom:10 }}>
               {[
                 { emoji:"🥇", name:"1. miejsce", amount:"50 zł", color:"#ffd700", bg:"rgba(255,215,0,0.08)" },
-                { emoji:"🥈", name:"2. miejsce", amount:"30 zł", color:"#8e8e93", bg:"rgba(142,142,147,0.08)" },
+                { emoji:"🥈", name:"2. miejsce", amount:"30 zł", color:"#c0c0c0", bg:"rgba(192,192,192,0.08)" },
                 { emoji:"🥉", name:"3. miejsce", amount:"20 zł", color:"#cd7f32", bg:"rgba(205,127,50,0.08)" },
               ].map((r,i,arr) => (
-                <div key={r.name} className="prize-row" style={{ borderBottom:i<arr.length-1?"1px solid rgba(255,255,255,0.04)":"none" }}>
+                <div key={r.name} className="prize-row" style={{ borderBottom:i<arr.length-1?"1px solid rgba(255,255,255,0.06)":"none" }}>
                   <div className="prize-ic" style={{ background:r.bg }}>{r.emoji}</div>
                   <div style={{ flex:1 }}><div className="prize-name">{r.name}</div></div>
                   <div className="prize-amt" style={{ color:r.color }}>{r.amount}</div>
@@ -871,7 +917,13 @@ function MainApp({ user, profile, onLogout }) {
               ))}
             </div>
             <div className="r-card" style={{ marginBottom:10 }}>
-              <div className="r-row"><div className="r-icon" style={{ background:"rgba(76,222,110,0.08)" }}>💸</div><div><div className="r-title">Wypłata nagród</div><div className="r-text">Płatności realizowane <strong style={{ color:"#4cde6e" }}>BLIKIEM</strong> po zakończeniu turnieju. Zwycięzcy zostaną poproszeni o podanie numeru do przelewu.</div></div></div>
+              <div className="r-row">
+                <div className="r-icon" style={{ background:"rgba(76,222,110,0.08)" }}>💸</div>
+                <div>
+                  <div className="r-title">Wypłata nagród</div>
+                  <div className="r-text">Płatności realizowane <strong style={{ color:"#4cde6e" }}>BLIKIEM</strong> po zakończeniu turnieju. Zwycięzcy zostaną poproszeni o podanie numeru do przelewu.</div>
+                </div>
+              </div>
             </div>
             <div className="sec-hdr" style={{ marginTop:16 }}>Zasady gry</div>
             {[
@@ -880,7 +932,10 @@ function MainApp({ user, profile, onLogout }) {
               { icon:"🏆", bg:"rgba(76,222,110,0.08)", title:"Klasyfikacja", text:"Wygrywa gracz z największą sumą punktów po zakończeniu wszystkich meczów. System premiuje odważne typy — trafienie niespodziewanego wyniku daje więcej punktów niż typowanie faworyta." },
             ].map(s => (
               <div key={s.title} className="r-card" style={{ marginBottom:8 }}>
-                <div className="r-row"><div className="r-icon" style={{ background:s.bg }}>{s.icon}</div><div><div className="r-title">{s.title}</div><div className="r-text">{s.text}</div></div></div>
+                <div className="r-row">
+                  <div className="r-icon" style={{ background:s.bg }}>{s.icon}</div>
+                  <div><div className="r-title">{s.title}</div><div className="r-text">{s.text}</div></div>
+                </div>
               </div>
             ))}
             <div className="sec-hdr" style={{ marginTop:16 }}>Informacje</div>
@@ -888,13 +943,13 @@ function MainApp({ user, profile, onLogout }) {
               {[
                 { icon:"👨‍💻", bg:"rgba(52,199,89,0.08)", text:"Projekt powstał hobbystycznie, gdzieś między jednym a drugim zadaniem w pracy. Przetestowaliśmy go na zawrotnej grupie trzech osób i… chyba działa 🙂 Teraz pałeczka przechodzi na Was, to Wy jesteście ekipą testową." },
                 { icon:"⚠️", bg:"rgba(255,149,0,0.08)", text:"Administrator nie daje gwarancji, że wszystko pójdzie idealnie 😉 Możliwe drobne potknięcia po drodze, ale liczymy, że wspólnie dociągniemy temat do finału mistrzostw." },
-                { icon:"✉️", bg:"rgba(0,122,255,0.1)", email:"bleiddwnpl@gmail.com" },
+                { icon:"✉️", bg:"rgba(0,122,255,0.1)", email:"bleiddxxx@gmail.com" },
               ].map((s,i,arr) => (
-                <div key={i} className="r-row" style={{ borderBottom:i<arr.length-1?"1px solid rgba(255,255,255,0.04)":"none" }}>
+                <div key={i} className="r-row" style={{ borderBottom:i<arr.length-1?"1px solid rgba(255,255,255,0.06)":"none" }}>
                   <div className="r-icon" style={{ background:s.bg }}>{s.icon}</div>
                   <div>
                     {s.text && <div className="r-text">{s.text}</div>}
-                    {s.email && <><div className="r-text" style={{ marginBottom:4 }}>Wszelkie uwagi, sugestie i zgłoszenia problemów prosimy kierować na adres:</div><div style={{ fontSize:14, fontWeight:600, color:"#4cde6e" }}>{s.email}</div></>}
+                    {s.email && <><div className="r-text" style={{ marginBottom:4 }}>Wszelkie uwagi, sugestie i zgłoszenia problemów prosimy kierować na adres:</div><div style={{ fontSize:15, fontWeight:700, color:"#4cde6e" }}>{s.email}</div></>}
                   </div>
                 </div>
               ))}
@@ -908,7 +963,7 @@ function MainApp({ user, profile, onLogout }) {
               <div className="sec-hdr">Nadchodzące mecze</div>
               <div className="r-card" style={{ marginBottom:10 }}>
                 {upcoming.map((match,i) => (
-                  <div key={match.id} className="adm-row" style={{ borderBottom:i<upcoming.length-1?"1px solid rgba(255,255,255,0.04)":"none" }}>
+                  <div key={match.id} className="adm-row" style={{ borderBottom:i<upcoming.length-1?"1px solid rgba(255,255,255,0.06)":"none" }}>
                     <div><div className="adm-name">{match.home_flag} {match.home} vs {match.away} {match.away_flag}</div><div className="adm-time">{match.match_date} · {match.match_time?.slice(0,5)}</div></div>
                     <div style={{ display:"flex", gap:6 }}>
                       <button className="adm-edit" onClick={() => openEdit(match)}>Edytuj</button>
@@ -922,7 +977,7 @@ function MainApp({ user, profile, onLogout }) {
               <div className="sec-hdr">Zakończone mecze</div>
               <div className="r-card">
                 {finished.map((match,i) => (
-                  <div key={match.id} className="adm-row" style={{ borderBottom:i<finished.length-1?"1px solid rgba(255,255,255,0.04)":"none" }}>
+                  <div key={match.id} className="adm-row" style={{ borderBottom:i<finished.length-1?"1px solid rgba(255,255,255,0.06)":"none" }}>
                     <div><div className="adm-name">{match.home_flag} {match.home} vs {match.away} {match.away_flag}</div><div className="adm-res">Wynik: {PICK_LABELS[match.result]}</div></div>
                     <div style={{ display:"flex", gap:6 }}>
                       <button className="adm-edit" onClick={() => openEdit(match)}>Edytuj</button>
@@ -955,7 +1010,7 @@ function MainApp({ user, profile, onLogout }) {
                 {["home","draw","away"].map(pick => (
                   <button key={pick} className="res-btn" onClick={() => saveResult(resultModal.id, pick)}>
                     <div style={{ fontSize:22, fontWeight:700 }}>{PICK_LABELS[pick]}</div>
-                    <div style={{ fontSize:11, marginTop:4, color:"rgba(255,255,255,0.28)" }}>{PICK_NAMES[pick]}</div>
+                    <div style={{ fontSize:12, marginTop:4, color:"rgba(255,255,255,0.5)" }}>{PICK_NAMES[pick]}</div>
                   </button>
                 ))}
               </div>
@@ -1029,7 +1084,7 @@ export default function App() {
     <>
       <style>{css}</style>
       <div style={{ minHeight:"100vh", background:"#060f07", display:"flex", alignItems:"center", justifyContent:"center" }}>
-        <div style={{ width:48, height:48, background:"linear-gradient(135deg,#1e7a38,#4cde6e)", borderRadius:14, display:"flex", alignItems:"center", justifyContent:"center", fontSize:24 }}>⚽</div>
+        <div style={{ width:52, height:52, background:"linear-gradient(135deg,#1e7a38,#4cde6e)", borderRadius:16, display:"flex", alignItems:"center", justifyContent:"center", fontSize:26 }}>⚽</div>
       </div>
     </>
   );
