@@ -315,10 +315,10 @@ body { background: #060f07; font-family: 'Inter', sans-serif; }
   display: flex; z-index: 50; backdrop-filter: blur(20px); padding-bottom: 8px;
 }
 
-.nav-item { flex: 1; padding: 10px 4px 5px; background: transparent; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; }
-.nav-ic { width: 44px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 20px; transition: background 0.2s; }
+.nav-item { flex: 1; padding: 12px 4px 6px; background: transparent; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.nav-ic { width: 48px; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 26px; transition: background 0.2s; }
 .nav-item.active .nav-ic { background: rgba(76,222,110,0.1); }
-.nav-lbl { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.22); transition: color 0.2s; }
+.nav-lbl { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.4); transition: color 0.2s; }
 .nav-item.active .nav-lbl { color: #4cde6e; }
 .nav-dot { width: 4px; height: 4px; background: #4cde6e; border-radius: 50%; display: none; }
 .nav-item.active .nav-dot { display: block; }
