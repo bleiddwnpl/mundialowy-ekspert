@@ -331,7 +331,7 @@ body { background: #060f07; font-family: 'Inter', sans-serif; }
 .m-card:hover { border-color: rgba(76,222,110,0.2); transform: translateY(-1px); }
 .m-top { padding: 9px 14px; background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; }
 .grp-badge { font-size: 11px; color: #4cde6e; background: rgba(76,222,110,0.08); border: 1px solid rgba(76,222,110,0.18); padding: 3px 10px; border-radius: 20px; font-weight: 600; }
-.m-time { font-size: 12px; color: rgba(255,255,255,0.3); font-weight: 500; }
+.m-time { font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 500; }
 .m-body { padding: 14px; }
 .teams { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
 .team { display: flex; align-items: center; gap: 8px; flex: 1; }
@@ -380,7 +380,7 @@ body { background: #060f07; font-family: 'Inter', sans-serif; }
 .r-row:last-child { border-bottom: none; }
 .r-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
 .r-title { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 4px; }
-.r-text { font-size: 13px; color: rgba(255,255,255,0.38); line-height: 1.6; }
+.r-text { font-size: 13px; color: rgba(255,255,255,0.72); line-height: 1.6; }
 
 .prize-row { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); }
 .prize-row:last-child { border-bottom: none; }
