@@ -26,7 +26,7 @@ const FLAGS = {
   "Ghana":"🇬🇭","Maroko":"🇲🇦","Senegal":"🇸🇳",
   "Tunezja":"🇹🇳","RPA":"🇿🇦","Cabo Verde":"🇨🇻",
   "DR Konga":"🇨🇩","Haiti":"🇭🇹","Panama":"🇵🇦",
-  "Curaçao":"🇨🇼","Nowa Zelandia":"🇳🇿","Polska":"🇵🇱",
+  "Curaçao":"🇨🇼","Nowa Zelandia":"🇳🇿","Szkocja":"🏴󠁧󠁢󠁳󠁣󠁴󠁿",
 };
 
 const AVATAR_COLORS = [
