@@ -51,12 +51,12 @@ const css = `
 body { background: #060f07; font-family: 'Inter', sans-serif; }
 ::-webkit-scrollbar { width: 0; }
 
-.auth-screen { min-height: 100vh; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; }
-.photo-bg { position: fixed; inset: 0; background-image: url('${PHOTO_URL}'); background-size: cover; background-position: center center; }
-.overlay-1 { position: fixed; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.08) 25%, rgba(0,0,0,0.55) 55%, rgba(4,12,5,0.95) 78%, #040c05 100%); }
-.overlay-glow { position: fixed; bottom: 0; left: 0; right: 0; height: 60%; background: radial-gradient(ellipse at 50% 100%, rgba(0,180,60,0.1) 0%, transparent 70%); }
+.auth-screen { min-height:100vh; position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end; }
+.photo-bg { position:fixed; inset:0; background-image:url('${PHOTO_URL}'); background-size:cover; background-position:center center; }
+.overlay-1 { position:fixed; inset:0; background:linear-gradient(180deg,rgba(0,0,0,0.08) 0%,rgba(0,0,0,0.08) 25%,rgba(0,0,0,0.55) 55%,rgba(4,12,5,0.95) 78%,#040c05 100%); }
+.overlay-glow { position:fixed; bottom:0; left:0; right:0; height:60%; background:radial-gradient(ellipse at 50% 100%,rgba(0,180,60,0.1) 0%,transparent 70%); }
 
-.auth-hero { position: relative; z-index: 5; padding: 0 28px; margin-bottom: 24px; animation: heroReveal 1.2s cubic-bezier(0.16,1,0.3,1) both; }
+.auth-hero { position:relative; z-index:5; padding:0 28px; margin-bottom:24px; animation:heroReveal 1.2s cubic-bezier(0.16,1,0.3,1) both; }
 @keyframes heroReveal { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
 .hero-eyebrow { display:flex; align-items:center; gap:8px; margin-bottom:12px; animation:fadeSlide 0.8s 0.2s both; }
 @keyframes fadeSlide { from{opacity:0;transform:translateX(-16px)} to{opacity:1;transform:translateX(0)} }
@@ -85,8 +85,13 @@ body { background: #060f07; font-family: 'Inter', sans-serif; }
 .auth-cta::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(255,255,255,0.15) 0%,transparent 50%); pointer-events:none; }
 .auth-cta:hover { transform:translateY(-1px); box-shadow:0 12px 36px rgba(76,222,110,0.4); }
 .auth-cta:disabled { opacity:0.45; cursor:not-allowed; transform:none; }
+.forgot-btn { width:100%; padding:10px; background:transparent; border:none; color:rgba(255,255,255,0.4); font-size:13px; cursor:pointer; margin-top:4px; font-family:'Inter',sans-serif; transition:color 0.2s; }
+.forgot-btn:hover { color:rgba(76,222,110,0.7); }
+.back-btn { width:100%; padding:12px; background:transparent; border:none; color:rgba(255,255,255,0.4); font-size:13px; cursor:pointer; margin-top:8px; font-family:'Inter',sans-serif; transition:color 0.2s; }
+.back-btn:hover { color:#fff; }
+.reset-success { background:rgba(76,222,110,0.08); border:1px solid rgba(76,222,110,0.2); border-radius:12px; padding:14px 16px; text-align:center; color:#4cde6e; font-size:14px; font-weight:600; line-height:1.5; }
 
-/* ── TEAM PICKER MODAL ────────────────────────────────── */
+/* TEAM PICKER */
 .team-picker-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:200; display:flex; align-items:flex-end; justify-content:center; backdrop-filter:blur(20px); }
 .team-picker-box { background:#0f1a10; border:1px solid rgba(255,255,255,0.12); border-radius:28px 28px 0 0; padding:28px 20px 48px; width:100%; max-width:480px; max-height:90vh; display:flex; flex-direction:column; animation:slideUp 0.4s cubic-bezier(0.16,1,0.3,1) both; }
 @keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
@@ -104,7 +109,7 @@ body { background: #060f07; font-family: 'Inter', sans-serif; }
 .tp-save:disabled { opacity:0.35; cursor:not-allowed; }
 .tp-skip { width:100%; padding:11px; background:transparent; border:none; color:rgba(255,255,255,0.3); font-family:'Inter',sans-serif; font-size:13px; cursor:pointer; margin-top:6px; flex-shrink:0; }
 
-/* ── MAIN APP ─────────────────────────────────────────── */
+/* MAIN APP */
 .main-app { min-height:100vh; background:#060f07; max-width:480px; margin:0 auto; padding-bottom:100px; font-family:'Inter',sans-serif; }
 .app-header { position:relative; overflow:hidden; padding:0 0 20px; min-height:195px; }
 .header-photo { position:absolute; inset:-20px -10px 0; background-image:url('${PHOTO_URL}'); background-size:cover; background-position:center 30%; filter:blur(2px) brightness(0.4) saturate(1.2); }
@@ -176,11 +181,8 @@ body { background: #060f07; font-family: 'Inter', sans-serif; }
 .lb-row.me { background:rgba(76,222,110,0.05); border-left:2px solid #4cde6e; }
 .lb-rank { font-size:20px; width:30px; text-align:center; flex-shrink:0; }
 .lb-rank-n { font-family:'Bebas Neue',sans-serif; font-size:17px; color:rgba(255,255,255,0.35); }
-
-/* ── FLAGA W TABELI ─── */
 .lb-flag-circle { width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.07); border:1.5px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
 .lb-flag-circle.has-flag { border-color:rgba(76,222,110,0.2); background:rgba(76,222,110,0.06); }
-
 .lb-av { width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700; color:#000; flex-shrink:0; }
 .lb-name { font-size:16px; font-weight:600; color:#fff; }
 .lb-me { font-size:9px; color:#4cde6e; background:rgba(76,222,110,0.12); padding:1px 6px; border-radius:6px; font-weight:700; margin-left:4px; }
@@ -196,7 +198,6 @@ body { background: #060f07; font-family: 'Inter', sans-serif; }
 .r-icon { width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
 .r-title { font-size:15px; font-weight:700; color:#fff; margin-bottom:5px; }
 .r-text { font-size:13px; color:rgba(255,255,255,0.72); line-height:1.65; }
-
 .prize-row { display:flex; align-items:center; gap:14px; padding:14px 16px; border-bottom:1px solid rgba(255,255,255,0.06); }
 .prize-row:last-child { border-bottom:none; }
 .prize-ic { width:50px; height:50px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:28px; }
@@ -255,7 +256,6 @@ body { background: #060f07; font-family: 'Inter', sans-serif; }
 // ── TEAM PICKER ───────────────────────────────────────────────────────────────
 function TeamPicker({ onSave, onSkip }) {
   const [selected, setSelected] = useState(null);
-
   return (
     <div className="team-picker-overlay">
       <div className="team-picker-box">
@@ -264,19 +264,13 @@ function TeamPicker({ onSave, onSkip }) {
         <div className="tp-sub">Wybierz swoją drużynę — flaga pojawi się przy Twoim profilu w tabeli</div>
         <div className="tp-grid">
           {Object.entries(FLAGS).map(([name, flag]) => (
-            <div
-              key={name}
-              className={`tp-item ${selected===name?"selected":""}`}
-              onClick={() => setSelected(name)}
-            >
+            <div key={name} className={`tp-item ${selected===name?"selected":""}`} onClick={() => setSelected(name)}>
               <span className="tp-flag">{flag}</span>
               <span className="tp-name">{name}</span>
             </div>
           ))}
         </div>
-        <button className="tp-save" onClick={() => onSave(selected)} disabled={!selected}>
-          Zapisz wybór →
-        </button>
+        <button className="tp-save" onClick={() => onSave(selected)} disabled={!selected}>Zapisz wybór →</button>
         <button className="tp-skip" onClick={onSkip}>Pomiń na razie</button>
       </div>
     </div>
@@ -313,6 +307,20 @@ function AuthScreen({ onAuth }) {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [resetMode, setResetMode] = useState(false);
+  const [resetEmail, setResetEmail] = useState("");
+  const [resetSent, setResetSent] = useState(false);
+
+  const handleReset = async () => {
+    if (!resetEmail.trim()) { setError("Wpisz swój adres e-mail"); return; }
+    setLoading(true); setError("");
+    const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
+      redirectTo: "https://mundialowy-ekspert.vercel.app",
+    });
+    setLoading(false);
+    if (error) { setError("Nie znaleziono konta z tym adresem e-mail"); return; }
+    setResetSent(true);
+  };
 
   const handleSubmit = async () => {
     setError(""); setLoading(true);
@@ -351,31 +359,71 @@ function AuthScreen({ onAuth }) {
         </div>
         <div className="auth-card">
           <div className="card-top-accent"/>
-          <div className="auth-seg">
-            {["login","register"].map(m => (
-              <button key={m} className={`seg-btn ${mode===m?"active":""}`} onClick={() => setMode(m)}>
-                {m==="login" ? "Logowanie" : "Rejestracja"}
+
+          {resetMode ? (
+            /* ── RESET HASŁA ── */
+            <>
+              <div style={{ textAlign:"center", marginBottom:16 }}>
+                <div style={{ fontSize:32, marginBottom:8 }}>🔒</div>
+                <div style={{ fontSize:18, fontWeight:700, color:"#fff", marginBottom:6 }}>Resetuj hasło</div>
+                <div style={{ fontSize:13, color:"rgba(255,255,255,0.45)", lineHeight:1.6 }}>
+                  {resetSent
+                    ? "Sprawdź swoją skrzynkę e-mail i kliknij link, aby ustawić nowe hasło."
+                    : "Podaj swój adres e-mail — wyślemy Ci link do resetowania hasła."}
+                </div>
+              </div>
+              {!resetSent && <>
+                <div className="auth-field">
+                  <span className="field-icon">✉️</span>
+                  <input className="auth-input" type="email" placeholder="Adres e-mail" value={resetEmail} onChange={e => setResetEmail(e.target.value)} onKeyDown={e => e.key==="Enter" && handleReset()}/>
+                </div>
+                {error && <div className="auth-error">{error}</div>}
+                <button className="auth-cta" onClick={handleReset} disabled={loading}>
+                  {loading ? "Wysyłanie..." : "Wyślij link resetujący →"}
+                </button>
+              </>}
+              {resetSent && (
+                <div className="reset-success">✓ Link wysłany!<br/>Sprawdź swoją skrzynkę e-mail.</div>
+              )}
+              <button className="back-btn" onClick={() => { setResetMode(false); setResetSent(false); setError(""); }}>
+                ← Wróć do logowania
               </button>
-            ))}
-          </div>
-          {mode==="register" && (
-            <div className="auth-field">
-              <span className="field-icon">👤</span>
-              <input className="auth-input" placeholder="Imię lub pseudonim" value={name} onChange={e => setName(e.target.value)}/>
-            </div>
+            </>
+          ) : (
+            /* ── LOGOWANIE / REJESTRACJA ── */
+            <>
+              <div className="auth-seg">
+                {["login","register"].map(m => (
+                  <button key={m} className={`seg-btn ${mode===m?"active":""}`} onClick={() => setMode(m)}>
+                    {m==="login" ? "Logowanie" : "Rejestracja"}
+                  </button>
+                ))}
+              </div>
+              {mode==="register" && (
+                <div className="auth-field">
+                  <span className="field-icon">👤</span>
+                  <input className="auth-input" placeholder="Imię lub pseudonim" value={name} onChange={e => setName(e.target.value)}/>
+                </div>
+              )}
+              <div className="auth-field">
+                <span className="field-icon">✉️</span>
+                <input className="auth-input" type="email" placeholder="Adres e-mail" value={email} onChange={e => setEmail(e.target.value)}/>
+              </div>
+              <div className="auth-field">
+                <span className="field-icon">🔒</span>
+                <input className="auth-input" type="password" placeholder="Hasło" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={e => e.key==="Enter" && handleSubmit()}/>
+              </div>
+              {error && <div className="auth-error">{error}</div>}
+              <button className="auth-cta" onClick={handleSubmit} disabled={loading}>
+                {loading ? "Ładowanie..." : mode==="login" ? "Zaloguj się →" : "Zarejestruj się →"}
+              </button>
+              {mode==="login" && (
+                <button className="forgot-btn" onClick={() => { setResetMode(true); setError(""); }}>
+                  Nie pamiętam hasła
+                </button>
+              )}
+            </>
           )}
-          <div className="auth-field">
-            <span className="field-icon">✉️</span>
-            <input className="auth-input" type="email" placeholder="Adres e-mail" value={email} onChange={e => setEmail(e.target.value)}/>
-          </div>
-          <div className="auth-field">
-            <span className="field-icon">🔒</span>
-            <input className="auth-input" type="password" placeholder="Hasło" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={e => e.key==="Enter" && handleSubmit()}/>
-          </div>
-          {error && <div className="auth-error">{error}</div>}
-          <button className="auth-cta" onClick={handleSubmit} disabled={loading}>
-            {loading ? "Ładowanie..." : mode==="login" ? "Zaloguj się →" : "Zarejestruj się →"}
-          </button>
         </div>
       </div>
     </>
@@ -482,10 +530,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
 
   useEffect(() => {
     load();
-    // Pokaż picker jeśli brak wybranej drużyny
-    if (!initialProfile?.favorite_team) {
-      setTimeout(() => setShowTeamPicker(true), 800);
-    }
+    if (!initialProfile?.favorite_team) setTimeout(() => setShowTeamPicker(true), 800);
   }, []);
 
   const saveTeam = async (teamName) => {
@@ -579,13 +624,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
       <style>{css}</style>
       <div className="main-app">
 
-        {/* TEAM PICKER */}
-        {showTeamPicker && (
-          <TeamPicker
-            onSave={saveTeam}
-            onSkip={() => setShowTeamPicker(false)}
-          />
-        )}
+        {showTeamPicker && <TeamPicker onSave={saveTeam} onSkip={() => setShowTeamPicker(false)}/>}
 
         <div className="app-header">
           <div className="header-photo"/>
@@ -692,7 +731,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
             </>}
           </>}
 
-          {/* TABELA — z flagą kibica */}
+          {/* TABELA — flaga w kółku, BEZ flagi w podpisie */}
           {tab==="leaderboard" && <>
             <div className="sec-hdr">Klasyfikacja</div>
             {lb.length===0 && <div className="empty"><div className="empty-i">🏆</div><div className="empty-t">Brak uczestników</div></div>}
@@ -703,21 +742,16 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
                 return (
                   <div key={u.id} className={`lb-row ${u.id===user.id?"me":""}`}>
                     <div className="lb-rank">{i===0?"🥇":i===1?"🥈":i===2?"🥉":<span className="lb-rank-n">#{i+1}</span>}</div>
-
-                    {/* Flaga kibica w kółku */}
                     <div className={`lb-flag-circle ${favFlag?"has-flag":""}`}>
-                      {favFlag ? favFlag : <div className="lb-av" style={{ background:uav.gradient, width:"100%", height:"100%", borderRadius:"50%", fontSize:13 }}>{uav.initials}</div>}
+                      {favFlag
+                        ? favFlag
+                        : <div className="lb-av" style={{ background:uav.gradient, width:"100%", height:"100%", borderRadius:"50%", fontSize:13 }}>{uav.initials}</div>
+                      }
                     </div>
-
                     <div style={{ flex:1 }}>
-                      <div className="lb-name">
-                        {u.name}
-                        {u.id===user.id && <span className="lb-me">TY</span>}
-                      </div>
-                      <div className="lb-sub">
-                        {u.favorite_team && <span style={{ marginRight:4 }}>{FLAGS[u.favorite_team]}</span>}
-                        {u.correct} trafione
-                      </div>
+                      <div className="lb-name">{u.name}{u.id===user.id&&<span className="lb-me">TY</span>}</div>
+                      {/* Bez flagi w podpisie — tylko liczba trafionych */}
+                      <div className="lb-sub">{u.correct} trafione</div>
                     </div>
                     <div style={{ textAlign:"right" }}>
                       <div className={`lb-pts ${i===0?"top":"norm"}`}>{u.points.toFixed(2)}</div>
@@ -729,13 +763,14 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
             </div>
           </>}
 
+          {/* REGULAMIN — nagroda 1. miejsca = 100 zł */}
           {tab==="rules" && <>
             <div className="sec-hdr">Nagrody</div>
             <div className="r-card" style={{ marginBottom:10 }}>
               {[
-                { emoji:"🥇", name:"1. miejsce", amount:"50 zł", color:"#ffd700", bg:"rgba(255,215,0,0.08)" },
-                { emoji:"🥈", name:"2. miejsce", amount:"30 zł", color:"#c0c0c0", bg:"rgba(192,192,192,0.08)" },
-                { emoji:"🥉", name:"3. miejsce", amount:"20 zł", color:"#cd7f32", bg:"rgba(205,127,50,0.08)" },
+                { emoji:"🥇", name:"1. miejsce", amount:"100 zł", color:"#ffd700", bg:"rgba(255,215,0,0.08)" },
+                { emoji:"🥈", name:"2. miejsce", amount:"30 zł",  color:"#c0c0c0", bg:"rgba(192,192,192,0.08)" },
+                { emoji:"🥉", name:"3. miejsce", amount:"20 zł",  color:"#cd7f32", bg:"rgba(205,127,50,0.08)" },
               ].map((r,i,arr) => (
                 <div key={r.name} className="prize-row" style={{ borderBottom:i<arr.length-1?"1px solid rgba(255,255,255,0.06)":"none" }}>
                   <div className="prize-ic" style={{ background:r.bg }}>{r.emoji}</div>
@@ -828,8 +863,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
         {resultModal && (
           <div className="mo" onClick={() => setResultModal(null)}>
             <div className="mb" onClick={e => e.stopPropagation()}>
-              <div className="mh"/>
-              <div className="mt">{resultModal.home_flag} {resultModal.home} vs {resultModal.away} {resultModal.away_flag}</div>
+              <div className="mh"/><div className="mt">{resultModal.home_flag} {resultModal.home} vs {resultModal.away} {resultModal.away_flag}</div>
               <div className="ms">Wybierz wynik meczu</div>
               <div style={{ display:"flex", gap:10 }}>
                 {["home","draw","away"].map(pick => (
@@ -847,9 +881,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
         {addModal && (
           <div className="mo" onClick={() => setAddModal(false)}>
             <div className="mb" onClick={e => e.stopPropagation()}>
-              <div className="mh"/>
-              <div className="mt">Dodaj mecz ⚽</div>
-              <div className="ms">Wypełnij dane i kursy</div>
+              <div className="mh"/><div className="mt">Dodaj mecz ⚽</div><div className="ms">Wypełnij dane i kursy</div>
               <MatchFormFields data={newMatch} onChange={setNewMatch}/>
               <div style={{ display:"flex", flexDirection:"column", gap:10, marginTop:16 }}>
                 <button className="m-primary" onClick={addMatch}>Dodaj mecz</button>
@@ -862,9 +894,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
         {editModal && (
           <div className="mo" onClick={() => setEditModal(null)}>
             <div className="mb" onClick={e => e.stopPropagation()}>
-              <div className="mh"/>
-              <div className="mt">Edytuj mecz ✏️</div>
-              <div className="ms">Zmień dane meczu</div>
+              <div className="mh"/><div className="mt">Edytuj mecz ✏️</div><div className="ms">Zmień dane meczu</div>
               <MatchFormFields data={editData} onChange={setEditData}/>
               <div style={{ display:"flex", flexDirection:"column", gap:10, marginTop:16 }}>
                 <button className="m-primary" onClick={saveEdit}>Zapisz zmiany</button>
