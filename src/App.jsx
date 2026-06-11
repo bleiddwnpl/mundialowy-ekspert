@@ -542,7 +542,16 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
     await load();
   };
 
-  const isLocked = m => new Date() >= new Date(`${m.match_date}T${m.match_time}`);
+  const isLocked = m => {
+  // Porównujemy oba czasy w strefie Warsaw — bezpieczne przez cały rok (CET/CEST)
+  const nowWarsaw = new Intl.DateTimeFormat("sv-SE", {
+    timeZone: "Europe/Warsaw",
+    year:"numeric", month:"2-digit", day:"2-digit",
+    hour:"2-digit", minute:"2-digit", second:"2-digit"
+  }).format(new Date()).replace(" ", "T");
+  const matchStr = `${m.match_date}T${m.match_time?.slice(0,5)}`;
+  return nowWarsaw >= matchStr;
+};
   const myTip = id => tips.find(t => t.user_id===user.id && t.match_id===id);
 
   const placeTip = async (matchId, pick) => {
