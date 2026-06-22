@@ -459,8 +459,8 @@ function ChatTab({ user, profile }) {
   };
 
   
-  const fmt = ts => new Date(ts).toLocaleTimeString("pl-PL", { hour:"2-digit", minute:"2-digit", timeZone:"Europe/Warsaw" });
-  const fmtD = ts => new Date(ts).toLocaleDateString("pl-PL", { day:"numeric", month:"long", timeZone:"Europe/Warsaw" }); 
+  const fmt = ts => new Date(ts).toLocaleTimeString("pl-PL", { hour:"2-digit", minute:"2-digit" });
+const fmtD = ts => new Date(ts).toLocaleDateString("pl-PL", { day:"numeric", month:"long" });
   = messages.reduce((acc, m) => {
     const d = fmtD(m.created_at);
     if (!acc[d]) acc[d] = [];
