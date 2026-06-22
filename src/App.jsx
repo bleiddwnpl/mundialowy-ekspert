@@ -552,24 +552,14 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
   const placeTip = async (matchId, pick) => {
   const match = matches.find(m => m.id===matchId);
   if (isLocked(match)) { showToast("⛔ Typowanie zamknięte"); return; }
-
-  const { data, error } = await supabase
-    .from("tips")
-    .upsert(
-      { user_id: user.id, match_id: matchId, pick, points: 0 },
-      { onConflict: "user_id,match_id" }
-    )
-    .select()
-    .single();
-
-  if (error) { showToast("⚠️ Błąd zapisu — spróbuj jeszcze raz"); return; }
-
-  setTips(prev => {
-    const idx = prev.findIndex(t => t.user_id===user.id && t.match_id===matchId);
-    if (idx >= 0) { const u = [...prev]; u[idx] = data; return u; }
-    return [...prev, data];
-  });
-
+  const ex = myTip(matchId);
+  if (ex) {
+    await supabase.from("tips").update({ pick, points:0 }).eq("id", ex.id);
+    setTips(tips.map(t => t.id===ex.id ? {...t, pick, points:0} : t));
+  } else {
+    const { data } = await supabase.from("tips").insert({ user_id:user.id, match_id:matchId, pick, points:0 }).select().single();
+    if (data) setTips([...tips, data]);
+  }
   showToast(`Typ: ${PICK_LABELS[pick]} · +${parseFloat(match[`odds_${pick}`]).toFixed(2)} pkt`);
 };
 
