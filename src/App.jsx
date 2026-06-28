@@ -45,15 +45,13 @@ const getAvatar = (name = "") => {
   return { initials, gradient: AVATAR_COLORS[idx] };
 };
 
-// Blokada w strefie czasowej Warszawa (CET/CEST automatycznie)
 const isMatchLocked = (m) => {
   const nowWarsaw = new Intl.DateTimeFormat("sv-SE", {
     timeZone: "Europe/Warsaw",
     year: "numeric", month: "2-digit", day: "2-digit",
     hour: "2-digit", minute: "2-digit", second: "2-digit",
   }).format(new Date()).replace(" ", "T");
-  const matchStr = `${m.match_date}T${m.match_time?.slice(0, 5)}`;
-  return nowWarsaw >= matchStr;
+  return nowWarsaw >= `${m.match_date}T${m.match_time?.slice(0, 5)}`;
 };
 
 const css = `
@@ -66,7 +64,6 @@ body { background:#060f07; font-family:'Inter',sans-serif; }
 .photo-bg { position:fixed; inset:0; background-image:url('${PHOTO_URL}'); background-size:cover; background-position:center center; }
 .ov1 { position:fixed; inset:0; background:linear-gradient(180deg,rgba(0,0,0,0.08) 0%,rgba(0,0,0,0.55) 55%,rgba(4,12,5,0.95) 78%,#040c05 100%); }
 .ov2 { position:fixed; bottom:0; left:0; right:0; height:60%; background:radial-gradient(ellipse at 50% 100%,rgba(0,180,60,0.1) 0%,transparent 70%); }
-
 .auth-hero { position:relative; z-index:5; padding:0 28px; margin-bottom:24px; animation:heroIn 1.2s cubic-bezier(0.16,1,0.3,1) both; }
 @keyframes heroIn { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
 .eyebrow { display:flex; align-items:center; gap:8px; margin-bottom:12px; animation:slideIn 0.8s 0.2s both; }
@@ -77,15 +74,12 @@ body { background:#060f07; font-family:'Inter',sans-serif; }
 @keyframes titleIn { from{opacity:0;transform:translateY(24px) skewY(2deg)} to{opacity:1;transform:translateY(0) skewY(0)} }
 .hero-green { color:#4cde6e; filter:drop-shadow(0 0 20px rgba(76,222,110,0.4)); }
 .hero-sub { font-size:15px; font-weight:700; color:rgba(255,255,255,0.92); line-height:1.6; text-shadow:0 2px 12px rgba(0,0,0,0.8); animation:slideIn 0.8s 0.3s both; }
-
 .auth-card { position:relative; z-index:5; margin:0 16px 48px; background:rgba(8,20,10,0.72); border:1px solid rgba(255,255,255,0.1); border-radius:24px; padding:22px; backdrop-filter:blur(30px); animation:cardIn 1s 0.35s cubic-bezier(0.16,1,0.3,1) both; box-shadow:0 0 0 1px rgba(76,222,110,0.08),0 24px 60px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.08); }
 @keyframes cardIn { from{opacity:0;transform:translateY(32px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
 .card-shine { position:absolute; top:0; left:50%; transform:translateX(-50%); width:60%; height:1px; background:linear-gradient(90deg,transparent,rgba(76,222,110,0.4),transparent); }
-
 .seg { display:flex; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:3px; margin-bottom:16px; }
 .seg-btn { flex:1; padding:10px; text-align:center; font-size:14px; font-weight:600; color:rgba(255,255,255,0.35); border-radius:12px; border:none; background:transparent; font-family:'Inter',sans-serif; cursor:pointer; transition:all 0.22s; }
 .seg-btn.on { background:linear-gradient(135deg,#1a6b30,#4cde6e); color:#000; box-shadow:0 4px 16px rgba(76,222,110,0.25); }
-
 .afield { position:relative; margin-bottom:10px; }
 .aicon { position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:16px; opacity:0.4; pointer-events:none; }
 .ainput { width:100%; padding:13px 16px 13px 42px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.09); border-radius:13px; color:#fff; font-family:'Inter',sans-serif; font-size:15px; outline:none; transition:all 0.22s; }
@@ -94,7 +88,7 @@ body { background:#060f07; font-family:'Inter',sans-serif; }
 .aerr { color:#ff453a; font-size:12px; text-align:center; margin-bottom:8px; font-weight:500; }
 .acta { width:100%; padding:15px; background:linear-gradient(135deg,#1e7a38,#4cde6e); border:none; border-radius:14px; color:#000; font-family:'Inter',sans-serif; font-size:16px; font-weight:700; cursor:pointer; margin-top:4px; transition:all 0.2s; box-shadow:0 8px 28px rgba(76,222,110,0.3); position:relative; overflow:hidden; }
 .acta::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(255,255,255,0.15) 0%,transparent 50%); pointer-events:none; }
-.acta:hover { transform:translateY(-1px); box-shadow:0 12px 36px rgba(76,222,110,0.4); }
+.acta:hover { transform:translateY(-1px); }
 .acta:disabled { opacity:0.45; cursor:not-allowed; transform:none; }
 .forgot-btn { width:100%; padding:10px; background:transparent; border:none; color:rgba(255,255,255,0.4); font-size:13px; cursor:pointer; margin-top:4px; font-family:'Inter',sans-serif; transition:color 0.2s; }
 .forgot-btn:hover { color:rgba(76,222,110,0.7); }
@@ -140,6 +134,32 @@ body { background:#060f07; font-family:'Inter',sans-serif; }
 .sval { font-family:'Bebas Neue',sans-serif; font-size:28px; color:#fff; letter-spacing:1px; line-height:1; }
 .sval.g { color:#4cde6e; filter:drop-shadow(0 0 8px rgba(76,222,110,0.4)); }
 
+/* PHASE TOGGLE */
+.phase-toggle {
+  display:flex; align-items:center; justify-content:center;
+  gap:10px; margin-bottom:16px;
+}
+.phase-btn {
+  flex:1; padding:10px 14px;
+  border-radius:12px; border:1.5px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.04);
+  color:rgba(255,255,255,0.5); font-family:'Inter',sans-serif;
+  font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s;
+  text-align:center;
+}
+.phase-btn.active {
+  background:rgba(76,222,110,0.12); border-color:#4cde6e; color:#4cde6e;
+}
+
+/* ARCHIVE BANNER */
+.archive-banner {
+  background:rgba(255,149,0,0.08); border:1px solid rgba(255,149,0,0.2);
+  border-radius:14px; padding:12px 16px; margin-bottom:14px;
+  display:flex; align-items:center; gap:10px;
+}
+.archive-banner-icon { font-size:20px; flex-shrink:0; }
+.archive-banner-text { font-size:13px; color:rgba(255,200,100,0.85); font-weight:500; line-height:1.4; }
+
 .nav { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:480px; background:rgba(6,15,7,0.97); border-top:1px solid rgba(76,222,110,0.1); display:flex; z-index:50; backdrop-filter:blur(20px); padding:10px 0 14px; }
 .ni { flex:1; padding:6px 4px 4px; background:transparent; border:none; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:4px; }
 .nic { width:48px; height:34px; display:flex; align-items:center; justify-content:center; border-radius:12px; font-size:26px; transition:background 0.2s; }
@@ -154,8 +174,10 @@ body { background:#060f07; font-family:'Inter',sans-serif; }
 
 .mc { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:20px; margin-bottom:12px; overflow:hidden; transition:border-color 0.2s,transform 0.15s; }
 .mc:hover { border-color:rgba(76,222,110,0.25); transform:translateY(-1px); }
-.mt { padding:10px 14px; background:rgba(255,255,255,0.03); border-bottom:1px solid rgba(255,255,255,0.07); display:flex; justify-content:space-between; align-items:center; }
+.mc.archived { opacity:0.7; }
+.mt2 { padding:10px 14px; background:rgba(255,255,255,0.03); border-bottom:1px solid rgba(255,255,255,0.07); display:flex; justify-content:space-between; align-items:center; }
 .gbadge { font-size:11px; color:#4cde6e; background:rgba(76,222,110,0.1); border:1px solid rgba(76,222,110,0.2); padding:3px 10px; border-radius:20px; font-weight:700; }
+.gbadge.old { color:rgba(255,149,0,0.8); background:rgba(255,149,0,0.08); border-color:rgba(255,149,0,0.2); }
 .mtime { font-size:13px; color:rgba(255,255,255,0.75); font-weight:600; }
 .mb2 { padding:14px; }
 .tms { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
@@ -210,7 +232,7 @@ body { background:#060f07; font-family:'Inter',sans-serif; }
 .rtxt { font-size:13px; color:rgba(255,255,255,0.72); line-height:1.65; }
 .prow { display:flex; align-items:center; gap:14px; padding:14px 16px; border-bottom:1px solid rgba(255,255,255,0.06); }
 .prow:last-child { border-bottom:none; }
-.pic { width:50px; height:50px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:28px; }
+.pic2 { width:50px; height:50px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:28px; }
 .pnm { font-size:16px; font-weight:600; color:#fff; }
 .pamt { font-family:'Bebas Neue',sans-serif; font-size:30px; letter-spacing:1px; }
 
@@ -299,7 +321,7 @@ function MatchFormFields({ data, onChange }) {
         <input className="mi" type="date" value={data.match_date} onChange={e => onChange({ ...data, match_date: e.target.value })} />
         <input className="mi" type="time" value={data.match_time} onChange={e => onChange({ ...data, match_time: e.target.value })} />
       </div>
-      <input className="mi" placeholder="Grupa (np. Grupa A)" value={data.group_name} onChange={e => onChange({ ...data, group_name: e.target.value })} />
+      <input className="mi" placeholder="Runda (np. 1/8 finału)" value={data.group_name} onChange={e => onChange({ ...data, group_name: e.target.value })} />
       <div style={{ display: "flex", gap: 8 }}>
         <input className="mi" type="number" step="0.01" min="1" placeholder="Kurs 1" value={data.odds_home} onChange={e => onChange({ ...data, odds_home: e.target.value })} />
         <input className="mi" type="number" step="0.01" min="1" placeholder="Kurs X" value={data.odds_draw} onChange={e => onChange({ ...data, odds_draw: e.target.value })} />
@@ -328,7 +350,7 @@ function AuthScreen({ onAuth }) {
       redirectTo: "https://mundialowy-ekspert.vercel.app",
     });
     setLoading(false);
-    if (error) { setError("Nie znaleziono konta z tym adresem e-mail"); return; }
+    if (error) { setError("Nie znaleziono konta z tym adresem"); return; }
     setResetSent(true);
   };
 
@@ -356,14 +378,9 @@ function AuthScreen({ onAuth }) {
     <>
       <style>{css}</style>
       <div className="auth-screen">
-        <div className="photo-bg" />
-        <div className="ov1" />
-        <div className="ov2" />
+        <div className="photo-bg" /><div className="ov1" /><div className="ov2" />
         <div className="auth-hero">
-          <div className="eyebrow">
-            <div className="ey-line" />
-            <span className="ey-txt">MŚ 2026</span>
-          </div>
+          <div className="eyebrow"><div className="ey-line" /><span className="ey-txt">MŚ 2026</span></div>
           <div className="hero-title">MUNDIALOWY<br /><span className="hero-green">EKSPERT</span></div>
           <div className="hero-sub">Typuj mecze ze znajomymi.<br />Kursy bukmacherskie. Prawdziwa rywalizacja.</div>
         </div>
@@ -375,21 +392,16 @@ function AuthScreen({ onAuth }) {
                 <div style={{ fontSize: 32, marginBottom: 8 }}>🔒</div>
                 <div style={{ fontSize: 18, fontWeight: 700, color: "#fff", marginBottom: 6 }}>Resetuj hasło</div>
                 <div style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", lineHeight: 1.6 }}>
-                  {resetSent ? "Sprawdź skrzynkę e-mail i kliknij link, aby ustawić nowe hasło." : "Podaj adres e-mail — wyślemy link do resetowania hasła."}
+                  {resetSent ? "Sprawdź skrzynkę e-mail i kliknij link." : "Podaj e-mail — wyślemy link do resetowania hasła."}
                 </div>
               </div>
-              {!resetSent && (
-                <>
-                  <div className="afield">
-                    <span className="aicon">✉️</span>
-                    <input className="ainput" type="email" placeholder="Adres e-mail" value={resetEmail} onChange={e => setResetEmail(e.target.value)} onKeyDown={e => e.key === "Enter" && handleReset()} />
-                  </div>
-                  {error && <div className="aerr">{error}</div>}
-                  <button className="acta" onClick={handleReset} disabled={loading}>
-                    {loading ? "Wysyłanie..." : "Wyślij link resetujący →"}
-                  </button>
-                </>
-              )}
+              {!resetSent && <>
+                <div className="afield"><span className="aicon">✉️</span>
+                  <input className="ainput" type="email" placeholder="Adres e-mail" value={resetEmail} onChange={e => setResetEmail(e.target.value)} onKeyDown={e => e.key === "Enter" && handleReset()} />
+                </div>
+                {error && <div className="aerr">{error}</div>}
+                <button className="acta" onClick={handleReset} disabled={loading}>{loading ? "Wysyłanie..." : "Wyślij link resetujący →"}</button>
+              </>}
               {resetSent && <div className="reset-ok">✓ Link wysłany!<br />Sprawdź swoją skrzynkę e-mail.</div>}
               <button className="back-btn" onClick={() => { setResetMode(false); setResetSent(false); setError(""); }}>← Wróć do logowania</button>
             </>
@@ -402,29 +414,12 @@ function AuthScreen({ onAuth }) {
                   </button>
                 ))}
               </div>
-              {mode === "register" && (
-                <div className="afield">
-                  <span className="aicon">👤</span>
-                  <input className="ainput" placeholder="Imię lub pseudonim" value={name} onChange={e => setName(e.target.value)} />
-                </div>
-              )}
-              <div className="afield">
-                <span className="aicon">✉️</span>
-                <input className="ainput" type="email" placeholder="Adres e-mail" value={email} onChange={e => setEmail(e.target.value)} />
-              </div>
-              <div className="afield">
-                <span className="aicon">🔒</span>
-                <input className="ainput" type="password" placeholder="Hasło" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={e => e.key === "Enter" && handleSubmit()} />
-              </div>
+              {mode === "register" && <div className="afield"><span className="aicon">👤</span><input className="ainput" placeholder="Imię lub pseudonim" value={name} onChange={e => setName(e.target.value)} /></div>}
+              <div className="afield"><span className="aicon">✉️</span><input className="ainput" type="email" placeholder="Adres e-mail" value={email} onChange={e => setEmail(e.target.value)} /></div>
+              <div className="afield"><span className="aicon">🔒</span><input className="ainput" type="password" placeholder="Hasło" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={e => e.key === "Enter" && handleSubmit()} /></div>
               {error && <div className="aerr">{error}</div>}
-              <button className="acta" onClick={handleSubmit} disabled={loading}>
-                {loading ? "Ładowanie..." : mode === "login" ? "Zaloguj się →" : "Zarejestruj się →"}
-              </button>
-              {mode === "login" && (
-                <button className="forgot-btn" onClick={() => { setResetMode(true); setError(""); }}>
-                  Nie pamiętam hasła
-                </button>
-              )}
+              <button className="acta" onClick={handleSubmit} disabled={loading}>{loading ? "Ładowanie..." : mode === "login" ? "Zaloguj się →" : "Zarejestruj się →"}</button>
+              {mode === "login" && <button className="forgot-btn" onClick={() => { setResetMode(true); setError(""); }}>Nie pamiętam hasła</button>}
             </>
           )}
         </div>
@@ -445,31 +440,24 @@ function ChatTab({ user, profile }) {
       setMessages(data || []);
       setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: "smooth" }), 100);
     });
-    const channel = supabase.channel("messages")
-      .on("postgres_changes", { event: "INSERT", schema: "public", table: "messages" }, payload => {
-        setMessages(prev => [...prev, payload.new]);
+    const ch = supabase.channel("messages")
+      .on("postgres_changes", { event: "INSERT", schema: "public", table: "messages" }, p => {
+        setMessages(prev => [...prev, p.new]);
         setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: "smooth" }), 50);
       }).subscribe();
-    return () => supabase.removeChannel(channel);
+    return () => supabase.removeChannel(ch);
   }, []);
 
   const send = async () => {
-    const c = input.trim();
-    if (!c || sending) return;
+    const c = input.trim(); if (!c || sending) return;
     setSending(true); setInput("");
     await supabase.from("messages").insert({ user_id: user.id, user_name: profile?.name || user.email, content: c });
     setSending(false);
   };
 
-  // Czas w strefie Warszawa
   const fmt = ts => new Date(ts).toLocaleTimeString("pl-PL", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Warsaw" });
   const fmtD = ts => new Date(ts).toLocaleDateString("pl-PL", { day: "numeric", month: "long", timeZone: "Europe/Warsaw" });
-
-  const grouped = messages.reduce((acc, m) => {
-    const d = fmtD(m.created_at);
-    if (!acc[d]) acc[d] = [];
-    acc[d].push(m); return acc;
-  }, {});
+  const grouped = messages.reduce((acc, m) => { const d = fmtD(m.created_at); if (!acc[d]) acc[d] = []; acc[d].push(m); return acc; }, {});
 
   return (
     <div className="chat-wrap">
@@ -505,6 +493,98 @@ function ChatTab({ user, profile }) {
   );
 }
 
+// ── MATCH CARD ────────────────────────────────────────────────────────────────
+function MatchCard({ match, tip, onTip, archived = false }) {
+  const lck = isMatchLocked(match);
+  const isCor = tip?.pick === match.result;
+  const isFinished = match.status === "finished";
+
+  return (
+    <div className={`mc ${archived ? "archived" : ""}`}>
+      <div className="mt2">
+        <span className={`gbadge ${archived ? "old" : ""}`}>{match.group_name}</span>
+        <span className="mtime">{match.match_date} · {match.match_time?.slice(0, 5)}</span>
+      </div>
+      <div className="mb2">
+        <div className="tms">
+          <div className="tm"><span className="tf">{match.home_flag}</span><span className="tn">{match.home}</span></div>
+          {isFinished ? (
+            <div style={{ textAlign: "center", padding: "0 8px" }}>
+              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: 1 }}>Wynik</div>
+              <div style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: 24, color: "#4cde6e" }}>{PICK_LABELS[match.result]}</div>
+            </div>
+          ) : (
+            <div className="vs" />
+          )}
+          <div className="tm r"><span className="tf">{match.away_flag}</span><span className="tn">{match.away}</span></div>
+        </div>
+        <div className="odds">
+          {["home", "draw", "away"].map(pick => {
+            let cls = "odd";
+            if (isFinished) {
+              if (pick === match.result) cls += " ok";
+              else if (tip?.pick === pick) cls += " no";
+            } else {
+              if (tip?.pick === pick && !lck) cls += " sel";
+              else if (lck && tip?.pick !== pick) cls += " no";
+            }
+            return (
+              <button key={pick} className={cls} onClick={() => !isFinished && onTip(match.id, pick)} disabled={lck || isFinished}>
+                <div className="ol">{PICK_LABELS[pick]}</div>
+                <div className="ov" style={isFinished && pick !== match.result && tip?.pick !== pick ? { color: "rgba(255,255,255,0.35)" } : {}}>{parseFloat(match[`odds_${pick}`]).toFixed(2)}</div>
+              </button>
+            );
+          })}
+        </div>
+        {isFinished && tip && (
+          <div style={{ marginTop: 10 }}>
+            <span className={`rbadge ${isCor ? "rw" : "rl"}`}>
+              {isCor ? `+${parseFloat(match[`odds_${tip.pick}`]).toFixed(2)} pkt ✓` : "0 pkt ✗"}
+            </span>
+          </div>
+        )}
+        {!isFinished && lck && <div className="lck">⛔ Typowanie zamknięte</div>}
+        {!isFinished && !lck && tip && <div className="tipok">✓ Typ: {PICK_LABELS[tip.pick]} · +{parseFloat(match[`odds_${tip.pick}`]).toFixed(2)} pkt</div>}
+      </div>
+    </div>
+  );
+}
+
+// ── LEADERBOARD ───────────────────────────────────────────────────────────────
+function Leaderboard({ profiles, tips, matchIds, userId }) {
+  const lb = profiles.map(p => ({
+    ...p,
+    points: tips.filter(t => t.user_id === p.id && matchIds.includes(t.match_id)).reduce((s, t) => s + (t.points || 0), 0),
+    correct: tips.filter(t => t.user_id === p.id && matchIds.includes(t.match_id) && t.points > 0).length,
+  })).sort((a, b) => b.points - a.points);
+
+  if (lb.length === 0) return <div className="empty"><div className="ei">🏆</div><div className="et">Brak uczestników</div></div>;
+
+  return (
+    <div className="lbc">
+      {lb.map((u, i) => {
+        const uav = getAvatar(u.name);
+        const favFlag = u.favorite_team ? FLAGS[u.favorite_team] : null;
+        return (
+          <div key={u.id} className={`lbr ${u.id === userId ? "me" : ""}`}>
+            <div className="lbrank">{i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : <span className="lbrn">#{i + 1}</span>}</div>
+            <div className={`lbfc ${favFlag ? "hf" : ""}`}>
+              {favFlag ? favFlag : <div className="lbav" style={{ background: uav.gradient, width: "100%", height: "100%", borderRadius: "50%", fontSize: 13 }}>{uav.initials}</div>}
+            </div>
+            <div style={{ flex: 1 }}>
+              <div className="lbn">{u.name}{u.id === userId && <span className="lbme">TY</span>}</div>
+              <div className="lbs">{u.correct} trafione</div>
+            </div>
+            <div style={{ textAlign: "right" }}>
+              <div className={`lbp ${i === 0 ? "top" : "nm"}`}>{u.points.toFixed(2)}</div>
+              <div className="lbpl">PKT</div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 // ── MAIN APP ──────────────────────────────────────────────────────────────────
 function MainApp({ user, profile: initialProfile, onLogout }) {
   const [profile, setProfile] = useState(initialProfile);
@@ -514,12 +594,13 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
   const [profiles, setProfiles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showTeamPicker, setShowTeamPicker] = useState(false);
+  const [showGroupPhase, setShowGroupPhase] = useState(false);
   const [resultModal, setResultModal] = useState(null);
   const [addModal, setAddModal] = useState(false);
   const [editModal, setEditModal] = useState(null);
   const [editData, setEditData] = useState({});
   const [toast, setToast] = useState(null);
-  const [newMatch, setNewMatch] = useState({ home: "", away: "", match_date: "", match_time: "21:00", group_name: "Grupa A", odds_home: "", odds_draw: "", odds_away: "" });
+  const [newMatch, setNewMatch] = useState({ home: "", away: "", match_date: "", match_time: "21:00", group_name: "1/8 finału", odds_home: "", odds_draw: "", odds_away: "" });
 
   const showToast = msg => { setToast(msg); setTimeout(() => setToast(null), 2500); };
 
@@ -549,10 +630,9 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
 
   const myTip = id => tips.find(t => t.user_id === user.id && t.match_id === id);
 
-  // Upsert — nigdy nie daje błędu duplicate key
   const placeTip = async (matchId, pick) => {
     const match = matches.find(m => m.id === matchId);
-    if (isMatchLocked(match)) { showToast("⛔ Typowanie zamknięte"); return; }
+    if (!match || isMatchLocked(match)) { showToast("⛔ Typowanie zamknięte"); return; }
 
     const { data, error } = await supabase
       .from("tips")
@@ -560,17 +640,15 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
         { user_id: user.id, match_id: matchId, pick, points: 0 },
         { onConflict: "user_id,match_id" }
       )
-      .select()
-      .single();
+      .select().single();
 
-    if (error) { showToast("⚠️ Błąd zapisu — spróbuj jeszcze raz"); return; }
+    if (error) { showToast("⚠️ Błąd zapisu — spróbuj ponownie"); return; }
 
     setTips(prev => {
       const idx = prev.findIndex(t => t.user_id === user.id && t.match_id === matchId);
       if (idx >= 0) { const u = [...prev]; u[idx] = data; return u; }
       return [...prev, data];
     });
-
     showToast(`Typ: ${PICK_LABELS[pick]} · +${parseFloat(match[`odds_${pick}`]).toFixed(2)} pkt`);
   };
 
@@ -598,23 +676,42 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
   const addMatch = async () => {
     const { home, away, match_date, match_time, group_name, odds_home, odds_draw, odds_away } = newMatch;
     if (!home || !away || !match_date || !odds_home || !odds_draw || !odds_away) { showToast("Wypełnij wszystkie pola"); return; }
-    await supabase.from("matches").insert({ home, away, home_flag: FLAGS[home] || "🏳️", away_flag: FLAGS[away] || "🏳️", match_date, match_time, group_name, odds_home: parseFloat(odds_home), odds_draw: parseFloat(odds_draw), odds_away: parseFloat(odds_away), status: "upcoming", result: null });
+    await supabase.from("matches").insert({
+      home, away, home_flag: FLAGS[home] || "🏳️", away_flag: FLAGS[away] || "🏳️",
+      match_date, match_time, group_name,
+      odds_home: parseFloat(odds_home), odds_draw: parseFloat(odds_draw), odds_away: parseFloat(odds_away),
+      status: "upcoming", result: null, phase: "knockout"
+    });
     await load(); setAddModal(false);
-    setNewMatch({ home: "", away: "", match_date: "", match_time: "21:00", group_name: "Grupa A", odds_home: "", odds_draw: "", odds_away: "" });
+    setNewMatch({ home: "", away: "", match_date: "", match_time: "21:00", group_name: "1/8 finału", odds_home: "", odds_draw: "", odds_away: "" });
     showToast("Mecz dodany!");
   };
 
-  const lb = profiles.map(p => ({
-    ...p,
-    points: tips.filter(t => t.user_id === p.id).reduce((s, t) => s + (t.points || 0), 0),
-    correct: tips.filter(t => t.user_id === p.id && t.points > 0).length,
-  })).sort((a, b) => b.points - a.points);
+  // Podział na fazy
+  const knockoutMatches = matches.filter(m => m.phase !== "group");
+  const groupMatches = matches.filter(m => m.phase === "group");
 
-  const myPts = lb.find(u => u.id === user.id)?.points || 0;
-  const myRank = lb.findIndex(u => u.id === user.id) + 1;
-  const upcoming = matches.filter(m => m.status === "upcoming");
-  const finished = matches.filter(m => m.status === "finished");
+  const knockoutMatchIds = knockoutMatches.map(m => m.id);
+  const groupMatchIds = groupMatches.map(m => m.id);
+
+  const knockoutUpcoming = knockoutMatches.filter(m => m.status === "upcoming");
+  const knockoutFinished = knockoutMatches.filter(m => m.status === "finished");
+  const groupUpcoming = groupMatches.filter(m => m.status === "upcoming");
+  const groupFinished = groupMatches.filter(m => m.status === "finished");
+
+  // Statystyki gracza z fazy pucharowej
+  const myKnockoutPts = tips.filter(t => t.user_id === user.id && knockoutMatchIds.includes(t.match_id)).reduce((s, t) => s + (t.points || 0), 0);
+  const myKnockoutCorrect = tips.filter(t => t.user_id === user.id && knockoutMatchIds.includes(t.match_id) && t.points > 0).length;
+
+  const allMatchIds = matches.map(m => m.id);
+  const myRankAll = [...profiles].map(p => ({
+    id: p.id,
+    pts: tips.filter(t => t.user_id === p.id && knockoutMatchIds.includes(t.match_id)).reduce((s, t) => s + (t.points || 0), 0),
+  })).sort((a, b) => b.pts - a.pts).findIndex(p => p.id === user.id) + 1;
+
   const av = getAvatar(profile?.name || "");
+  const upcoming = matches.filter(m => m.status === "upcoming");
+  const allFinished = matches.filter(m => m.status === "finished");
 
   const tabs = [
     { key: "matches", icon: "⚽", label: "Mecze" },
@@ -641,9 +738,9 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
 
         {showTeamPicker && <TeamPicker onSave={saveTeam} onSkip={() => setShowTeamPicker(false)} />}
 
+        {/* HEADER */}
         <div className="hdr">
-          <div className="hdr-photo" />
-          <div className="hdr-ov" />
+          <div className="hdr-photo" /><div className="hdr-ov" />
           <div className="hdr-ct">
             <div className="hdr-top">
               <div className="logo">MUNDIALOWY <span>EKSPERT</span></div>
@@ -657,9 +754,9 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
             </div>
             <div className="stats">
               {[
-                { label: "Punkty", value: myPts.toFixed(2), g: true },
-                { label: "Pozycja", value: `#${myRank}`, g: false },
-                { label: "Trafione", value: tips.filter(t => t.user_id === user.id && t.points > 0).length, g: false },
+                { label: "Faza puch.", value: myKnockoutPts.toFixed(2), g: true },
+                { label: "Pozycja", value: `#${myRankAll}`, g: false },
+                { label: "Trafione", value: myKnockoutCorrect, g: false },
               ].map(s => (
                 <div key={s.label} className="sbox">
                   <div className="slbl">{s.label}</div>
@@ -670,111 +767,86 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
           </div>
         </div>
 
+        {/* CONTENT */}
         <div className="ct">
           {tab === "chat" && <ChatTab user={user} profile={profile} />}
 
+          {/* ── MECZE ── */}
           {tab === "matches" && <>
-            {upcoming.length === 0 && finished.length === 0 && (
-              <div className="empty"><div className="ei">📅</div><div className="et">Brak meczów</div><div className="es">Admin wkrótce doda terminarz</div></div>
+
+            {/* Faza pucharowa */}
+            {knockoutMatches.length === 0 && !showGroupPhase && (
+              <div className="empty"><div className="ei">🏆</div><div className="et">Faza pucharowa</div><div className="es">Admin wkrótce doda mecze fazy pucharowej</div></div>
             )}
-            {upcoming.length > 0 && <>
-              <div className="sh">Nadchodzące</div>
-              {upcoming.map(match => {
-                const tip = myTip(match.id);
-                const lck = isMatchLocked(match);
-                return (
-                  <div key={match.id} className="mc">
-                    <div className="mt">
-                      <span className="gbadge">{match.group_name}</span>
-                      <span className="mtime">{match.match_date} · {match.match_time?.slice(0, 5)}</span>
-                    </div>
-                    <div className="mb2">
-                      <div className="tms">
-                        <div className="tm"><span className="tf">{match.home_flag}</span><span className="tn">{match.home}</span></div>
-                        <div className="vs" />
-                        <div className="tm r"><span className="tf">{match.away_flag}</span><span className="tn">{match.away}</span></div>
-                      </div>
-                      <div className="odds">
-                        {["home", "draw", "away"].map(pick => (
-                          <button key={pick} className={`odd ${tip?.pick === pick && !lck ? "sel" : ""} ${lck && tip?.pick !== pick ? "no" : ""}`} onClick={() => placeTip(match.id, pick)} disabled={lck}>
-                            <div className="ol">{PICK_LABELS[pick]}</div>
-                            <div className="ov">{parseFloat(match[`odds_${pick}`]).toFixed(2)}</div>
-                          </button>
-                        ))}
-                      </div>
-                      {lck && <div className="lck">⛔ Typowanie zamknięte</div>}
-                      {!lck && tip && <div className="tipok">✓ Typ: {PICK_LABELS[tip.pick]} · +{parseFloat(match[`odds_${tip.pick}`]).toFixed(2)} pkt</div>}
-                    </div>
-                  </div>
-                );
-              })}
+
+            {knockoutUpcoming.length > 0 && <>
+              <div className="sh">Faza pucharowa — nadchodzące</div>
+              {knockoutUpcoming.map(match => <MatchCard key={match.id} match={match} tip={myTip(match.id)} onTip={placeTip} />)}
             </>}
-            {finished.length > 0 && <>
-              <div className="sh" style={{ marginTop: 8 }}>Zakończone</div>
-              {finished.map(match => {
-                const tip = myTip(match.id);
-                const isCor = tip?.pick === match.result;
-                return (
-                  <div key={match.id} className="mc" style={{ opacity: 0.85 }}>
-                    <div className="mt">
-                      <span style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", fontWeight: 600 }}>{match.group_name}</span>
-                      <span className={`rbadge ${isCor && tip ? "rw" : tip ? "rl" : "rn"}`}>
-                        {tip ? (isCor ? `+${parseFloat(match[`odds_${tip.pick}`]).toFixed(2)} pkt ✓` : "0 pkt ✗") : "Brak typu"}
-                      </span>
-                    </div>
-                    <div className="mb2">
-                      <div className="tms">
-                        <div className="tm"><span className="tf">{match.home_flag}</span><span className="tn">{match.home}</span></div>
-                        <div style={{ textAlign: "center", padding: "0 8px" }}>
-                          <div style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: 1 }}>Wynik</div>
-                          <div style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: 24, color: "#4cde6e" }}>{PICK_LABELS[match.result]}</div>
-                        </div>
-                        <div className="tm r"><span className="tf">{match.away_flag}</span><span className="tn">{match.away}</span></div>
-                      </div>
-                      <div className="odds">
-                        {["home", "draw", "away"].map(pick => (
-                          <button key={pick} className={`odd ${pick === match.result ? "ok" : tip?.pick === pick ? "no" : ""}`} disabled>
-                            <div className="ol">{PICK_LABELS[pick]}</div>
-                            <div className="ov" style={{ color: pick === match.result ? "#34c759" : "rgba(255,255,255,0.35)" }}>{parseFloat(match[`odds_${pick}`]).toFixed(2)}</div>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+
+            {knockoutFinished.length > 0 && <>
+              <div className="sh" style={{ marginTop: 8 }}>Faza pucharowa — zakończone</div>
+              {knockoutFinished.map(match => <MatchCard key={match.id} match={match} tip={myTip(match.id)} onTip={placeTip} />)}
             </>}
+
+            {/* Przycisk archiwum */}
+            {groupMatches.length > 0 && (
+              <button
+                onClick={() => setShowGroupPhase(p => !p)}
+                style={{ width: "100%", padding: "12px 16px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 14, color: "rgba(255,255,255,0.5)", fontFamily: "inherit", fontSize: 13, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginTop: 8, transition: "all 0.2s" }}
+              >
+                <span>{showGroupPhase ? "▲" : "▼"}</span>
+                {showGroupPhase ? "Ukryj fazę grupową" : `📁 Faza grupowa (${groupMatches.length} meczów)`}
+              </button>
+            )}
+
+            {/* Faza grupowa — archiwum */}
+            {showGroupPhase && groupMatches.length > 0 && (
+              <div style={{ marginTop: 14 }}>
+                <div className="archive-banner">
+                  <span className="archive-banner-icon">📁</span>
+                  <span className="archive-banner-text">Archiwum fazy grupowej — wyniki historyczne</span>
+                </div>
+                {groupUpcoming.length > 0 && <>
+                  <div className="sh">Faza grupowa — nadchodzące</div>
+                  {groupUpcoming.map(match => <MatchCard key={match.id} match={match} tip={myTip(match.id)} onTip={placeTip} archived />)}
+                </>}
+                {groupFinished.length > 0 && <>
+                  <div className="sh" style={{ marginTop: 8 }}>Faza grupowa — zakończone</div>
+                  {groupFinished.map(match => <MatchCard key={match.id} match={match} tip={myTip(match.id)} onTip={placeTip} archived />)}
+                </>}
+              </div>
+            )}
           </>}
 
+          {/* ── TABELA ── */}
           {tab === "leaderboard" && <>
-            <div className="sh">Klasyfikacja</div>
-            {lb.length === 0 && <div className="empty"><div className="ei">🏆</div><div className="et">Brak uczestników</div></div>}
-            <div className="lbc">
-              {lb.map((u, i) => {
-                const uav = getAvatar(u.name);
-                const favFlag = u.favorite_team ? FLAGS[u.favorite_team] : null;
-                return (
-                  <div key={u.id} className={`lbr ${u.id === user.id ? "me" : ""}`}>
-                    <div className="lbrank">{i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : <span className="lbrn">#{i + 1}</span>}</div>
-                    <div className={`lbfc ${favFlag ? "hf" : ""}`}>
-                      {favFlag
-                        ? favFlag
-                        : <div className="lbav" style={{ background: uav.gradient, width: "100%", height: "100%", borderRadius: "50%", fontSize: 13 }}>{uav.initials}</div>}
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <div className="lbn">{u.name}{u.id === user.id && <span className="lbme">TY</span>}</div>
-                      <div className="lbs">{u.correct} trafione</div>
-                    </div>
-                    <div style={{ textAlign: "right" }}>
-                      <div className={`lbp ${i === 0 ? "top" : "nm"}`}>{u.points.toFixed(2)}</div>
-                      <div className="lbpl">PKT</div>
-                    </div>
-                  </div>
-                );
-              })}
+            {/* Przełącznik faz */}
+            <div className="phase-toggle">
+              <button className={`phase-btn ${!showGroupPhase ? "active" : ""}`} onClick={() => setShowGroupPhase(false)}>
+                🏆 Faza pucharowa
+              </button>
+              <button className={`phase-btn ${showGroupPhase ? "active" : ""}`} onClick={() => setShowGroupPhase(true)}>
+                📁 Faza grupowa
+              </button>
             </div>
+
+            {!showGroupPhase && <>
+              <div className="sh">Ranking — Faza pucharowa</div>
+              <Leaderboard profiles={profiles} tips={tips} matchIds={knockoutMatchIds} userId={user.id} />
+            </>}
+
+            {showGroupPhase && <>
+              <div className="archive-banner" style={{ marginBottom: 14 }}>
+                <span className="archive-banner-icon">📁</span>
+                <span className="archive-banner-text">Ranking historyczny z fazy grupowej</span>
+              </div>
+              <div className="sh">Ranking — Faza grupowa</div>
+              <Leaderboard profiles={profiles} tips={tips} matchIds={groupMatchIds} userId={user.id} />
+            </>}
           </>}
 
+          {/* ── REGULAMIN ── */}
           {tab === "rules" && <>
             <div className="sh">Nagrody</div>
             <div className="rc" style={{ marginBottom: 10 }}>
@@ -784,7 +856,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
                 { emoji: "🥉", name: "3. miejsce", amount: "20 zł", color: "#cd7f32", bg: "rgba(205,127,50,0.08)" },
               ].map((r, i, arr) => (
                 <div key={r.name} className="prow" style={{ borderBottom: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
-                  <div className="pic" style={{ background: r.bg }}>{r.emoji}</div>
+                  <div className="pic2" style={{ background: r.bg }}>{r.emoji}</div>
                   <div style={{ flex: 1 }}><div className="pnm">{r.name}</div></div>
                   <div className="pamt" style={{ color: r.color }}>{r.amount}</div>
                 </div>
@@ -803,10 +875,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
               { icon: "🏆", bg: "rgba(76,222,110,0.08)", title: "Klasyfikacja", text: "Wygrywa gracz z największą sumą punktów po zakończeniu wszystkich meczów. System premiuje odważne typy — trafienie niespodziewanego wyniku daje więcej punktów niż typowanie faworyta." },
             ].map(s => (
               <div key={s.title} className="rc" style={{ marginBottom: 8 }}>
-                <div className="rrow">
-                  <div className="ric" style={{ background: s.bg }}>{s.icon}</div>
-                  <div><div className="rtit">{s.title}</div><div className="rtxt" style={{ whiteSpace: "pre-line" }}>{s.text}</div></div>
-                </div>
+                <div className="rrow"><div className="ric" style={{ background: s.bg }}>{s.icon}</div><div><div className="rtit">{s.title}</div><div className="rtxt" style={{ whiteSpace: "pre-line" }}>{s.text}</div></div></div>
               </div>
             ))}
             <div className="sh" style={{ marginTop: 16 }}>Informacje</div>
@@ -820,21 +889,23 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
                   <div className="ric" style={{ background: s.bg }}>{s.icon}</div>
                   <div>
                     {s.text && <div className="rtxt">{s.text}</div>}
-                    {s.email && <><div className="rtxt" style={{ marginBottom: 4 }}>Wszelkie uwagi, sugestie i zgłoszenia problemów prosimy kierować na adres:</div><div style={{ fontSize: 15, fontWeight: 700, color: "#4cde6e" }}>{s.email}</div></>}
+                    {s.email && <><div className="rtxt" style={{ marginBottom: 4 }}>Wszelkie uwagi prosimy kierować na adres:</div><div style={{ fontSize: 15, fontWeight: 700, color: "#4cde6e" }}>{s.email}</div></>}
                   </div>
                 </div>
               ))}
             </div>
           </>}
 
+          {/* ── ADMIN ── */}
           {tab === "admin" && profile?.is_admin && <>
             <div className="sh">Panel administratora</div>
-            <button className="mprim" style={{ marginBottom: 16 }} onClick={() => setAddModal(true)}>+ Dodaj mecz</button>
-            {upcoming.length > 0 && <>
-              <div className="sh">Nadchodzące mecze</div>
+            <button className="mprim" style={{ marginBottom: 16 }} onClick={() => setAddModal(true)}>+ Dodaj mecz (faza pucharowa)</button>
+
+            {knockoutUpcoming.length > 0 && <>
+              <div className="sh">Faza pucharowa — nadchodzące</div>
               <div className="rc" style={{ marginBottom: 10 }}>
-                {upcoming.map((match, i) => (
-                  <div key={match.id} className="ar" style={{ borderBottom: i < upcoming.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
+                {knockoutUpcoming.map((match, i) => (
+                  <div key={match.id} className="ar" style={{ borderBottom: i < knockoutUpcoming.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
                     <div><div className="an">{match.home_flag} {match.home} vs {match.away} {match.away_flag}</div><div className="at">{match.match_date} · {match.match_time?.slice(0, 5)}</div></div>
                     <div style={{ display: "flex", gap: 6 }}>
                       <button className="aedt" onClick={() => openEdit(match)}>Edytuj</button>
@@ -844,11 +915,12 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
                 ))}
               </div>
             </>}
-            {finished.length > 0 && <>
-              <div className="sh">Zakończone mecze</div>
-              <div className="rc">
-                {finished.map((match, i) => (
-                  <div key={match.id} className="ar" style={{ borderBottom: i < finished.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
+
+            {knockoutFinished.length > 0 && <>
+              <div className="sh">Faza pucharowa — zakończone</div>
+              <div className="rc" style={{ marginBottom: 10 }}>
+                {knockoutFinished.map((match, i) => (
+                  <div key={match.id} className="ar" style={{ borderBottom: i < knockoutFinished.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
                     <div><div className="an">{match.home_flag} {match.home} vs {match.away} {match.away_flag}</div><div className="ares">Wynik: {PICK_LABELS[match.result]}</div></div>
                     <div style={{ display: "flex", gap: 6 }}>
                       <button className="aedt" onClick={() => openEdit(match)}>Edytuj</button>
@@ -858,12 +930,31 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
                 ))}
               </div>
             </>}
+
+            {groupMatches.length > 0 && <>
+              <div className="sh" style={{ marginTop: 8 }}>Faza grupowa — archiwum</div>
+              <div className="rc">
+                {groupMatches.map((match, i) => (
+                  <div key={match.id} className="ar" style={{ borderBottom: i < groupMatches.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none", opacity: 0.7 }}>
+                    <div>
+                      <div className="an">{match.home_flag} {match.home} vs {match.away} {match.away_flag}</div>
+                      <div className="at">{match.match_date} · {match.status === "finished" ? `Wynik: ${PICK_LABELS[match.result]}` : "Nadchodzący"}</div>
+                    </div>
+                    <div style={{ display: "flex", gap: 6 }}>
+                      <button className="aedt" onClick={() => openEdit(match)}>Edytuj</button>
+                      {match.status !== "finished" && <button className="ares-btn" onClick={() => setResultModal(match)}>Wynik</button>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>}
           </>}
         </div>
 
+        {/* NAV */}
         <div className="nav">
           {tabs.map(t => (
-            <button key={t.key} className={`ni ${tab === t.key ? "on" : ""}`} onClick={() => setTab(t.key)}>
+            <button key={t.key} className={`ni ${tab === t.key ? "on" : ""}`} onClick={() => { setTab(t.key); setShowGroupPhase(false); }}>
               <div className="nic">{t.icon}</div>
               <div className="nlbl">{t.label}</div>
               <div className="ndot" />
@@ -871,6 +962,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
           ))}
         </div>
 
+        {/* MODALS */}
         {resultModal && (
           <div className="mo" onClick={() => setResultModal(null)}>
             <div className="mbox" onClick={e => e.stopPropagation()}>
@@ -892,7 +984,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
         {addModal && (
           <div className="mo" onClick={() => setAddModal(false)}>
             <div className="mbox" onClick={e => e.stopPropagation()}>
-              <div className="mh" /><div className="mtt">Dodaj mecz ⚽</div><div className="mst">Wypełnij dane i kursy</div>
+              <div className="mh" /><div className="mtt">Dodaj mecz ⚽</div><div className="mst">Faza pucharowa</div>
               <MatchFormFields data={newMatch} onChange={setNewMatch} />
               <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 16 }}>
                 <button className="mprim" onClick={addMatch}>Dodaj mecz</button>
