@@ -605,14 +605,27 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
   const showToast = msg => { setToast(msg); setTimeout(() => setToast(null), 2500); };
 
   const load = async () => {
-    const [{ data: m, error: me }, { data: t, error: te }, { data: p, error: pe }] = await Promise.all([
+    const [{ data: m }, { data: p }] = await Promise.all([
       supabase.from("matches").select("*").order("match_date").order("match_time"),
-      supabase.from("tips").select("*").limit(5000),
       supabase.from("profiles").select("*"),
     ]);
-    console.log("TIPS:", t?.length, "ERROR:", te);
-    console.log("Moje tipy:", t?.filter(tip => tip.user_id === user?.id));
-    setMatches(m || []); setTips(t || []); setProfiles(p || []);
+
+    // Pobieramy WSZYSTKIE tipy bez limitu, strona po stronie
+    let allTips = [];
+    let from = 0;
+    const pageSize = 1000;
+    while (true) {
+      const { data: page, error } = await supabase
+        .from("tips")
+        .select("*")
+        .range(from, from + pageSize - 1);
+      if (error || !page || page.length === 0) break;
+      allTips = [...allTips, ...page];
+      if (page.length < pageSize) break;
+      from += pageSize;
+    }
+
+    setMatches(m || []); setTips(allTips); setProfiles(p || []);
     setLoading(false);
   };
 
