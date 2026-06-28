@@ -607,7 +607,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
   const load = async () => {
     const [{ data: m }, { data: t }, { data: p }] = await Promise.all([
       supabase.from("matches").select("*").order("match_date").order("match_time"),
-      supabase.from("tips").select("*"),
+      supabase.from("tips").select("*").limit(5000),
       supabase.from("profiles").select("*"),
     ]);
     setMatches(m || []); setTips(t || []); setProfiles(p || []);
