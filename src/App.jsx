@@ -605,11 +605,13 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
   const showToast = msg => { setToast(msg); setTimeout(() => setToast(null), 2500); };
 
   const load = async () => {
-    const [{ data: m }, { data: t }, { data: p }] = await Promise.all([
+    const [{ data: m, error: me }, { data: t, error: te }, { data: p, error: pe }] = await Promise.all([
       supabase.from("matches").select("*").order("match_date").order("match_time"),
       supabase.from("tips").select("*").limit(5000),
       supabase.from("profiles").select("*"),
     ]);
+    console.log("TIPS:", t?.length, "ERROR:", te);
+    console.log("Moje tipy:", t?.filter(tip => tip.user_id === user?.id));
     setMatches(m || []); setTips(t || []); setProfiles(p || []);
     setLoading(false);
   };
