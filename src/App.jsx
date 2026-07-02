@@ -789,6 +789,44 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
           {/* ── MECZE ── */}
           {tab === "matches" && <>
 
+            {/* ── MINI PODIUM TOP 3 ── */}
+            {(() => {
+              const combined = profiles.map(p => ({
+                ...p,
+                points: tips.filter(t => t.user_id === p.id).reduce((s, t) => s + (t.points || 0), 0),
+              })).sort((a, b) => b.points - a.points).slice(0, 3);
+              if (combined.length === 0) return null;
+              const medals = ["🥇","🥈","🥉"];
+              const colors = ["#ffd700","#c0c0c0","#cd7f32"];
+              return (
+                <div style={{ background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.1)", borderRadius:20, padding:"14px 16px", marginBottom:16 }}>
+                  <div style={{ fontSize:11, fontWeight:700, color:"rgba(255,255,255,0.5)", letterSpacing:2, textTransform:"uppercase", marginBottom:12 }}>Klasyfikacja generalna</div>
+                  {combined.map((u, i) => {
+                    const av = getAvatar(u.name);
+                    const favFlag = u.favorite_team ? FLAGS[u.favorite_team] : null;
+                    return (
+                      <div key={u.id} style={{ display:"flex", alignItems:"center", gap:10, marginBottom: i < combined.length-1 ? 10 : 0 }}>
+                        <span style={{ fontSize:20, width:28, textAlign:"center" }}>{medals[i]}</span>
+                        <div style={{ width:32, height:32, borderRadius:"50%", background: favFlag ? "rgba(76,222,110,0.06)" : av.gradient, border: favFlag ? "1.5px solid rgba(76,222,110,0.2)" : "none", display:"flex", alignItems:"center", justifyContent:"center", fontSize:16, fontWeight:700, color:"#000", flexShrink:0 }}>
+                          {favFlag || av.initials}
+                        </div>
+                        <div style={{ flex:1 }}>
+                          <div style={{ fontSize:14, fontWeight:600, color:"#fff" }}>
+                            {u.name}
+                            {u.id === user.id && <span style={{ fontSize:9, color:"#4cde6e", background:"rgba(76,222,110,0.12)", padding:"1px 6px", borderRadius:6, fontWeight:700, marginLeft:5 }}>TY</span>}
+                          </div>
+                        </div>
+                        <div style={{ textAlign:"right" }}>
+                          <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:22, color: colors[i], filter: i===0 ? "drop-shadow(0 0 8px rgba(255,215,0,0.4))" : "none" }}>{u.points.toFixed(2)}</div>
+                          <div style={{ fontSize:9, color:"rgba(255,255,255,0.3)", fontWeight:600 }}>PKT</div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })()}
+
             {/* Faza pucharowa */}
             {knockoutMatches.length === 0 && !showGroupPhase && (
               <div className="empty"><div className="ei">🏆</div><div className="et">Faza pucharowa</div><div className="es">Admin wkrótce doda mecze fazy pucharowej</div></div>
