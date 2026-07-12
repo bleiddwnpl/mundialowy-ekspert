@@ -827,6 +827,58 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
               );
             })()}
 
+            {/* ── CZY OGRAŁBYŚ BUKA STAWIAJAC 100 ZŁ ── */}
+            {(() => {
+              const finishedMatches = matches.filter(m => m.status === "finished");
+              if (finishedMatches.length === 0) return null;
+
+              const combined = profiles.map(p => {
+                let balance = 0;
+                for (const m of finishedMatches) {
+                  const tip = tips.find(t => t.user_id === p.id && t.match_id === m.id);
+                  if (!tip) continue; // brak typu = 0
+                  if (tip.pick === m.result) {
+                    balance += (parseFloat(m[`odds_${m.result}`]) * 100;
+                  } else {
+                    balance -= 100;
+                  }
+                }
+                return { ...p, balance };
+              }).sort((a, b) => b.balance - a.balance);
+
+              return (
+                <div style={{ background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.1)", borderRadius:20, padding:"14px 16px", marginBottom:16 }}>
+                  <div style={{ fontSize:11, fontWeight:700, color:"rgba(255,255,255,0.5)", letterSpacing:2, textTransform:"uppercase", marginBottom:4 }}>Kalkulator — 100 zł na mecz</div>
+                  <div style={{ fontSize:11, color:"rgba(255,255,255,0.3)", marginBottom:12 }}>Ile byś zarobił/stracił stawiając 100 zł na każdy mecz?</div>
+                  {combined.map((u, i) => {
+                    const av = getAvatar(u.name);
+                    const favFlag = u.favorite_team ? FLAGS[u.favorite_team] : null;
+                    const isPlus = u.balance >= 0;
+                    return (
+                      <div key={u.id} style={{ display:"flex", alignItems:"center", gap:10, marginBottom: i < combined.length-1 ? 10 : 0 }}>
+                        <span style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:15, color:"rgba(255,255,255,0.25)", width:28, textAlign:"center" }}>#{i+1}</span>
+                        <div style={{ width:32, height:32, borderRadius:"50%", background: favFlag ? "rgba(76,222,110,0.06)" : av.gradient, border: favFlag ? "1.5px solid rgba(76,222,110,0.2)" : "none", display:"flex", alignItems:"center", justifyContent:"center", fontSize:16, fontWeight:700, color:"#000", flexShrink:0 }}>
+                          {favFlag || av.initials}
+                        </div>
+                        <div style={{ flex:1 }}>
+                          <div style={{ fontSize:14, fontWeight:600, color:"#fff" }}>
+                            {u.name}
+                            {u.id === user.id && <span style={{ fontSize:9, color:"#4cde6e", background:"rgba(76,222,110,0.12)", padding:"1px 6px", borderRadius:6, fontWeight:700, marginLeft:5 }}>TY</span>}
+                          </div>
+                        </div>
+                        <div style={{ textAlign:"right" }}>
+                          <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:20, color: isPlus ? "#4cde6e" : "#ff453a", filter: isPlus ? "drop-shadow(0 0 6px rgba(76,222,110,0.3))" : "drop-shadow(0 0 6px rgba(255,69,58,0.3))" }}>
+                            {isPlus ? "+" : ""}{u.balance.toFixed(0)} zł
+                          </div>
+                          <div style={{ fontSize:9, color:"rgba(255,255,255,0.3)", fontWeight:600 }}>{isPlus ? "ZYSK" : "STRATA"}</div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })()}
+
             {/* Faza pucharowa */}
             {knockoutMatches.length === 0 && !showGroupPhase && (
               <div className="empty"><div className="ei">🏆</div><div className="et">Faza pucharowa</div><div className="es">Admin wkrótce doda mecze fazy pucharowej</div></div>
