@@ -719,7 +719,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
       const tip = tips.find(t => t.user_id === p.id && t.match_id === m.id);
       if (!tip) continue;
       if (tip.pick === m.result) {
-        balance += parseFloat(m[`odds_${m.result}`]) * 100) - 100;
+        balance += (parseFloat(m[`odds_${m.result}`]) * 100) - 100;
       } else {
         balance -= 100;
       }
