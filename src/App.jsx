@@ -719,7 +719,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
       const tip = tips.find(t => t.user_id === p.id && t.match_id === m.id);
       if (!tip) continue;
       if (tip.pick === m.result) {
-        balance += parseFloat(m[`odds_${m.result}`]) * 100;
+        balance += parseFloat(m[`odds_${m.result}`]) * 100) - 100;
       } else {
         balance -= 100;
       }
@@ -802,7 +802,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
             {finishedAll.length > 0 && (
               <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 20, padding: "14px 16px", marginBottom: 16 }}>
                 <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.5)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 4 }}>Kalkulator — 100 zł na mecz</div>
-                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", marginBottom: 12 }}>Trafiony: 100 zł × kurs · Chybiony: −100 zł · Brak: 0 zł</div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", marginBottom: 12 }}>Trafiony: (kurs × 100) − 100 zł zysku · Chybiony: −100 zł · Brak: 0 zł</div>
                 {calculatorData.map((u, i) => {
                   const uav = getAvatar(u.name);
                   const favFlag = u.favorite_team ? FLAGS[u.favorite_team] : null;
