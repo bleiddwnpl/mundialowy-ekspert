@@ -61,7 +61,7 @@ body { background:#060f07; font-family:'Inter',sans-serif; }
 ::-webkit-scrollbar { width:0; }
 
 .auth-screen { min-height:100vh; position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end; }
-.photo-bg { position:fixed; inset:0; background-image:url('${PHOTO_URL}'); background-size:cover; background-position:center center; }
+.photo-bg { position:fixed; inset:0; background-image:url('https://images.unsplash.com/photo-1569531955323-33c6b2dca44b?fm=jpg&q=85&w=1600&auto=format&fit=crop'); background-size:cover; background-position:center center; }
 .ov1 { position:fixed; inset:0; background:linear-gradient(180deg,rgba(0,0,0,0.08) 0%,rgba(0,0,0,0.55) 55%,rgba(4,12,5,0.95) 78%,#040c05 100%); }
 .ov2 { position:fixed; bottom:0; left:0; right:0; height:60%; background:radial-gradient(ellipse at 50% 100%,rgba(0,180,60,0.1) 0%,transparent 70%); }
 .auth-hero { position:relative; z-index:5; padding:0 28px; margin-bottom:24px; animation:heroIn 1.2s cubic-bezier(0.16,1,0.3,1) both; }
@@ -95,7 +95,6 @@ body { background:#060f07; font-family:'Inter',sans-serif; }
 .back-btn { width:100%; padding:12px; background:transparent; border:none; color:rgba(255,255,255,0.4); font-size:13px; cursor:pointer; margin-top:8px; font-family:'Inter',sans-serif; }
 .reset-ok { background:rgba(76,222,110,0.08); border:1px solid rgba(76,222,110,0.2); border-radius:12px; padding:14px 16px; text-align:center; color:#4cde6e; font-size:14px; font-weight:600; line-height:1.5; }
 
-/* TEAM PICKER */
 .tp-ov { position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:200; display:flex; align-items:flex-end; justify-content:center; backdrop-filter:blur(20px); }
 .tp-box { background:#0f1a10; border:1px solid rgba(255,255,255,0.12); border-radius:28px 28px 0 0; padding:28px 20px 48px; width:100%; max-width:480px; max-height:90vh; display:flex; flex-direction:column; animation:slideUp 0.4s cubic-bezier(0.16,1,0.3,1) both; }
 @keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
@@ -113,10 +112,9 @@ body { background:#060f07; font-family:'Inter',sans-serif; }
 .tp-save:disabled { opacity:0.35; cursor:not-allowed; }
 .tp-skip { width:100%; padding:11px; background:transparent; border:none; color:rgba(255,255,255,0.3); font-family:'Inter',sans-serif; font-size:13px; cursor:pointer; margin-top:6px; flex-shrink:0; }
 
-/* MAIN */
 .app { min-height:100vh; background:#060f07; max-width:480px; margin:0 auto; padding-bottom:100px; font-family:'Inter',sans-serif; }
 .hdr { position:relative; overflow:hidden; padding:0 0 20px; min-height:195px; }
-.hdr-photo { position:absolute; inset:-20px -10px 0; background-image:url('${PHOTO_URL}'); background-size:cover; background-position:center 30%; filter:blur(2px) brightness(0.4) saturate(1.2); }
+.hdr-photo { position:absolute; inset:-20px -10px 0; background-image:url('https://images.unsplash.com/photo-1569531955323-33c6b2dca44b?fm=jpg&q=85&w=1600&auto=format&fit=crop'); background-size:cover; background-position:center 30%; filter:blur(2px) brightness(0.4) saturate(1.2); }
 .hdr-ov { position:absolute; inset:0; background:linear-gradient(180deg,rgba(6,15,7,0.35) 0%,rgba(6,15,7,0.55) 50%,#060f07 100%); }
 .hdr-ct { position:relative; z-index:2; padding:22px 20px 0; }
 .hdr-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
@@ -134,29 +132,11 @@ body { background:#060f07; font-family:'Inter',sans-serif; }
 .sval { font-family:'Bebas Neue',sans-serif; font-size:28px; color:#fff; letter-spacing:1px; line-height:1; }
 .sval.g { color:#4cde6e; filter:drop-shadow(0 0 8px rgba(76,222,110,0.4)); }
 
-/* PHASE TOGGLE */
-.phase-toggle {
-  display:flex; align-items:center; justify-content:center;
-  gap:10px; margin-bottom:16px;
-}
-.phase-btn {
-  flex:1; padding:10px 14px;
-  border-radius:12px; border:1.5px solid rgba(255,255,255,0.1);
-  background:rgba(255,255,255,0.04);
-  color:rgba(255,255,255,0.5); font-family:'Inter',sans-serif;
-  font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s;
-  text-align:center;
-}
-.phase-btn.active {
-  background:rgba(76,222,110,0.12); border-color:#4cde6e; color:#4cde6e;
-}
+.phase-toggle { display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:16px; }
+.phase-btn { flex:1; padding:10px 14px; border-radius:12px; border:1.5px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.04); color:rgba(255,255,255,0.5); font-family:'Inter',sans-serif; font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s; text-align:center; }
+.phase-btn.active { background:rgba(76,222,110,0.12); border-color:#4cde6e; color:#4cde6e; }
 
-/* ARCHIVE BANNER */
-.archive-banner {
-  background:rgba(255,149,0,0.08); border:1px solid rgba(255,149,0,0.2);
-  border-radius:14px; padding:12px 16px; margin-bottom:14px;
-  display:flex; align-items:center; gap:10px;
-}
+.archive-banner { background:rgba(255,149,0,0.08); border:1px solid rgba(255,149,0,0.2); border-radius:14px; padding:12px 16px; margin-bottom:14px; display:flex; align-items:center; gap:10px; }
 .archive-banner-icon { font-size:20px; flex-shrink:0; }
 .archive-banner-text { font-size:13px; color:rgba(255,200,100,0.85); font-weight:500; line-height:1.4; }
 
@@ -529,7 +509,7 @@ function MatchCard({ match, tip, onTip, archived = false }) {
               else if (lck && tip?.pick !== pick) cls += " no";
             }
             return (
-              <button key={pick} className={cls} onClick={() => !isFinished && onTip(match.id, pick)} disabled={lck || isFinished}>
+              <button key={pick} className={cls} onClick={() => !isFinished && !lck && onTip(match.id, pick)} disabled={lck || isFinished}>
                 <div className="ol">{PICK_LABELS[pick]}</div>
                 <div className="ov" style={isFinished && pick !== match.result && tip?.pick !== pick ? { color: "rgba(255,255,255,0.35)" } : {}}>{parseFloat(match[`odds_${pick}`]).toFixed(2)}</div>
               </button>
@@ -610,15 +590,12 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
       supabase.from("profiles").select("*"),
     ]);
 
-    // Pobieramy WSZYSTKIE tipy bez limitu, strona po stronie
+    // Paginacja tipów — omija limit 1000
     let allTips = [];
     let from = 0;
     const pageSize = 1000;
     while (true) {
-      const { data: page, error } = await supabase
-        .from("tips")
-        .select("*")
-        .range(from, from + pageSize - 1);
+      const { data: page, error } = await supabase.from("tips").select("*").range(from, from + pageSize - 1);
       if (error || !page || page.length === 0) break;
       allTips = [...allTips, ...page];
       if (page.length < pageSize) break;
@@ -648,17 +625,11 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
   const placeTip = async (matchId, pick) => {
     const match = matches.find(m => m.id === matchId);
     if (!match || isMatchLocked(match)) { showToast("⛔ Typowanie zamknięte"); return; }
-
     const { data, error } = await supabase
       .from("tips")
-      .upsert(
-        { user_id: user.id, match_id: matchId, pick, points: 0 },
-        { onConflict: "user_id,match_id" }
-      )
+      .upsert({ user_id: user.id, match_id: matchId, pick, points: 0 }, { onConflict: "user_id,match_id" })
       .select().single();
-
     if (error) { showToast("⚠️ Błąd zapisu — spróbuj ponownie"); return; }
-
     setTips(prev => {
       const idx = prev.findIndex(t => t.user_id === user.id && t.match_id === matchId);
       if (idx >= 0) { const u = [...prev]; u[idx] = data; return u; }
@@ -691,42 +662,32 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
   const addMatch = async () => {
     const { home, away, match_date, match_time, group_name, odds_home, odds_draw, odds_away } = newMatch;
     if (!home || !away || !match_date || !odds_home || !odds_draw || !odds_away) { showToast("Wypełnij wszystkie pola"); return; }
-    await supabase.from("matches").insert({
-      home, away, home_flag: FLAGS[home] || "🏳️", away_flag: FLAGS[away] || "🏳️",
-      match_date, match_time, group_name,
-      odds_home: parseFloat(odds_home), odds_draw: parseFloat(odds_draw), odds_away: parseFloat(odds_away),
-      status: "upcoming", result: null, phase: "knockout"
-    });
+    await supabase.from("matches").insert({ home, away, home_flag: FLAGS[home] || "🏳️", away_flag: FLAGS[away] || "🏳️", match_date, match_time, group_name, odds_home: parseFloat(odds_home), odds_draw: parseFloat(odds_draw), odds_away: parseFloat(odds_away), status: "upcoming", result: null, phase: "knockout" });
     await load(); setAddModal(false);
     setNewMatch({ home: "", away: "", match_date: "", match_time: "21:00", group_name: "1/8 finału", odds_home: "", odds_draw: "", odds_away: "" });
     showToast("Mecz dodany!");
   };
 
-  // Podział na fazy
   const knockoutMatches = matches.filter(m => m.phase !== "group");
   const groupMatches = matches.filter(m => m.phase === "group");
-
   const knockoutMatchIds = knockoutMatches.map(m => m.id);
   const groupMatchIds = groupMatches.map(m => m.id);
+  const allMatchIds = matches.map(m => m.id);
 
   const knockoutUpcoming = knockoutMatches.filter(m => m.status === "upcoming");
   const knockoutFinished = knockoutMatches.filter(m => m.status === "finished");
   const groupUpcoming = groupMatches.filter(m => m.status === "upcoming");
   const groupFinished = groupMatches.filter(m => m.status === "finished");
+  const finishedAll = matches.filter(m => m.status === "finished");
 
-  // Statystyki gracza z fazy pucharowej
   const myKnockoutPts = tips.filter(t => t.user_id === user.id && knockoutMatchIds.includes(t.match_id)).reduce((s, t) => s + (t.points || 0), 0);
   const myKnockoutCorrect = tips.filter(t => t.user_id === user.id && knockoutMatchIds.includes(t.match_id) && t.points > 0).length;
-
-  const allMatchIds = matches.map(m => m.id);
-  const myRankAll = [...profiles].map(p => ({
+  const myRank = [...profiles].map(p => ({
     id: p.id,
     pts: tips.filter(t => t.user_id === p.id && knockoutMatchIds.includes(t.match_id)).reduce((s, t) => s + (t.points || 0), 0),
   })).sort((a, b) => b.pts - a.pts).findIndex(p => p.id === user.id) + 1;
 
   const av = getAvatar(profile?.name || "");
-  const upcoming = matches.filter(m => m.status === "upcoming");
-  const allFinished = matches.filter(m => m.status === "finished");
 
   const tabs = [
     { key: "matches", icon: "⚽", label: "Mecze" },
@@ -746,14 +707,35 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
     </>
   );
 
+  // Dane do mini podium i kalkulatora
+  const combinedRanking = profiles.map(p => ({
+    ...p,
+    points: tips.filter(t => t.user_id === p.id && allMatchIds.includes(t.match_id)).reduce((s, t) => s + (t.points || 0), 0),
+  })).sort((a, b) => b.points - a.points);
+
+  const calculatorData = profiles.map(p => {
+    let balance = 0;
+    for (const m of finishedAll) {
+      const tip = tips.find(t => t.user_id === p.id && t.match_id === m.id);
+      if (!tip) continue;
+      if (tip.pick === m.result) {
+        balance += parseFloat(m[`odds_${m.result}`]) * 100;
+      } else {
+        balance -= 100;
+      }
+    }
+    return { ...p, balance };
+  }).sort((a, b) => b.balance - a.balance);
+
+  const medals = ["🥇", "🥈", "🥉"];
+  const medalColors = ["#ffd700", "#c0c0c0", "#cd7f32"];
+
   return (
     <>
       <style>{css}</style>
       <div className="app">
-
         {showTeamPicker && <TeamPicker onSave={saveTeam} onSkip={() => setShowTeamPicker(false)} />}
 
-        {/* HEADER */}
         <div className="hdr">
           <div className="hdr-photo" /><div className="hdr-ov" />
           <div className="hdr-ct">
@@ -770,7 +752,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
             <div className="stats">
               {[
                 { label: "Faza puch.", value: myKnockoutPts.toFixed(2), g: true },
-                { label: "Pozycja", value: `#${myRankAll}`, g: false },
+                { label: "Pozycja", value: `#${myRank}`, g: false },
                 { label: "Trafione", value: myKnockoutCorrect, g: false },
               ].map(s => (
                 <div key={s.label} className="sbox">
@@ -782,176 +764,117 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
           </div>
         </div>
 
-        {/* CONTENT */}
         <div className="ct">
           {tab === "chat" && <ChatTab user={user} profile={profile} />}
 
-          {/* ── MECZE ── */}
           {tab === "matches" && <>
 
             {/* ── MINI PODIUM TOP 3 ── */}
-            {(() => {
-              const combined = profiles.map(p => ({
-                ...p,
-                points: tips.filter(t => t.user_id === p.id).reduce((s, t) => s + (t.points || 0), 0),
-              })).sort((a, b) => b.points - a.points).slice(0, 3);
-              if (combined.length === 0) return null;
-              const medals = ["🥇","🥈","🥉"];
-              const colors = ["#ffd700","#c0c0c0","#cd7f32"];
-              return (
-                <div style={{ background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.1)", borderRadius:20, padding:"14px 16px", marginBottom:16 }}>
-                  <div style={{ fontSize:11, fontWeight:700, color:"rgba(255,255,255,0.5)", letterSpacing:2, textTransform:"uppercase", marginBottom:12 }}>Klasyfikacja generalna</div>
-                  {combined.map((u, i) => {
-                    const av = getAvatar(u.name);
-                    const favFlag = u.favorite_team ? FLAGS[u.favorite_team] : null;
-                    return (
-                      <div key={u.id} style={{ display:"flex", alignItems:"center", gap:10, marginBottom: i < combined.length-1 ? 10 : 0 }}>
-                        <span style={{ fontSize:20, width:28, textAlign:"center" }}>{medals[i]}</span>
-                        <div style={{ width:32, height:32, borderRadius:"50%", background: favFlag ? "rgba(76,222,110,0.06)" : av.gradient, border: favFlag ? "1.5px solid rgba(76,222,110,0.2)" : "none", display:"flex", alignItems:"center", justifyContent:"center", fontSize:16, fontWeight:700, color:"#000", flexShrink:0 }}>
-                          {favFlag || av.initials}
-                        </div>
-                        <div style={{ flex:1 }}>
-                          <div style={{ fontSize:14, fontWeight:600, color:"#fff" }}>
-                            {u.name}
-                            {u.id === user.id && <span style={{ fontSize:9, color:"#4cde6e", background:"rgba(76,222,110,0.12)", padding:"1px 6px", borderRadius:6, fontWeight:700, marginLeft:5 }}>TY</span>}
-                          </div>
-                        </div>
-                        <div style={{ textAlign:"right" }}>
-                          <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:22, color: colors[i], filter: i===0 ? "drop-shadow(0 0 8px rgba(255,215,0,0.4))" : "none" }}>{u.points.toFixed(2)}</div>
-                          <div style={{ fontSize:9, color:"rgba(255,255,255,0.3)", fontWeight:600 }}>PKT</div>
+            {combinedRanking.length > 0 && (
+              <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 20, padding: "14px 16px", marginBottom: 12 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.5)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 12 }}>Klasyfikacja generalna</div>
+                {combinedRanking.slice(0, 3).map((u, i) => {
+                  const uav = getAvatar(u.name);
+                  const favFlag = u.favorite_team ? FLAGS[u.favorite_team] : null;
+                  return (
+                    <div key={u.id} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: i < 2 ? 10 : 0 }}>
+                      <span style={{ fontSize: 20, width: 28, textAlign: "center" }}>{medals[i]}</span>
+                      <div style={{ width: 32, height: 32, borderRadius: "50%", background: favFlag ? "rgba(76,222,110,0.06)" : uav.gradient, border: favFlag ? "1.5px solid rgba(76,222,110,0.2)" : "none", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 700, color: "#000", flexShrink: 0 }}>
+                        {favFlag || uav.initials}
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: 14, fontWeight: 600, color: "#fff" }}>
+                          {u.name}
+                          {u.id === user.id && <span style={{ fontSize: 9, color: "#4cde6e", background: "rgba(76,222,110,0.12)", padding: "1px 6px", borderRadius: 6, fontWeight: 700, marginLeft: 5 }}>TY</span>}
                         </div>
                       </div>
-                    );
-                  })}
-                </div>
-              );
-            })()}
+                      <div style={{ textAlign: "right" }}>
+                        <div style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: 22, color: medalColors[i], filter: i === 0 ? "drop-shadow(0 0 8px rgba(255,215,0,0.4))" : "none" }}>{u.points.toFixed(2)}</div>
+                        <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", fontWeight: 600 }}>PKT</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
 
-            {/* ── CZY OGRAŁBYŚ BUKA STAWIAJAC 100 ZŁ ── */}
-            {(() => {
-              const finishedMatches = matches.filter(m => m.status === "finished");
-              if (finishedMatches.length === 0) return null;
-
-              const combined = profiles.map(p => {
-                let balance = 0;
-                for (const m of finishedMatches) {
-                  const tip = tips.find(t => t.user_id === p.id && t.match_id === m.id);
-                  if (!tip) continue; // brak typu = 0
-                  if (tip.pick === m.result) {
-                    balance += (parseFloat(m[`odds_${m.result}`]) * 100;
-                  } else {
-                    balance -= 100;
-                  }
-                }
-                return { ...p, balance };
-              }).sort((a, b) => b.balance - a.balance);
-
-              return (
-                <div style={{ background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.1)", borderRadius:20, padding:"14px 16px", marginBottom:16 }}>
-                  <div style={{ fontSize:11, fontWeight:700, color:"rgba(255,255,255,0.5)", letterSpacing:2, textTransform:"uppercase", marginBottom:4 }}>Kalkulator — 100 zł na mecz</div>
-                  <div style={{ fontSize:11, color:"rgba(255,255,255,0.3)", marginBottom:12 }}>Ile byś zarobił/stracił stawiając 100 zł na każdy mecz?</div>
-                  {combined.map((u, i) => {
-                    const av = getAvatar(u.name);
-                    const favFlag = u.favorite_team ? FLAGS[u.favorite_team] : null;
-                    const isPlus = u.balance >= 0;
-                    return (
-                      <div key={u.id} style={{ display:"flex", alignItems:"center", gap:10, marginBottom: i < combined.length-1 ? 10 : 0 }}>
-                        <span style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:15, color:"rgba(255,255,255,0.25)", width:28, textAlign:"center" }}>#{i+1}</span>
-                        <div style={{ width:32, height:32, borderRadius:"50%", background: favFlag ? "rgba(76,222,110,0.06)" : av.gradient, border: favFlag ? "1.5px solid rgba(76,222,110,0.2)" : "none", display:"flex", alignItems:"center", justifyContent:"center", fontSize:16, fontWeight:700, color:"#000", flexShrink:0 }}>
-                          {favFlag || av.initials}
-                        </div>
-                        <div style={{ flex:1 }}>
-                          <div style={{ fontSize:14, fontWeight:600, color:"#fff" }}>
-                            {u.name}
-                            {u.id === user.id && <span style={{ fontSize:9, color:"#4cde6e", background:"rgba(76,222,110,0.12)", padding:"1px 6px", borderRadius:6, fontWeight:700, marginLeft:5 }}>TY</span>}
-                          </div>
-                        </div>
-                        <div style={{ textAlign:"right" }}>
-                          <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:20, color: isPlus ? "#4cde6e" : "#ff453a", filter: isPlus ? "drop-shadow(0 0 6px rgba(76,222,110,0.3))" : "drop-shadow(0 0 6px rgba(255,69,58,0.3))" }}>
-                            {isPlus ? "+" : ""}{u.balance.toFixed(0)} zł
-                          </div>
-                          <div style={{ fontSize:9, color:"rgba(255,255,255,0.3)", fontWeight:600 }}>{isPlus ? "ZYSK" : "STRATA"}</div>
+            {/* ── KALKULATOR 100 ZŁ ── */}
+            {finishedAll.length > 0 && (
+              <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 20, padding: "14px 16px", marginBottom: 16 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.5)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 4 }}>Kalkulator — 100 zł na mecz</div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", marginBottom: 12 }}>Trafiony: 100 zł × kurs · Chybiony: −100 zł · Brak: 0 zł</div>
+                {calculatorData.map((u, i) => {
+                  const uav = getAvatar(u.name);
+                  const favFlag = u.favorite_team ? FLAGS[u.favorite_team] : null;
+                  const isPlus = u.balance >= 0;
+                  return (
+                    <div key={u.id} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: i < calculatorData.length - 1 ? 10 : 0 }}>
+                      <span style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: 15, color: "rgba(255,255,255,0.25)", width: 28, textAlign: "center" }}>#{i + 1}</span>
+                      <div style={{ width: 32, height: 32, borderRadius: "50%", background: favFlag ? "rgba(76,222,110,0.06)" : uav.gradient, border: favFlag ? "1.5px solid rgba(76,222,110,0.2)" : "none", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 700, color: "#000", flexShrink: 0 }}>
+                        {favFlag || uav.initials}
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: 14, fontWeight: 600, color: "#fff" }}>
+                          {u.name}
+                          {u.id === user.id && <span style={{ fontSize: 9, color: "#4cde6e", background: "rgba(76,222,110,0.12)", padding: "1px 6px", borderRadius: 6, fontWeight: 700, marginLeft: 5 }}>TY</span>}
                         </div>
                       </div>
-                    );
-                  })}
-                </div>
-              );
-            })()}
+                      <div style={{ textAlign: "right" }}>
+                        <div style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: 20, color: isPlus ? "#4cde6e" : "#ff453a", filter: isPlus ? "drop-shadow(0 0 6px rgba(76,222,110,0.3))" : "drop-shadow(0 0 6px rgba(255,69,58,0.3))" }}>
+                          {isPlus ? "+" : ""}{u.balance.toFixed(0)} zł
+                        </div>
+                        <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", fontWeight: 600 }}>{isPlus ? "ZYSK" : "STRATA"}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
 
             {/* Faza pucharowa */}
             {knockoutMatches.length === 0 && !showGroupPhase && (
               <div className="empty"><div className="ei">🏆</div><div className="et">Faza pucharowa</div><div className="es">Admin wkrótce doda mecze fazy pucharowej</div></div>
             )}
-
             {knockoutUpcoming.length > 0 && <>
               <div className="sh">Faza pucharowa — nadchodzące</div>
               {knockoutUpcoming.map(match => <MatchCard key={match.id} match={match} tip={myTip(match.id)} onTip={placeTip} />)}
             </>}
-
             {knockoutFinished.length > 0 && <>
               <div className="sh" style={{ marginTop: 8 }}>Faza pucharowa — zakończone</div>
               {knockoutFinished.map(match => <MatchCard key={match.id} match={match} tip={myTip(match.id)} onTip={placeTip} />)}
             </>}
 
-            {/* Przycisk archiwum */}
             {groupMatches.length > 0 && (
-              <button
-                onClick={() => setShowGroupPhase(p => !p)}
-                style={{ width: "100%", padding: "12px 16px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 14, color: "rgba(255,255,255,0.5)", fontFamily: "inherit", fontSize: 13, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginTop: 8, transition: "all 0.2s" }}
-              >
+              <button onClick={() => setShowGroupPhase(p => !p)} style={{ width: "100%", padding: "12px 16px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 14, color: "rgba(255,255,255,0.5)", fontFamily: "inherit", fontSize: 13, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginTop: 8 }}>
                 <span>{showGroupPhase ? "▲" : "▼"}</span>
                 {showGroupPhase ? "Ukryj fazę grupową" : `📁 Faza grupowa (${groupMatches.length} meczów)`}
               </button>
             )}
-
-            {/* Faza grupowa — archiwum */}
             {showGroupPhase && groupMatches.length > 0 && (
               <div style={{ marginTop: 14 }}>
-                <div className="archive-banner">
-                  <span className="archive-banner-icon">📁</span>
-                  <span className="archive-banner-text">Archiwum fazy grupowej — wyniki historyczne</span>
-                </div>
-                {groupUpcoming.length > 0 && <>
-                  <div className="sh">Faza grupowa — nadchodzące</div>
-                  {groupUpcoming.map(match => <MatchCard key={match.id} match={match} tip={myTip(match.id)} onTip={placeTip} archived />)}
-                </>}
-                {groupFinished.length > 0 && <>
-                  <div className="sh" style={{ marginTop: 8 }}>Faza grupowa — zakończone</div>
-                  {groupFinished.map(match => <MatchCard key={match.id} match={match} tip={myTip(match.id)} onTip={placeTip} archived />)}
-                </>}
+                <div className="archive-banner"><span className="archive-banner-icon">📁</span><span className="archive-banner-text">Archiwum fazy grupowej — wyniki historyczne</span></div>
+                {groupUpcoming.length > 0 && <>{<div className="sh">Faza grupowa — nadchodzące</div>}{groupUpcoming.map(match => <MatchCard key={match.id} match={match} tip={myTip(match.id)} onTip={placeTip} archived />)}</>}
+                {groupFinished.length > 0 && <>{<div className="sh" style={{ marginTop: 8 }}>Faza grupowa — zakończone</div>}{groupFinished.map(match => <MatchCard key={match.id} match={match} tip={myTip(match.id)} onTip={placeTip} archived />)}</>}
               </div>
             )}
           </>}
 
-          {/* ── TABELA ── */}
           {tab === "leaderboard" && <>
-            {/* Przełącznik faz */}
             <div className="phase-toggle">
-              <button className={`phase-btn ${!showGroupPhase ? "active" : ""}`} onClick={() => setShowGroupPhase(false)}>
-                🏆 Faza pucharowa
-              </button>
-              <button className={`phase-btn ${showGroupPhase ? "active" : ""}`} onClick={() => setShowGroupPhase(true)}>
-                📁 Faza grupowa
-              </button>
+              <button className={`phase-btn ${!showGroupPhase ? "active" : ""}`} onClick={() => setShowGroupPhase(false)}>🏆 Faza pucharowa</button>
+              <button className={`phase-btn ${showGroupPhase ? "active" : ""}`} onClick={() => setShowGroupPhase(true)}>📁 Faza grupowa</button>
             </div>
-
             {!showGroupPhase && <>
               <div className="sh">Ranking — Faza pucharowa</div>
               <Leaderboard profiles={profiles} tips={tips} matchIds={knockoutMatchIds} userId={user.id} />
             </>}
-
             {showGroupPhase && <>
-              <div className="archive-banner" style={{ marginBottom: 14 }}>
-                <span className="archive-banner-icon">📁</span>
-                <span className="archive-banner-text">Ranking historyczny z fazy grupowej</span>
-              </div>
+              <div className="archive-banner" style={{ marginBottom: 14 }}><span className="archive-banner-icon">📁</span><span className="archive-banner-text">Ranking historyczny z fazy grupowej</span></div>
               <div className="sh">Ranking — Faza grupowa</div>
               <Leaderboard profiles={profiles} tips={tips} matchIds={groupMatchIds} userId={user.id} />
             </>}
           </>}
 
-          {/* ── REGULAMIN ── */}
           {tab === "rules" && <>
             <div className="sh">Nagrody</div>
             <div className="rc" style={{ marginBottom: 10 }}>
@@ -968,10 +891,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
               ))}
             </div>
             <div className="rc" style={{ marginBottom: 10 }}>
-              <div className="rrow">
-                <div className="ric" style={{ background: "rgba(76,222,110,0.08)" }}>💸</div>
-                <div><div className="rtit">Wypłata nagród</div><div className="rtxt">Płatności realizowane <strong style={{ color: "#4cde6e" }}>BLIKIEM</strong> po zakończeniu turnieju. Zwycięzcy zostaną poproszeni o podanie numeru do przelewu.</div></div>
-              </div>
+              <div className="rrow"><div className="ric" style={{ background: "rgba(76,222,110,0.08)" }}>💸</div><div><div className="rtit">Wypłata nagród</div><div className="rtxt">Płatności realizowane <strong style={{ color: "#4cde6e" }}>BLIKIEM</strong> po zakończeniu turnieju.</div></div></div>
             </div>
             <div className="sh" style={{ marginTop: 16 }}>Zasady gry</div>
             {[
@@ -986,8 +906,8 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
             <div className="sh" style={{ marginTop: 16 }}>Informacje</div>
             <div className="rc">
               {[
-                { icon: "👨‍💻", bg: "rgba(52,199,89,0.08)", text: "Projekt powstał hobbystycznie, gdzieś między jednym a drugim zadaniem w pracy. Przetestowaliśmy go na zawrotnej grupie trzech osób i… chyba działa 🙂 Teraz pałeczka przechodzi na Was, to Wy jesteście ekipą testową." },
-                { icon: "⚠️", bg: "rgba(255,149,0,0.08)", text: "Administrator nie daje gwarancji, że wszystko pójdzie idealnie 😉 Możliwe drobne potknięcia po drodze, ale liczymy, że wspólnie dociągniemy temat do finału mistrzostw." },
+                { icon: "👨‍💻", bg: "rgba(52,199,89,0.08)", text: "Projekt powstał hobbystycznie, gdzieś między jednym a drugim zadaniem w pracy. Przetestowaliśmy go na zawrotnej grupie trzech osób i… chyba działa 🙂" },
+                { icon: "⚠️", bg: "rgba(255,149,0,0.08)", text: "Administrator nie daje gwarancji, że wszystko pójdzie idealnie 😉 Możliwe drobne potknięcia po drodze." },
                 { icon: "✉️", bg: "rgba(0,122,255,0.1)", email: "bewn.gmail.3ss6o@slmail.me" },
               ].map((s, i, arr) => (
                 <div key={i} className="rrow" style={{ borderBottom: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
@@ -1001,13 +921,11 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
             </div>
           </>}
 
-          {/* ── ADMIN ── */}
           {tab === "admin" && profile?.is_admin && <>
             <div className="sh">Panel administratora</div>
             <button className="mprim" style={{ marginBottom: 16 }} onClick={() => setAddModal(true)}>+ Dodaj mecz (faza pucharowa)</button>
-
             {knockoutUpcoming.length > 0 && <>
-              <div className="sh">Faza pucharowa — nadchodzące</div>
+              <div className="sh">Nadchodzące</div>
               <div className="rc" style={{ marginBottom: 10 }}>
                 {knockoutUpcoming.map((match, i) => (
                   <div key={match.id} className="ar" style={{ borderBottom: i < knockoutUpcoming.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
@@ -1020,9 +938,8 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
                 ))}
               </div>
             </>}
-
             {knockoutFinished.length > 0 && <>
-              <div className="sh">Faza pucharowa — zakończone</div>
+              <div className="sh">Zakończone</div>
               <div className="rc" style={{ marginBottom: 10 }}>
                 {knockoutFinished.map((match, i) => (
                   <div key={match.id} className="ar" style={{ borderBottom: i < knockoutFinished.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
@@ -1035,16 +952,12 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
                 ))}
               </div>
             </>}
-
             {groupMatches.length > 0 && <>
-              <div className="sh" style={{ marginTop: 8 }}>Faza grupowa — archiwum</div>
+              <div className="sh">Faza grupowa — archiwum</div>
               <div className="rc">
                 {groupMatches.map((match, i) => (
                   <div key={match.id} className="ar" style={{ borderBottom: i < groupMatches.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none", opacity: 0.7 }}>
-                    <div>
-                      <div className="an">{match.home_flag} {match.home} vs {match.away} {match.away_flag}</div>
-                      <div className="at">{match.match_date} · {match.status === "finished" ? `Wynik: ${PICK_LABELS[match.result]}` : "Nadchodzący"}</div>
-                    </div>
+                    <div><div className="an">{match.home_flag} {match.home} vs {match.away} {match.away_flag}</div><div className="at">{match.match_date} · {match.status === "finished" ? `Wynik: ${PICK_LABELS[match.result]}` : "Nadchodzący"}</div></div>
                     <div style={{ display: "flex", gap: 6 }}>
                       <button className="aedt" onClick={() => openEdit(match)}>Edytuj</button>
                       {match.status !== "finished" && <button className="ares-btn" onClick={() => setResultModal(match)}>Wynik</button>}
@@ -1056,7 +969,6 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
           </>}
         </div>
 
-        {/* NAV */}
         <div className="nav">
           {tabs.map(t => (
             <button key={t.key} className={`ni ${tab === t.key ? "on" : ""}`} onClick={() => { setTab(t.key); setShowGroupPhase(false); }}>
@@ -1067,7 +979,6 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
           ))}
         </div>
 
-        {/* MODALS */}
         {resultModal && (
           <div className="mo" onClick={() => setResultModal(null)}>
             <div className="mbox" onClick={e => e.stopPropagation()}>
@@ -1085,7 +996,6 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
             </div>
           </div>
         )}
-
         {addModal && (
           <div className="mo" onClick={() => setAddModal(false)}>
             <div className="mbox" onClick={e => e.stopPropagation()}>
@@ -1098,7 +1008,6 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
             </div>
           </div>
         )}
-
         {editModal && (
           <div className="mo" onClick={() => setEditModal(null)}>
             <div className="mbox" onClick={e => e.stopPropagation()}>
@@ -1111,7 +1020,6 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
             </div>
           </div>
         )}
-
         {toast && <div className="toast">{toast}</div>}
       </div>
     </>
