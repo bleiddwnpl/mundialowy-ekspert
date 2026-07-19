@@ -30,9 +30,9 @@ const FLAGS = {
 };
 
 const AVATAR_COLORS = [
-  "linear-gradient(135deg,#4cde6e,#2d8a4e)",
+  "linear-gradient(135deg,#c60b1e,#8b0000)",
   "linear-gradient(135deg,#ff9500,#ff6b00)",
-  "linear-gradient(135deg,#00d4aa,#007aff)",
+  "linear-gradient(135deg,#f1bf00,#c8a000)",
   "linear-gradient(135deg,#af52de,#7a3ec2)",
   "linear-gradient(135deg,#ff2d55,#ff6b8a)",
   "linear-gradient(135deg,#5ac8fa,#007aff)",
@@ -57,108 +57,154 @@ const isMatchLocked = (m) => {
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap');
 * { box-sizing:border-box; margin:0; padding:0; -webkit-font-smoothing:antialiased; }
-body { background:#060f07; font-family:'Inter',sans-serif; }
+body { background:#0a0000; font-family:'Inter',sans-serif; }
 ::-webkit-scrollbar { width:0; }
 
+/* ── AUTH ────────────────────────────────────────── */
 .auth-screen { min-height:100vh; position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end; }
-.photo-bg { position:fixed; inset:0; background-image:url('https://images.unsplash.com/photo-1569531955323-33c6b2dca44b?fm=jpg&q=85&w=1600&auto=format&fit=crop'); background-size:cover; background-position:center center; }
-.ov1 { position:fixed; inset:0; background:linear-gradient(180deg,rgba(0,0,0,0.08) 0%,rgba(0,0,0,0.55) 55%,rgba(4,12,5,0.95) 78%,#040c05 100%); }
-.ov2 { position:fixed; bottom:0; left:0; right:0; height:60%; background:radial-gradient(ellipse at 50% 100%,rgba(0,180,60,0.1) 0%,transparent 70%); }
-.auth-hero { position:relative; z-index:5; padding:0 28px; margin-bottom:24px; animation:heroIn 1.2s cubic-bezier(0.16,1,0.3,1) both; }
+.photo-bg { position:fixed; inset:0; background-image:url('${PHOTO_URL}'); background-size:cover; background-position:center center; }
+.ov1 { position:fixed; inset:0; background:linear-gradient(180deg,rgba(120,0,0,0.55) 0%,rgba(80,0,0,0.2) 25%,rgba(80,0,0,0.55) 55%,rgba(100,0,0,0.96) 78%,#640000 100%); }
+.ov2 { position:fixed; bottom:0; left:0; right:0; height:60%; background:radial-gradient(ellipse at 50% 100%,rgba(255,180,0,0.12) 0%,transparent 70%); }
+
+.auth-hero { position:relative; z-index:5; padding:0 28px; margin-bottom:20px; animation:heroIn 1.2s cubic-bezier(0.16,1,0.3,1) both; }
 @keyframes heroIn { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
-.eyebrow { display:flex; align-items:center; gap:8px; margin-bottom:12px; animation:slideIn 0.8s 0.2s both; }
+
+.hero-flag { text-align:center; font-size:60px; margin-bottom:8px; animation:flagFloat 3s ease-in-out infinite; filter:drop-shadow(0 4px 20px rgba(0,0,0,0.6)); }
+@keyframes flagFloat { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-6px) scale(1.03)} }
+
+.eyebrow { display:flex; align-items:center; gap:8px; margin-bottom:10px; animation:slideIn 0.8s 0.2s both; justify-content:center; }
 @keyframes slideIn { from{opacity:0;transform:translateX(-16px)} to{opacity:1;transform:translateX(0)} }
-.ey-line { width:28px; height:2px; background:#4cde6e; border-radius:1px; }
-.ey-txt { font-size:10px; font-weight:700; color:#4cde6e; letter-spacing:3px; text-transform:uppercase; }
-.hero-title { font-family:'Bebas Neue',sans-serif; font-size:64px; line-height:0.88; color:#fff; letter-spacing:2px; margin-bottom:12px; animation:titleIn 1s 0.1s cubic-bezier(0.16,1,0.3,1) both; text-shadow:0 4px 40px rgba(0,0,0,0.6); }
+.ey-line { width:28px; height:2px; background:#c60b1e; border-radius:1px; }
+.ey-txt { font-size:10px; font-weight:700; color:#ff6060; letter-spacing:3px; text-transform:uppercase; }
+
+.hero-title { font-family:'Bebas Neue',sans-serif; font-size:60px; line-height:0.88; color:#fff; letter-spacing:2px; margin-bottom:10px; animation:titleIn 1s 0.1s cubic-bezier(0.16,1,0.3,1) both; text-shadow:0 4px 40px rgba(0,0,0,0.7); text-align:center; }
 @keyframes titleIn { from{opacity:0;transform:translateY(24px) skewY(2deg)} to{opacity:1;transform:translateY(0) skewY(0)} }
-.hero-green { color:#4cde6e; filter:drop-shadow(0 0 20px rgba(76,222,110,0.4)); }
-.hero-sub { font-size:15px; font-weight:700; color:rgba(255,255,255,0.92); line-height:1.6; text-shadow:0 2px 12px rgba(0,0,0,0.8); animation:slideIn 0.8s 0.3s both; }
-.auth-card { position:relative; z-index:5; margin:0 16px 48px; background:rgba(8,20,10,0.72); border:1px solid rgba(255,255,255,0.1); border-radius:24px; padding:22px; backdrop-filter:blur(30px); animation:cardIn 1s 0.35s cubic-bezier(0.16,1,0.3,1) both; box-shadow:0 0 0 1px rgba(76,222,110,0.08),0 24px 60px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.08); }
+.hero-red { color:#ff2020; filter:drop-shadow(0 0 16px rgba(255,50,0,0.5)); }
+
+.hero-champion { background:rgba(198,11,30,0.15); border:1px solid rgba(255,80,0,0.3); border-radius:14px; padding:10px 16px; text-align:center; margin-bottom:14px; animation:slideIn 0.8s 0.3s both; }
+.hero-ch-label { font-size:9px; font-weight:700; color:rgba(255,200,100,0.6); letter-spacing:2.5px; text-transform:uppercase; margin-bottom:3px; }
+.hero-ch-name { font-family:'Bebas Neue',sans-serif; font-size:26px; color:#ffd700; letter-spacing:2px; filter:drop-shadow(0 0 10px rgba(255,215,0,0.4)); }
+
+.auth-card { position:relative; z-index:5; margin:0 16px 48px; background:rgba(100,0,0,0.65); border:1px solid rgba(255,80,0,0.2); border-radius:24px; padding:22px; backdrop-filter:blur(30px); animation:cardIn 1s 0.35s cubic-bezier(0.16,1,0.3,1) both; box-shadow:0 0 0 1px rgba(198,11,30,0.08),0 24px 60px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,200,0,0.08); }
 @keyframes cardIn { from{opacity:0;transform:translateY(32px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
-.card-shine { position:absolute; top:0; left:50%; transform:translateX(-50%); width:60%; height:1px; background:linear-gradient(90deg,transparent,rgba(76,222,110,0.4),transparent); }
+.card-shine { position:absolute; top:0; left:50%; transform:translateX(-50%); width:60%; height:1px; background:linear-gradient(90deg,transparent,rgba(255,215,0,0.35),transparent); }
+
 .seg { display:flex; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:3px; margin-bottom:16px; }
 .seg-btn { flex:1; padding:10px; text-align:center; font-size:14px; font-weight:600; color:rgba(255,255,255,0.35); border-radius:12px; border:none; background:transparent; font-family:'Inter',sans-serif; cursor:pointer; transition:all 0.22s; }
-.seg-btn.on { background:linear-gradient(135deg,#1a6b30,#4cde6e); color:#000; box-shadow:0 4px 16px rgba(76,222,110,0.25); }
+.seg-btn.on { background:linear-gradient(135deg,#8b0000,#c60b1e); color:#fff; box-shadow:0 4px 16px rgba(198,11,30,0.3); }
+
 .afield { position:relative; margin-bottom:10px; }
 .aicon { position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:16px; opacity:0.4; pointer-events:none; }
-.ainput { width:100%; padding:13px 16px 13px 42px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.09); border-radius:13px; color:#fff; font-family:'Inter',sans-serif; font-size:15px; outline:none; transition:all 0.22s; }
-.ainput:focus { background:rgba(255,255,255,0.09); border-color:rgba(76,222,110,0.4); box-shadow:0 0 0 3px rgba(76,222,110,0.08); }
+.ainput { width:100%; padding:13px 16px 13px 42px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,100,0,0.15); border-radius:13px; color:#fff; font-family:'Inter',sans-serif; font-size:15px; outline:none; transition:all 0.22s; }
+.ainput:focus { background:rgba(255,255,255,0.09); border-color:rgba(198,11,30,0.5); box-shadow:0 0 0 3px rgba(198,11,30,0.1); }
 .ainput::placeholder { color:rgba(255,255,255,0.22); }
-.aerr { color:#ff453a; font-size:12px; text-align:center; margin-bottom:8px; font-weight:500; }
-.acta { width:100%; padding:15px; background:linear-gradient(135deg,#1e7a38,#4cde6e); border:none; border-radius:14px; color:#000; font-family:'Inter',sans-serif; font-size:16px; font-weight:700; cursor:pointer; margin-top:4px; transition:all 0.2s; box-shadow:0 8px 28px rgba(76,222,110,0.3); position:relative; overflow:hidden; }
-.acta::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(255,255,255,0.15) 0%,transparent 50%); pointer-events:none; }
-.acta:hover { transform:translateY(-1px); }
+.aerr { color:#ff6b6b; font-size:12px; text-align:center; margin-bottom:8px; font-weight:500; }
+.acta { width:100%; padding:15px; background:linear-gradient(135deg,#8b0000,#c60b1e,#ff2020); border:none; border-radius:14px; color:#fff; font-family:'Inter',sans-serif; font-size:16px; font-weight:700; cursor:pointer; margin-top:4px; transition:all 0.2s; box-shadow:0 8px 28px rgba(198,11,30,0.4); position:relative; overflow:hidden; }
+.acta::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(255,255,255,0.12) 0%,transparent 50%); pointer-events:none; }
+.acta:hover { transform:translateY(-1px); box-shadow:0 12px 36px rgba(198,11,30,0.5); }
 .acta:disabled { opacity:0.45; cursor:not-allowed; transform:none; }
-.forgot-btn { width:100%; padding:10px; background:transparent; border:none; color:rgba(255,255,255,0.4); font-size:13px; cursor:pointer; margin-top:4px; font-family:'Inter',sans-serif; transition:color 0.2s; }
-.forgot-btn:hover { color:rgba(76,222,110,0.7); }
-.back-btn { width:100%; padding:12px; background:transparent; border:none; color:rgba(255,255,255,0.4); font-size:13px; cursor:pointer; margin-top:8px; font-family:'Inter',sans-serif; }
-.reset-ok { background:rgba(76,222,110,0.08); border:1px solid rgba(76,222,110,0.2); border-radius:12px; padding:14px 16px; text-align:center; color:#4cde6e; font-size:14px; font-weight:600; line-height:1.5; }
+.forgot-btn { width:100%; padding:10px; background:transparent; border:none; color:rgba(255,200,150,0.4); font-size:13px; cursor:pointer; margin-top:4px; font-family:'Inter',sans-serif; transition:color 0.2s; }
+.forgot-btn:hover { color:rgba(255,150,100,0.8); }
+.back-btn { width:100%; padding:12px; background:transparent; border:none; color:rgba(255,200,150,0.4); font-size:13px; cursor:pointer; margin-top:8px; font-family:'Inter',sans-serif; }
+.reset-ok { background:rgba(198,11,30,0.1); border:1px solid rgba(198,11,30,0.3); border-radius:12px; padding:14px 16px; text-align:center; color:#ff8080; font-size:14px; font-weight:600; line-height:1.5; }
 
+/* TEAM PICKER */
 .tp-ov { position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:200; display:flex; align-items:flex-end; justify-content:center; backdrop-filter:blur(20px); }
-.tp-box { background:#0f1a10; border:1px solid rgba(255,255,255,0.12); border-radius:28px 28px 0 0; padding:28px 20px 48px; width:100%; max-width:480px; max-height:90vh; display:flex; flex-direction:column; animation:slideUp 0.4s cubic-bezier(0.16,1,0.3,1) both; }
+.tp-box { background:#1a0000; border:1px solid rgba(198,11,30,0.2); border-radius:28px 28px 0 0; padding:28px 20px 48px; width:100%; max-width:480px; max-height:90vh; display:flex; flex-direction:column; animation:slideUp 0.4s cubic-bezier(0.16,1,0.3,1) both; }
 @keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
 .tp-handle { width:36px; height:4px; background:rgba(255,255,255,0.15); border-radius:2px; margin:0 auto 20px; }
 .tp-title { font-family:'Bebas Neue',sans-serif; font-size:28px; color:#fff; letter-spacing:2px; text-align:center; margin-bottom:4px; }
 .tp-sub { font-size:13px; color:rgba(255,255,255,0.45); text-align:center; margin-bottom:20px; }
 .tp-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; overflow-y:auto; flex:1; }
-.tp-item { background:rgba(255,255,255,0.05); border:1.5px solid rgba(255,255,255,0.08); border-radius:14px; padding:10px 6px; text-align:center; cursor:pointer; transition:all 0.18s; }
-.tp-item:hover { border-color:rgba(76,222,110,0.35); background:rgba(76,222,110,0.07); }
-.tp-item.sel { border-color:#4cde6e; background:rgba(76,222,110,0.15); }
+.tp-item { background:rgba(255,255,255,0.04); border:1.5px solid rgba(255,255,255,0.08); border-radius:14px; padding:10px 6px; text-align:center; cursor:pointer; transition:all 0.18s; }
+.tp-item:hover { border-color:rgba(198,11,30,0.4); background:rgba(198,11,30,0.08); }
+.tp-item.sel { border-color:#c60b1e; background:rgba(198,11,30,0.15); }
 .tp-flag { font-size:26px; display:block; margin-bottom:4px; }
 .tp-name { font-size:9px; color:rgba(255,255,255,0.5); font-weight:600; line-height:1.2; }
-.tp-item.sel .tp-name { color:#4cde6e; }
-.tp-save { width:100%; padding:15px; background:linear-gradient(135deg,#1e7a38,#4cde6e); border:none; border-radius:14px; color:#000; font-family:'Inter',sans-serif; font-size:16px; font-weight:700; cursor:pointer; margin-top:16px; flex-shrink:0; }
+.tp-item.sel .tp-name { color:#ff8080; }
+.tp-save { width:100%; padding:15px; background:linear-gradient(135deg,#8b0000,#c60b1e); border:none; border-radius:14px; color:#fff; font-family:'Inter',sans-serif; font-size:16px; font-weight:700; cursor:pointer; margin-top:16px; flex-shrink:0; box-shadow:0 6px 24px rgba(198,11,30,0.3); }
 .tp-save:disabled { opacity:0.35; cursor:not-allowed; }
 .tp-skip { width:100%; padding:11px; background:transparent; border:none; color:rgba(255,255,255,0.3); font-family:'Inter',sans-serif; font-size:13px; cursor:pointer; margin-top:6px; flex-shrink:0; }
 
-.app { min-height:100vh; background:#060f07; max-width:480px; margin:0 auto; padding-bottom:100px; font-family:'Inter',sans-serif; }
+/* MAIN APP */
+.app { min-height:100vh; background:#0a0000; max-width:480px; margin:0 auto; padding-bottom:100px; font-family:'Inter',sans-serif; }
+
 .hdr { position:relative; overflow:hidden; padding:0 0 20px; min-height:195px; }
-.hdr-photo { position:absolute; inset:-20px -10px 0; background-image:url('https://images.unsplash.com/photo-1569531955323-33c6b2dca44b?fm=jpg&q=85&w=1600&auto=format&fit=crop'); background-size:cover; background-position:center 30%; filter:blur(2px) brightness(0.4) saturate(1.2); }
-.hdr-ov { position:absolute; inset:0; background:linear-gradient(180deg,rgba(6,15,7,0.35) 0%,rgba(6,15,7,0.55) 50%,#060f07 100%); }
+.hdr-photo { position:absolute; inset:-20px -10px 0; background-image:url('${PHOTO_URL}'); background-size:cover; background-position:center 30%; filter:blur(2px) brightness(0.35) saturate(0.8); }
+.hdr-ov { position:absolute; inset:0; background:linear-gradient(180deg,rgba(100,0,0,0.5) 0%,rgba(80,0,0,0.65) 50%,#0a0000 100%); }
 .hdr-ct { position:relative; z-index:2; padding:22px 20px 0; }
 .hdr-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
 .logo { font-family:'Bebas Neue',sans-serif; font-size:28px; color:#fff; letter-spacing:2.5px; text-shadow:0 2px 12px rgba(0,0,0,0.5); }
-.logo span { color:#4cde6e; }
+.logo span { color:#ff2020; }
 .hdr-r { display:flex; align-items:center; gap:10px; }
-.upill { display:flex; align-items:center; gap:7px; background:rgba(255,255,255,0.1); border:1px solid rgba(76,222,110,0.2); border-radius:20px; padding:6px 14px 6px 7px; }
-.uav { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#000; flex-shrink:0; }
+.upill { display:flex; align-items:center; gap:7px; background:rgba(255,255,255,0.08); border:1px solid rgba(198,11,30,0.25); border-radius:20px; padding:6px 14px 6px 7px; }
+.uav { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#fff; flex-shrink:0; }
 .uname { font-size:14px; color:rgba(255,255,255,0.9); font-weight:600; }
-.uout { font-size:13px; font-weight:600; color:rgba(255,255,255,0.65); background:none; border:none; cursor:pointer; font-family:inherit; transition:color 0.2s; }
+.uout { font-size:13px; font-weight:600; color:rgba(255,200,150,0.55); background:none; border:none; cursor:pointer; font-family:inherit; transition:color 0.2s; }
 .uout:hover { color:#fff; }
 .stats { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
-.sbox { background:rgba(0,0,0,0.45); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:11px 13px; backdrop-filter:blur(10px); }
-.slbl { font-size:10px; font-weight:700; color:rgba(255,255,255,0.65); text-transform:uppercase; letter-spacing:0.8px; margin-bottom:4px; }
+.sbox { background:rgba(0,0,0,0.4); border:1px solid rgba(198,11,30,0.15); border-radius:14px; padding:11px 13px; backdrop-filter:blur(10px); }
+.slbl { font-size:10px; font-weight:700; color:rgba(255,200,150,0.55); text-transform:uppercase; letter-spacing:0.8px; margin-bottom:4px; }
 .sval { font-family:'Bebas Neue',sans-serif; font-size:28px; color:#fff; letter-spacing:1px; line-height:1; }
-.sval.g { color:#4cde6e; filter:drop-shadow(0 0 8px rgba(76,222,110,0.4)); }
+.sval.g { color:#ffd700; filter:drop-shadow(0 0 8px rgba(255,215,0,0.4)); }
 
-.phase-toggle { display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:16px; }
-.phase-btn { flex:1; padding:10px 14px; border-radius:12px; border:1.5px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.04); color:rgba(255,255,255,0.5); font-family:'Inter',sans-serif; font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s; text-align:center; }
-.phase-btn.active { background:rgba(76,222,110,0.12); border-color:#4cde6e; color:#4cde6e; }
+/* CHAMPION BANNER */
+.champion-banner {
+  background:linear-gradient(135deg,rgba(198,11,30,0.2),rgba(139,0,0,0.3));
+  border:1px solid rgba(255,80,0,0.35);
+  border-radius:20px;
+  padding:16px 18px;
+  margin-bottom:16px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  position:relative;
+  overflow:hidden;
+}
+.champion-banner::before {
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(135deg,transparent 60%,rgba(255,215,0,0.04));
+  pointer-events:none;
+}
+.champion-banner-flag { font-size:44px; flex-shrink:0; animation:flagFloat 3s ease-in-out infinite; }
+.champion-banner-content { flex:1; }
+.champion-banner-label { font-size:9px; font-weight:700; color:rgba(255,200,100,0.6); letter-spacing:2.5px; text-transform:uppercase; margin-bottom:3px; }
+.champion-banner-name { font-family:'Bebas Neue',sans-serif; font-size:30px; color:#ffd700; letter-spacing:2px; line-height:1; filter:drop-shadow(0 0 12px rgba(255,215,0,0.4)); }
+.champion-banner-sub { font-size:11px; color:rgba(255,200,150,0.5); margin-top:3px; font-weight:500; }
+.champion-banner-trophy { font-size:32px; flex-shrink:0; animation:crownPulse 2s ease-in-out infinite; }
+@keyframes crownPulse { 0%,100%{filter:drop-shadow(0 0 8px rgba(255,215,0,0.4))} 50%{filter:drop-shadow(0 0 20px rgba(255,215,0,0.9))} }
+
+/* PHASE TOGGLE */
+.phase-toggle { display:flex; gap:10px; margin-bottom:16px; }
+.phase-btn { flex:1; padding:10px 14px; border-radius:12px; border:1.5px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.03); color:rgba(255,255,255,0.5); font-family:'Inter',sans-serif; font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s; text-align:center; }
+.phase-btn.active { background:rgba(198,11,30,0.15); border-color:#c60b1e; color:#ff8080; }
 
 .archive-banner { background:rgba(255,149,0,0.08); border:1px solid rgba(255,149,0,0.2); border-radius:14px; padding:12px 16px; margin-bottom:14px; display:flex; align-items:center; gap:10px; }
 .archive-banner-icon { font-size:20px; flex-shrink:0; }
-.archive-banner-text { font-size:13px; color:rgba(255,200,100,0.85); font-weight:500; line-height:1.4; }
+.archive-banner-text { font-size:13px; color:rgba(255,200,100,0.75); font-weight:500; line-height:1.4; }
 
-.nav { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:480px; background:rgba(6,15,7,0.97); border-top:1px solid rgba(76,222,110,0.1); display:flex; z-index:50; backdrop-filter:blur(20px); padding:10px 0 14px; }
+/* NAV */
+.nav { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:480px; background:rgba(10,0,0,0.97); border-top:1px solid rgba(198,11,30,0.15); display:flex; z-index:50; backdrop-filter:blur(20px); padding:10px 0 14px; }
 .ni { flex:1; padding:6px 4px 4px; background:transparent; border:none; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:4px; }
 .nic { width:48px; height:34px; display:flex; align-items:center; justify-content:center; border-radius:12px; font-size:26px; transition:background 0.2s; }
-.ni.on .nic { background:rgba(76,222,110,0.12); }
-.nlbl { font-size:11px; font-weight:600; color:rgba(255,255,255,0.5); transition:color 0.2s; }
-.ni.on .nlbl { color:#4cde6e; }
-.ndot { width:4px; height:4px; background:#4cde6e; border-radius:50%; display:none; }
+.ni.on .nic { background:rgba(198,11,30,0.15); }
+.nlbl { font-size:11px; font-weight:600; color:rgba(255,255,255,0.4); transition:color 0.2s; }
+.ni.on .nlbl { color:#ff6060; }
+.ndot { width:4px; height:4px; background:#c60b1e; border-radius:50%; display:none; }
 .ni.on .ndot { display:block; }
 
 .ct { padding:16px; }
-.sh { font-size:12px; font-weight:700; color:rgba(255,255,255,0.65); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:12px; padding:0 2px; }
+.sh { font-size:12px; font-weight:700; color:rgba(255,200,150,0.55); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:12px; padding:0 2px; }
 
-.mc { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:20px; margin-bottom:12px; overflow:hidden; transition:border-color 0.2s,transform 0.15s; }
-.mc:hover { border-color:rgba(76,222,110,0.25); transform:translateY(-1px); }
+/* MATCH CARDS */
+.mc { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:20px; margin-bottom:12px; overflow:hidden; transition:border-color 0.2s,transform 0.15s; }
+.mc:hover { border-color:rgba(198,11,30,0.3); transform:translateY(-1px); }
 .mc.archived { opacity:0.7; }
-.mt2 { padding:10px 14px; background:rgba(255,255,255,0.03); border-bottom:1px solid rgba(255,255,255,0.07); display:flex; justify-content:space-between; align-items:center; }
-.gbadge { font-size:11px; color:#4cde6e; background:rgba(76,222,110,0.1); border:1px solid rgba(76,222,110,0.2); padding:3px 10px; border-radius:20px; font-weight:700; }
+.mt2 { padding:10px 14px; background:rgba(255,255,255,0.02); border-bottom:1px solid rgba(255,255,255,0.06); display:flex; justify-content:space-between; align-items:center; }
+.gbadge { font-size:11px; color:#ff8080; background:rgba(198,11,30,0.1); border:1px solid rgba(198,11,30,0.2); padding:3px 10px; border-radius:20px; font-weight:700; }
 .gbadge.old { color:rgba(255,149,0,0.8); background:rgba(255,149,0,0.08); border-color:rgba(255,149,0,0.2); }
-.mtime { font-size:13px; color:rgba(255,255,255,0.75); font-weight:600; }
+.mtime { font-size:13px; color:rgba(255,255,255,0.7); font-weight:600; }
 .mb2 { padding:14px; }
 .tms { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
 .tm { display:flex; align-items:center; gap:8px; flex:1; }
@@ -168,100 +214,105 @@ body { background:#060f07; font-family:'Inter',sans-serif; }
 .tm.r .tn { text-align:right; }
 .vs { width:6px; height:6px; background:rgba(255,255,255,0.15); border-radius:50%; flex-shrink:0; }
 .odds { display:flex; gap:8px; }
-.odd { flex:1; border-radius:12px; padding:10px 6px; text-align:center; background:rgba(255,255,255,0.05); border:1.5px solid rgba(255,255,255,0.1); cursor:pointer; transition:all 0.18s; }
-.odd:hover:not(:disabled) { background:rgba(76,222,110,0.1); border-color:rgba(76,222,110,0.4); }
-.odd.sel { background:rgba(76,222,110,0.15); border-color:#4cde6e; }
-.odd.ok { background:rgba(52,199,89,0.12); border-color:#34c759; }
+.odd { flex:1; border-radius:12px; padding:10px 6px; text-align:center; background:rgba(255,255,255,0.04); border:1.5px solid rgba(255,255,255,0.08); cursor:pointer; transition:all 0.18s; }
+.odd:hover:not(:disabled) { background:rgba(198,11,30,0.1); border-color:rgba(198,11,30,0.4); }
+.odd.sel { background:rgba(198,11,30,0.15); border-color:#c60b1e; }
+.odd.ok { background:rgba(52,199,89,0.1); border-color:#34c759; }
 .odd.no { opacity:0.3; }
 .odd:disabled { cursor:default; }
-.ol { font-size:11px; color:rgba(255,255,255,0.55); font-weight:600; }
-.odd.sel .ol { color:rgba(76,222,110,0.8); }
+.ol { font-size:11px; color:rgba(255,255,255,0.5); font-weight:600; }
+.odd.sel .ol { color:rgba(255,128,128,0.8); }
 .odd.ok .ol { color:#34c759; }
 .ov { font-family:'Bebas Neue',sans-serif; font-size:22px; color:#fff; letter-spacing:0.5px; margin-top:2px; }
-.odd.sel .ov { color:#4cde6e; }
+.odd.sel .ov { color:#ff6060; }
 .odd.ok .ov { color:#34c759; }
-.tipok { margin-top:10px; background:rgba(76,222,110,0.08); border:1px solid rgba(76,222,110,0.2); border-radius:10px; padding:8px 12px; font-size:13px; color:#4cde6e; font-weight:600; }
+.tipok { margin-top:10px; background:rgba(198,11,30,0.08); border:1px solid rgba(198,11,30,0.2); border-radius:10px; padding:8px 12px; font-size:13px; color:#ff8080; font-weight:600; }
 .lck { margin-top:10px; font-size:13px; color:#ff453a; text-align:center; font-weight:600; }
 .rbadge { font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px; }
 .rw { background:rgba(52,199,89,0.15); color:#34c759; }
 .rl { background:rgba(255,59,48,0.12); color:#ff3b30; }
 .rn { background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.45); }
 
-.lbc { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); border-radius:20px; overflow:hidden; }
-.lbr { display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1px solid rgba(255,255,255,0.06); }
+/* LEADERBOARD */
+.lbc { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); border-radius:20px; overflow:hidden; }
+.lbr { display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1px solid rgba(255,255,255,0.05); }
 .lbr:last-child { border-bottom:none; }
-.lbr.me { background:rgba(76,222,110,0.05); border-left:2px solid #4cde6e; }
+.lbr.me { background:rgba(198,11,30,0.06); border-left:2px solid #c60b1e; }
 .lbrank { font-size:20px; width:30px; text-align:center; flex-shrink:0; }
-.lbrn { font-family:'Bebas Neue',sans-serif; font-size:17px; color:rgba(255,255,255,0.35); }
+.lbrn { font-family:'Bebas Neue',sans-serif; font-size:17px; color:rgba(255,255,255,0.3); }
 .lbfc { width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.07); border:1.5px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
-.lbfc.hf { border-color:rgba(76,222,110,0.2); background:rgba(76,222,110,0.06); }
-.lbav { width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700; color:#000; flex-shrink:0; }
+.lbfc.hf { border-color:rgba(198,11,30,0.3); background:rgba(198,11,30,0.08); }
+.lbav { width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700; color:#fff; flex-shrink:0; }
 .lbn { font-size:16px; font-weight:600; color:#fff; }
-.lbme { font-size:9px; color:#4cde6e; background:rgba(76,222,110,0.12); padding:1px 6px; border-radius:6px; font-weight:700; margin-left:4px; }
-.lbs { font-size:12px; color:rgba(255,255,255,0.5); margin-top:2px; }
+.lbme { font-size:9px; color:#ff6060; background:rgba(198,11,30,0.15); padding:1px 6px; border-radius:6px; font-weight:700; margin-left:4px; }
+.lbs { font-size:12px; color:rgba(255,255,255,0.45); margin-top:2px; }
 .lbp { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:0.5px; }
-.lbp.top { color:#4cde6e; filter:drop-shadow(0 0 8px rgba(76,222,110,0.3)); }
+.lbp.top { color:#ffd700; filter:drop-shadow(0 0 8px rgba(255,215,0,0.4)); }
 .lbp.nm { color:#fff; }
-.lbpl { font-size:10px; color:rgba(255,255,255,0.4); font-weight:600; text-align:right; }
+.lbpl { font-size:10px; color:rgba(255,255,255,0.35); font-weight:600; text-align:right; }
 
-.rc { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:20px; overflow:hidden; margin-bottom:10px; }
-.rrow { display:flex; gap:14px; align-items:flex-start; padding:14px 16px; border-bottom:1px solid rgba(255,255,255,0.06); }
+/* RULES */
+.rc { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:20px; overflow:hidden; margin-bottom:10px; }
+.rrow { display:flex; gap:14px; align-items:flex-start; padding:14px 16px; border-bottom:1px solid rgba(255,255,255,0.05); }
 .rrow:last-child { border-bottom:none; }
 .ric { width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
 .rtit { font-size:15px; font-weight:700; color:#fff; margin-bottom:5px; }
-.rtxt { font-size:13px; color:rgba(255,255,255,0.72); line-height:1.65; }
-.prow { display:flex; align-items:center; gap:14px; padding:14px 16px; border-bottom:1px solid rgba(255,255,255,0.06); }
+.rtxt { font-size:13px; color:rgba(255,255,255,0.65); line-height:1.65; }
+.prow { display:flex; align-items:center; gap:14px; padding:14px 16px; border-bottom:1px solid rgba(255,255,255,0.05); }
 .prow:last-child { border-bottom:none; }
 .pic2 { width:50px; height:50px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:28px; }
 .pnm { font-size:16px; font-weight:600; color:#fff; }
 .pamt { font-family:'Bebas Neue',sans-serif; font-size:30px; letter-spacing:1px; }
 
-.ar { display:flex; align-items:center; justify-content:space-between; padding:13px 16px; border-bottom:1px solid rgba(255,255,255,0.06); }
+/* ADMIN */
+.ar { display:flex; align-items:center; justify-content:space-between; padding:13px 16px; border-bottom:1px solid rgba(255,255,255,0.05); }
 .ar:last-child { border-bottom:none; }
 .an { font-size:14px; font-weight:700; color:#fff; }
-.at { font-size:12px; color:rgba(255,255,255,0.55); margin-top:2px; }
-.ares { font-size:12px; color:#4cde6e; margin-top:2px; font-weight:600; }
-.aedt { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); color:rgba(255,255,255,0.8); padding:7px 13px; border-radius:10px; font-size:13px; font-weight:600; cursor:pointer; font-family:inherit; }
-.ares-btn { background:rgba(76,222,110,0.1); border:1px solid rgba(76,222,110,0.25); color:#4cde6e; padding:7px 13px; border-radius:10px; font-size:13px; font-weight:600; cursor:pointer; font-family:inherit; }
+.at { font-size:12px; color:rgba(255,255,255,0.45); margin-top:2px; }
+.ares { font-size:12px; color:#ff8080; margin-top:2px; font-weight:600; }
+.aedt { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.75); padding:7px 13px; border-radius:10px; font-size:13px; font-weight:600; cursor:pointer; font-family:inherit; }
+.ares-btn { background:rgba(198,11,30,0.1); border:1px solid rgba(198,11,30,0.25); color:#ff8080; padding:7px 13px; border-radius:10px; font-size:13px; font-weight:600; cursor:pointer; font-family:inherit; }
 
-.mo { position:fixed; inset:0; background:rgba(0,0,0,0.75); display:flex; align-items:flex-end; justify-content:center; z-index:100; backdrop-filter:blur(20px); }
-.mbox { background:#0f1a10; border:1px solid rgba(255,255,255,0.12); border-radius:24px 24px 0 0; padding:28px 24px; width:100%; max-width:480px; max-height:92vh; overflow-y:auto; }
+/* MODAL */
+.mo { position:fixed; inset:0; background:rgba(0,0,0,0.8); display:flex; align-items:flex-end; justify-content:center; z-index:100; backdrop-filter:blur(20px); }
+.mbox { background:#1a0000; border:1px solid rgba(198,11,30,0.2); border-radius:24px 24px 0 0; padding:28px 24px; width:100%; max-width:480px; max-height:92vh; overflow-y:auto; }
 .mh { width:36px; height:4px; background:rgba(255,255,255,0.15); border-radius:2px; margin:0 auto 20px; }
 .mtt { font-size:19px; font-weight:700; color:#fff; margin-bottom:4px; }
-.mst { font-size:13px; color:rgba(255,255,255,0.5); margin-bottom:20px; }
-.rbtn { flex:1; padding:16px 8px; background:rgba(255,255,255,0.05); border:1.5px solid rgba(255,255,255,0.12); border-radius:14px; color:rgba(255,255,255,0.7); cursor:pointer; font-family:inherit; font-size:20px; font-weight:700; transition:all 0.18s; }
-.rbtn:hover { background:rgba(76,222,110,0.12); border-color:#4cde6e; color:#4cde6e; }
-.mi { width:100%; padding:13px 16px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:12px; color:#fff; font-family:inherit; font-size:15px; outline:none; transition:border-color 0.2s; }
-.mi:focus { border-color:rgba(76,222,110,0.4); }
-.mi::placeholder { color:rgba(255,255,255,0.3); }
-.mprim { width:100%; padding:15px; background:linear-gradient(135deg,#1e7a38,#4cde6e); border:none; border-radius:14px; color:#000; font-family:inherit; font-size:16px; font-weight:700; cursor:pointer; }
-.msec { width:100%; padding:13px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:14px; color:rgba(255,255,255,0.6); font-family:inherit; font-size:15px; font-weight:500; cursor:pointer; }
+.mst { font-size:13px; color:rgba(255,255,255,0.45); margin-bottom:20px; }
+.rbtn { flex:1; padding:16px 8px; background:rgba(255,255,255,0.04); border:1.5px solid rgba(255,255,255,0.1); border-radius:14px; color:rgba(255,255,255,0.65); cursor:pointer; font-family:inherit; font-size:20px; font-weight:700; transition:all 0.18s; }
+.rbtn:hover { background:rgba(198,11,30,0.12); border-color:#c60b1e; color:#ff8080; }
+.mi { width:100%; padding:13px 16px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,100,0,0.12); border-radius:12px; color:#fff; font-family:inherit; font-size:15px; outline:none; transition:border-color 0.2s; }
+.mi:focus { border-color:rgba(198,11,30,0.4); }
+.mi::placeholder { color:rgba(255,255,255,0.25); }
+.mprim { width:100%; padding:15px; background:linear-gradient(135deg,#8b0000,#c60b1e); border:none; border-radius:14px; color:#fff; font-family:inherit; font-size:16px; font-weight:700; cursor:pointer; box-shadow:0 6px 24px rgba(198,11,30,0.3); }
+.msec { width:100%; padding:13px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:14px; color:rgba(255,255,255,0.5); font-family:inherit; font-size:15px; font-weight:500; cursor:pointer; }
 
-.toast { position:fixed; bottom:110px; left:50%; transform:translateX(-50%); background:rgba(10,20,12,0.96); border:1px solid rgba(76,222,110,0.25); color:#fff; padding:11px 22px; border-radius:50px; font-size:14px; font-weight:600; z-index:200; white-space:nowrap; animation:toastIn 0.25s ease; backdrop-filter:blur(20px); }
+.toast { position:fixed; bottom:110px; left:50%; transform:translateX(-50%); background:rgba(30,0,0,0.96); border:1px solid rgba(198,11,30,0.3); color:#fff; padding:11px 22px; border-radius:50px; font-size:14px; font-weight:600; z-index:200; white-space:nowrap; animation:toastIn 0.25s ease; backdrop-filter:blur(20px); }
 @keyframes toastIn { from{opacity:0;transform:translateX(-50%) translateY(8px)} to{opacity:1;transform:translateX(-50%) translateY(0)} }
 
+/* CHAT */
 .chat-wrap { display:flex; flex-direction:column; height:calc(100vh - 210px); }
 .chat-msgs { flex:1; overflow-y:auto; padding:0 0 8px; }
 .cdt { text-align:center; margin:14px 0 10px; }
-.cdt span { font-size:11px; color:rgba(255,255,255,0.4); background:rgba(255,255,255,0.06); padding:3px 12px; border-radius:20px; }
+.cdt span { font-size:11px; color:rgba(255,255,255,0.35); background:rgba(255,255,255,0.05); padding:3px 12px; border-radius:20px; }
 .cbw { display:flex; flex-direction:column; margin-bottom:2px; }
 .crow { display:flex; align-items:flex-end; gap:6px; }
 .crow.me { flex-direction:row-reverse; }
-.cav2 { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#000; flex-shrink:0; }
+.cav2 { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#fff; flex-shrink:0; }
 .cb { padding:10px 14px; border-radius:18px; max-width:76%; word-break:break-word; font-size:15px; line-height:1.4; }
-.cb.mine { background:linear-gradient(135deg,#1e7a38,#4cde6e); color:#000; font-weight:500; border-bottom-right-radius:4px; }
-.cb.theirs { background:rgba(255,255,255,0.09); color:#fff; border-bottom-left-radius:4px; }
-.csnd { font-size:11px; color:rgba(255,255,255,0.45); margin-left:34px; margin-top:2px; }
-.ctm { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; text-align:right; }
-.chat-bar { padding:8px 0 16px; display:flex; gap:8px; align-items:center; border-top:1px solid rgba(255,255,255,0.08); }
-.cin { flex:1; padding:12px 16px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:22px; color:#fff; font-family:inherit; font-size:15px; outline:none; }
-.cin:focus { border-color:rgba(76,222,110,0.3); }
-.cin::placeholder { color:rgba(255,255,255,0.3); }
-.csend { width:40px; height:40px; background:linear-gradient(135deg,#1e7a38,#4cde6e); border:none; border-radius:50%; color:#000; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-weight:700; }
-.csend:disabled { background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.2); }
-.empty { text-align:center; padding:60px 0; color:rgba(255,255,255,0.35); }
+.cb.mine { background:linear-gradient(135deg,#8b0000,#c60b1e); color:#fff; font-weight:500; border-bottom-right-radius:4px; }
+.cb.theirs { background:rgba(255,255,255,0.08); color:#fff; border-bottom-left-radius:4px; }
+.csnd { font-size:11px; color:rgba(255,255,255,0.4); margin-left:34px; margin-top:2px; }
+.ctm { font-size:11px; color:rgba(255,255,255,0.25); margin-top:2px; text-align:right; }
+.chat-bar { padding:8px 0 16px; display:flex; gap:8px; align-items:center; border-top:1px solid rgba(255,255,255,0.07); }
+.cin { flex:1; padding:12px 16px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,100,0,0.1); border-radius:22px; color:#fff; font-family:inherit; font-size:15px; outline:none; }
+.cin:focus { border-color:rgba(198,11,30,0.3); }
+.cin::placeholder { color:rgba(255,255,255,0.25); }
+.csend { width:40px; height:40px; background:linear-gradient(135deg,#8b0000,#c60b1e); border:none; border-radius:50%; color:#fff; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-weight:700; }
+.csend:disabled { background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.2); }
+.empty { text-align:center; padding:60px 0; color:rgba(255,255,255,0.3); }
 .ei { font-size:44px; margin-bottom:12px; }
-.et { font-size:17px; font-weight:600; color:rgba(255,255,255,0.5); }
+.et { font-size:17px; font-weight:600; color:rgba(255,255,255,0.45); }
 .es { font-size:14px; margin-top:4px; }
 `;
 
@@ -360,9 +411,13 @@ function AuthScreen({ onAuth }) {
       <div className="auth-screen">
         <div className="photo-bg" /><div className="ov1" /><div className="ov2" />
         <div className="auth-hero">
-          <div className="eyebrow"><div className="ey-line" /><span className="ey-txt">MŚ 2026</span></div>
-          <div className="hero-title">MUNDIALOWY<br /><span className="hero-green">EKSPERT</span></div>
-          <div className="hero-sub">Typuj mecze ze znajomymi.<br />Kursy bukmacherskie. Prawdziwa rywalizacja.</div>
+          <div className="hero-flag">🇪🇸</div>
+          <div className="eyebrow"><div className="ey-line" /><span className="ey-txt">MŚ 2026</span><div className="ey-line" /></div>
+          <div className="hero-title">MUNDIALOWY<br /><span className="hero-red">EKSPERT</span></div>
+          <div className="hero-champion">
+            <div className="hero-ch-label">🏆 Mistrz Świata 2026</div>
+            <div className="hero-ch-name">🇪🇸 HISZPANIA</div>
+          </div>
         </div>
         <div className="auth-card">
           <div className="card-shine" />
@@ -371,7 +426,7 @@ function AuthScreen({ onAuth }) {
               <div style={{ textAlign: "center", marginBottom: 16 }}>
                 <div style={{ fontSize: 32, marginBottom: 8 }}>🔒</div>
                 <div style={{ fontSize: 18, fontWeight: 700, color: "#fff", marginBottom: 6 }}>Resetuj hasło</div>
-                <div style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", lineHeight: 1.6 }}>
+                <div style={{ fontSize: 13, color: "rgba(255,200,150,0.45)", lineHeight: 1.6 }}>
                   {resetSent ? "Sprawdź skrzynkę e-mail i kliknij link." : "Podaj e-mail — wyślemy link do resetowania hasła."}
                 </div>
               </div>
@@ -398,7 +453,9 @@ function AuthScreen({ onAuth }) {
               <div className="afield"><span className="aicon">✉️</span><input className="ainput" type="email" placeholder="Adres e-mail" value={email} onChange={e => setEmail(e.target.value)} /></div>
               <div className="afield"><span className="aicon">🔒</span><input className="ainput" type="password" placeholder="Hasło" value={password} onChange={e => setPassword(e.target.value)} onKeyDown={e => e.key === "Enter" && handleSubmit()} /></div>
               {error && <div className="aerr">{error}</div>}
-              <button className="acta" onClick={handleSubmit} disabled={loading}>{loading ? "Ładowanie..." : mode === "login" ? "Zaloguj się →" : "Zarejestruj się →"}</button>
+              <button className="acta" onClick={handleSubmit} disabled={loading}>
+                {loading ? "Ładowanie..." : mode === "login" ? "Zaloguj się 🇪🇸" : "Zarejestruj się →"}
+              </button>
               {mode === "login" && <button className="forgot-btn" onClick={() => { setResetMode(true); setError(""); }}>Nie pamiętam hasła</button>}
             </>
           )}
@@ -490,12 +547,10 @@ function MatchCard({ match, tip, onTip, archived = false }) {
           <div className="tm"><span className="tf">{match.home_flag}</span><span className="tn">{match.home}</span></div>
           {isFinished ? (
             <div style={{ textAlign: "center", padding: "0 8px" }}>
-              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: 1 }}>Wynik</div>
-              <div style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: 24, color: "#4cde6e" }}>{PICK_LABELS[match.result]}</div>
+              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.45)", textTransform: "uppercase", letterSpacing: 1 }}>Wynik</div>
+              <div style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: 24, color: "#ff6060" }}>{PICK_LABELS[match.result]}</div>
             </div>
-          ) : (
-            <div className="vs" />
-          )}
+          ) : <div className="vs" />}
           <div className="tm r"><span className="tf">{match.away_flag}</span><span className="tn">{match.away}</span></div>
         </div>
         <div className="odds">
@@ -511,18 +566,12 @@ function MatchCard({ match, tip, onTip, archived = false }) {
             return (
               <button key={pick} className={cls} onClick={() => !isFinished && !lck && onTip(match.id, pick)} disabled={lck || isFinished}>
                 <div className="ol">{PICK_LABELS[pick]}</div>
-                <div className="ov" style={isFinished && pick !== match.result && tip?.pick !== pick ? { color: "rgba(255,255,255,0.35)" } : {}}>{parseFloat(match[`odds_${pick}`]).toFixed(2)}</div>
+                <div className="ov" style={isFinished && pick !== match.result && tip?.pick !== pick ? { color: "rgba(255,255,255,0.3)" } : {}}>{parseFloat(match[`odds_${pick}`]).toFixed(2)}</div>
               </button>
             );
           })}
         </div>
-        {isFinished && tip && (
-          <div style={{ marginTop: 10 }}>
-            <span className={`rbadge ${isCor ? "rw" : "rl"}`}>
-              {isCor ? `+${parseFloat(match[`odds_${tip.pick}`]).toFixed(2)} pkt ✓` : "0 pkt ✗"}
-            </span>
-          </div>
-        )}
+        {isFinished && tip && <div style={{ marginTop: 10 }}><span className={`rbadge ${isCor ? "rw" : "rl"}`}>{isCor ? `+${parseFloat(match[`odds_${tip.pick}`]).toFixed(2)} pkt ✓` : "0 pkt ✗"}</span></div>}
         {!isFinished && lck && <div className="lck">⛔ Typowanie zamknięte</div>}
         {!isFinished && !lck && tip && <div className="tipok">✓ Typ: {PICK_LABELS[tip.pick]} · +{parseFloat(match[`odds_${tip.pick}`]).toFixed(2)} pkt</div>}
       </div>
@@ -589,8 +638,6 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
       supabase.from("matches").select("*").order("match_date").order("match_time"),
       supabase.from("profiles").select("*"),
     ]);
-
-    // Paginacja tipów — omija limit 1000
     let allTips = [];
     let from = 0;
     const pageSize = 1000;
@@ -601,7 +648,6 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
       if (page.length < pageSize) break;
       from += pageSize;
     }
-
     setMatches(m || []); setTips(allTips); setProfiles(p || []);
     setLoading(false);
   };
@@ -673,12 +719,11 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
   const knockoutMatchIds = knockoutMatches.map(m => m.id);
   const groupMatchIds = groupMatches.map(m => m.id);
   const allMatchIds = matches.map(m => m.id);
-
+  const finishedAll = matches.filter(m => m.status === "finished");
   const knockoutUpcoming = knockoutMatches.filter(m => m.status === "upcoming");
   const knockoutFinished = knockoutMatches.filter(m => m.status === "finished");
   const groupUpcoming = groupMatches.filter(m => m.status === "upcoming");
   const groupFinished = groupMatches.filter(m => m.status === "finished");
-  const finishedAll = matches.filter(m => m.status === "finished");
 
   const myKnockoutPts = tips.filter(t => t.user_id === user.id && knockoutMatchIds.includes(t.match_id)).reduce((s, t) => s + (t.points || 0), 0);
   const myKnockoutCorrect = tips.filter(t => t.user_id === user.id && knockoutMatchIds.includes(t.match_id) && t.points > 0).length;
@@ -689,25 +734,6 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
 
   const av = getAvatar(profile?.name || "");
 
-  const tabs = [
-    { key: "matches", icon: "⚽", label: "Mecze" },
-    { key: "leaderboard", icon: "🏆", label: "Tabela" },
-    { key: "chat", icon: "💬", label: "Czat" },
-    { key: "rules", icon: "📋", label: "Regulamin" },
-    ...(profile?.is_admin ? [{ key: "admin", icon: "⚙️", label: "Admin" }] : []),
-  ];
-
-  if (loading) return (
-    <>
-      <style>{css}</style>
-      <div style={{ minHeight: "100vh", background: "#060f07", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 12 }}>
-        <div style={{ width: 52, height: 52, background: "linear-gradient(135deg,#1e7a38,#4cde6e)", borderRadius: 16, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26 }}>⚽</div>
-        <div style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: 14, color: "rgba(76,222,110,0.6)", letterSpacing: 3 }}>ŁADOWANIE</div>
-      </div>
-    </>
-  );
-
-  // Dane do mini podium i kalkulatora
   const combinedRanking = profiles.map(p => ({
     ...p,
     points: tips.filter(t => t.user_id === p.id && allMatchIds.includes(t.match_id)).reduce((s, t) => s + (t.points || 0), 0),
@@ -730,12 +756,31 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
   const medals = ["🥇", "🥈", "🥉"];
   const medalColors = ["#ffd700", "#c0c0c0", "#cd7f32"];
 
+  const tabs = [
+    { key: "matches", icon: "⚽", label: "Mecze" },
+    { key: "leaderboard", icon: "🏆", label: "Tabela" },
+    { key: "chat", icon: "💬", label: "Czat" },
+    { key: "rules", icon: "📋", label: "Regulamin" },
+    ...(profile?.is_admin ? [{ key: "admin", icon: "⚙️", label: "Admin" }] : []),
+  ];
+
+  if (loading) return (
+    <>
+      <style>{css}</style>
+      <div style={{ minHeight: "100vh", background: "#0a0000", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 12 }}>
+        <div style={{ fontSize: 52 }}>🇪🇸</div>
+        <div style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: 14, color: "rgba(198,11,30,0.6)", letterSpacing: 3 }}>ŁADOWANIE</div>
+      </div>
+    </>
+  );
+
   return (
     <>
       <style>{css}</style>
       <div className="app">
         {showTeamPicker && <TeamPicker onSave={saveTeam} onSkip={() => setShowTeamPicker(false)} />}
 
+        {/* HEADER */}
         <div className="hdr">
           <div className="hdr-photo" /><div className="hdr-ov" />
           <div className="hdr-ct">
@@ -769,23 +814,34 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
 
           {tab === "matches" && <>
 
+            {/* ── BANER MISTRZA ŚWIATA ── */}
+            <div className="champion-banner">
+              <span className="champion-banner-flag">🇪🇸</span>
+              <div className="champion-banner-content">
+                <div className="champion-banner-label">🏆 Mistrz Świata 2026</div>
+                <div className="champion-banner-name">HISZPANIA</div>
+                <div className="champion-banner-sub">España Campeona · Gratulacje!</div>
+              </div>
+              <span className="champion-banner-trophy">🏆</span>
+            </div>
+
             {/* ── MINI PODIUM TOP 3 ── */}
             {combinedRanking.length > 0 && (
-              <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 20, padding: "14px 16px", marginBottom: 12 }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.5)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 12 }}>Klasyfikacja generalna</div>
+              <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, padding: "14px 16px", marginBottom: 12 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,200,150,0.5)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 12 }}>Klasyfikacja generalna</div>
                 {combinedRanking.slice(0, 3).map((u, i) => {
                   const uav = getAvatar(u.name);
                   const favFlag = u.favorite_team ? FLAGS[u.favorite_team] : null;
                   return (
                     <div key={u.id} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: i < 2 ? 10 : 0 }}>
                       <span style={{ fontSize: 20, width: 28, textAlign: "center" }}>{medals[i]}</span>
-                      <div style={{ width: 32, height: 32, borderRadius: "50%", background: favFlag ? "rgba(76,222,110,0.06)" : uav.gradient, border: favFlag ? "1.5px solid rgba(76,222,110,0.2)" : "none", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 700, color: "#000", flexShrink: 0 }}>
+                      <div style={{ width: 32, height: 32, borderRadius: "50%", background: favFlag ? "rgba(198,11,30,0.08)" : uav.gradient, border: favFlag ? "1.5px solid rgba(198,11,30,0.25)" : "none", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 700, color: "#fff", flexShrink: 0 }}>
                         {favFlag || uav.initials}
                       </div>
                       <div style={{ flex: 1 }}>
                         <div style={{ fontSize: 14, fontWeight: 600, color: "#fff" }}>
                           {u.name}
-                          {u.id === user.id && <span style={{ fontSize: 9, color: "#4cde6e", background: "rgba(76,222,110,0.12)", padding: "1px 6px", borderRadius: 6, fontWeight: 700, marginLeft: 5 }}>TY</span>}
+                          {u.id === user.id && <span style={{ fontSize: 9, color: "#ff6060", background: "rgba(198,11,30,0.15)", padding: "1px 6px", borderRadius: 6, fontWeight: 700, marginLeft: 5 }}>TY</span>}
                         </div>
                       </div>
                       <div style={{ textAlign: "right" }}>
@@ -800,30 +856,30 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
 
             {/* ── KALKULATOR 100 ZŁ ── */}
             {finishedAll.length > 0 && (
-              <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 20, padding: "14px 16px", marginBottom: 16 }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.5)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 4 }}>Kalkulator — 100 zł na mecz</div>
-                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", marginBottom: 12 }}>Trafiony: (kurs × 100) − 100 zł zysku · Chybiony: −100 zł · Brak: 0 zł</div>
+              <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, padding: "14px 16px", marginBottom: 16 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,200,150,0.5)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 4 }}>Kalkulator — 100 zł na mecz</div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.28)", marginBottom: 12 }}>Trafiony: (kurs × 100) − 100 zł zysku · Chybiony: −100 zł · Brak: 0 zł</div>
                 {calculatorData.map((u, i) => {
                   const uav = getAvatar(u.name);
                   const favFlag = u.favorite_team ? FLAGS[u.favorite_team] : null;
                   const isPlus = u.balance >= 0;
                   return (
                     <div key={u.id} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: i < calculatorData.length - 1 ? 10 : 0 }}>
-                      <span style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: 15, color: "rgba(255,255,255,0.25)", width: 28, textAlign: "center" }}>#{i + 1}</span>
-                      <div style={{ width: 32, height: 32, borderRadius: "50%", background: favFlag ? "rgba(76,222,110,0.06)" : uav.gradient, border: favFlag ? "1.5px solid rgba(76,222,110,0.2)" : "none", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 700, color: "#000", flexShrink: 0 }}>
+                      <span style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: 15, color: "rgba(255,255,255,0.22)", width: 28, textAlign: "center" }}>#{i + 1}</span>
+                      <div style={{ width: 32, height: 32, borderRadius: "50%", background: favFlag ? "rgba(198,11,30,0.08)" : uav.gradient, border: favFlag ? "1.5px solid rgba(198,11,30,0.25)" : "none", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 700, color: "#fff", flexShrink: 0 }}>
                         {favFlag || uav.initials}
                       </div>
                       <div style={{ flex: 1 }}>
                         <div style={{ fontSize: 14, fontWeight: 600, color: "#fff" }}>
                           {u.name}
-                          {u.id === user.id && <span style={{ fontSize: 9, color: "#4cde6e", background: "rgba(76,222,110,0.12)", padding: "1px 6px", borderRadius: 6, fontWeight: 700, marginLeft: 5 }}>TY</span>}
+                          {u.id === user.id && <span style={{ fontSize: 9, color: "#ff6060", background: "rgba(198,11,30,0.15)", padding: "1px 6px", borderRadius: 6, fontWeight: 700, marginLeft: 5 }}>TY</span>}
                         </div>
                       </div>
                       <div style={{ textAlign: "right" }}>
-                        <div style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: 20, color: isPlus ? "#4cde6e" : "#ff453a", filter: isPlus ? "drop-shadow(0 0 6px rgba(76,222,110,0.3))" : "drop-shadow(0 0 6px rgba(255,69,58,0.3))" }}>
+                        <div style={{ fontFamily: "'Bebas Neue',sans-serif", fontSize: 20, color: isPlus ? "#ffd700" : "#ff453a", filter: isPlus ? "drop-shadow(0 0 6px rgba(255,215,0,0.3))" : "drop-shadow(0 0 6px rgba(255,69,58,0.3))" }}>
                           {isPlus ? "+" : ""}{u.balance.toFixed(0)} zł
                         </div>
-                        <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", fontWeight: 600 }}>{isPlus ? "ZYSK" : "STRATA"}</div>
+                        <div style={{ fontSize: 9, color: "rgba(255,255,255,0.28)", fontWeight: 600 }}>{isPlus ? "ZYSK" : "STRATA"}</div>
                       </div>
                     </div>
                   );
@@ -831,9 +887,9 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
               </div>
             )}
 
-            {/* Faza pucharowa */}
+            {/* Mecze */}
             {knockoutMatches.length === 0 && !showGroupPhase && (
-              <div className="empty"><div className="ei">🏆</div><div className="et">Faza pucharowa</div><div className="es">Admin wkrótce doda mecze fazy pucharowej</div></div>
+              <div className="empty"><div className="ei">⚽</div><div className="et">Brak meczów</div></div>
             )}
             {knockoutUpcoming.length > 0 && <>
               <div className="sh">Faza pucharowa — nadchodzące</div>
@@ -845,7 +901,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
             </>}
 
             {groupMatches.length > 0 && (
-              <button onClick={() => setShowGroupPhase(p => !p)} style={{ width: "100%", padding: "12px 16px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 14, color: "rgba(255,255,255,0.5)", fontFamily: "inherit", fontSize: 13, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginTop: 8 }}>
+              <button onClick={() => setShowGroupPhase(p => !p)} style={{ width: "100%", padding: "12px 16px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, color: "rgba(255,255,255,0.45)", fontFamily: "inherit", fontSize: 13, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginTop: 8 }}>
                 <span>{showGroupPhase ? "▲" : "▼"}</span>
                 {showGroupPhase ? "Ukryj fazę grupową" : `📁 Faza grupowa (${groupMatches.length} meczów)`}
               </button>
@@ -883,7 +939,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
                 { emoji: "🥈", name: "2. miejsce", amount: "30 zł", color: "#c0c0c0", bg: "rgba(192,192,192,0.08)" },
                 { emoji: "🥉", name: "3. miejsce", amount: "20 zł", color: "#cd7f32", bg: "rgba(205,127,50,0.08)" },
               ].map((r, i, arr) => (
-                <div key={r.name} className="prow" style={{ borderBottom: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
+                <div key={r.name} className="prow" style={{ borderBottom: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
                   <div className="pic2" style={{ background: r.bg }}>{r.emoji}</div>
                   <div style={{ flex: 1 }}><div className="pnm">{r.name}</div></div>
                   <div className="pamt" style={{ color: r.color }}>{r.amount}</div>
@@ -891,13 +947,13 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
               ))}
             </div>
             <div className="rc" style={{ marginBottom: 10 }}>
-              <div className="rrow"><div className="ric" style={{ background: "rgba(76,222,110,0.08)" }}>💸</div><div><div className="rtit">Wypłata nagród</div><div className="rtxt">Płatności realizowane <strong style={{ color: "#4cde6e" }}>BLIKIEM</strong> po zakończeniu turnieju.</div></div></div>
+              <div className="rrow"><div className="ric" style={{ background: "rgba(198,11,30,0.1)" }}>💸</div><div><div className="rtit">Wypłata nagród</div><div className="rtxt">Płatności realizowane <strong style={{ color: "#ff8080" }}>BLIKIEM</strong> po zakończeniu turnieju. Zwycięzcy zostaną poproszeni o podanie numeru do przelewu.</div></div></div>
             </div>
             <div className="sh" style={{ marginTop: 16 }}>Zasady gry</div>
             {[
-              { icon: "⏱️", bg: "rgba(0,122,255,0.1)", title: "Typowanie", text: "Przed każdym meczem wybierasz wynik: wygraną gospodarza (1), remis (X) lub wygraną gości (2). Typ możesz zmienić do momentu rozpoczęcia meczu — po godzinie startu typowanie jest zablokowane.\n\nKursy są aktualizowane na bieżąco na podstawie ofert bukmacherów STS oraz Superbet — najpóźniej do kilku minut przed rozpoczęciem meczu, dzięki czemu zawsze widzisz możliwie najbardziej aktualne wartości." },
-              { icon: "🎯", bg: "rgba(255,59,48,0.1)", title: "Punktacja", text: "Za trafiony typ otrzymujesz tyle punktów ile wynosił kurs bukmacherski. Przykład: trafiony typ z kursem 3.20 daje 3.20 pkt. Za chybiony typ otrzymujesz 0 punktów." },
-              { icon: "🏆", bg: "rgba(76,222,110,0.08)", title: "Klasyfikacja", text: "Wygrywa gracz z największą sumą punktów po zakończeniu wszystkich meczów. System premiuje odważne typy — trafienie niespodziewanego wyniku daje więcej punktów niż typowanie faworyta." },
+              { icon: "⏱️", bg: "rgba(198,11,30,0.1)", title: "Typowanie", text: "Przed każdym meczem wybierasz wynik: wygraną gospodarza (1), remis (X) lub wygraną gości (2). Typ możesz zmienić do momentu rozpoczęcia meczu — po godzinie startu typowanie jest zablokowane.\n\nKursy są aktualizowane na bieżąco na podstawie ofert bukmacherów STS oraz Superbet — najpóźniej do kilku minut przed rozpoczęciem meczu." },
+              { icon: "🎯", bg: "rgba(255,100,0,0.1)", title: "Punktacja", text: "Za trafiony typ otrzymujesz tyle punktów ile wynosił kurs bukmacherski. Przykład: trafiony typ z kursem 3.20 daje 3.20 pkt. Za chybiony typ otrzymujesz 0 punktów." },
+              { icon: "🏆", bg: "rgba(255,215,0,0.08)", title: "Klasyfikacja", text: "Wygrywa gracz z największą sumą punktów po zakończeniu wszystkich meczów. System premiuje odważne typy — trafienie niespodziewanego wyniku daje więcej punktów niż typowanie faworyta." },
             ].map(s => (
               <div key={s.title} className="rc" style={{ marginBottom: 8 }}>
                 <div className="rrow"><div className="ric" style={{ background: s.bg }}>{s.icon}</div><div><div className="rtit">{s.title}</div><div className="rtxt" style={{ whiteSpace: "pre-line" }}>{s.text}</div></div></div>
@@ -906,15 +962,15 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
             <div className="sh" style={{ marginTop: 16 }}>Informacje</div>
             <div className="rc">
               {[
-                { icon: "👨‍💻", bg: "rgba(52,199,89,0.08)", text: "Projekt powstał hobbystycznie, gdzieś między jednym a drugim zadaniem w pracy. Przetestowaliśmy go na zawrotnej grupie trzech osób i… chyba działa 🙂" },
+                { icon: "👨‍💻", bg: "rgba(198,11,30,0.08)", text: "Projekt powstał hobbystycznie, gdzieś między jednym a drugim zadaniem w pracy. Przetestowaliśmy go na zawrotnej grupie trzech osób i… chyba działa 🙂" },
                 { icon: "⚠️", bg: "rgba(255,149,0,0.08)", text: "Administrator nie daje gwarancji, że wszystko pójdzie idealnie 😉 Możliwe drobne potknięcia po drodze." },
-                { icon: "✉️", bg: "rgba(0,122,255,0.1)", email: "bewn.gmail.3ss6o@slmail.me" },
+                { icon: "✉️", bg: "rgba(198,11,30,0.08)", email: "bewn.gmail.3ss6o@slmail.me" },
               ].map((s, i, arr) => (
-                <div key={i} className="rrow" style={{ borderBottom: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
+                <div key={i} className="rrow" style={{ borderBottom: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
                   <div className="ric" style={{ background: s.bg }}>{s.icon}</div>
                   <div>
                     {s.text && <div className="rtxt">{s.text}</div>}
-                    {s.email && <><div className="rtxt" style={{ marginBottom: 4 }}>Wszelkie uwagi prosimy kierować na adres:</div><div style={{ fontSize: 15, fontWeight: 700, color: "#4cde6e" }}>{s.email}</div></>}
+                    {s.email && <><div className="rtxt" style={{ marginBottom: 4 }}>Wszelkie uwagi prosimy kierować na adres:</div><div style={{ fontSize: 15, fontWeight: 700, color: "#ff8080" }}>{s.email}</div></>}
                   </div>
                 </div>
               ))}
@@ -923,12 +979,12 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
 
           {tab === "admin" && profile?.is_admin && <>
             <div className="sh">Panel administratora</div>
-            <button className="mprim" style={{ marginBottom: 16 }} onClick={() => setAddModal(true)}>+ Dodaj mecz (faza pucharowa)</button>
+            <button className="mprim" style={{ marginBottom: 16 }} onClick={() => setAddModal(true)}>+ Dodaj mecz</button>
             {knockoutUpcoming.length > 0 && <>
               <div className="sh">Nadchodzące</div>
               <div className="rc" style={{ marginBottom: 10 }}>
                 {knockoutUpcoming.map((match, i) => (
-                  <div key={match.id} className="ar" style={{ borderBottom: i < knockoutUpcoming.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
+                  <div key={match.id} className="ar" style={{ borderBottom: i < knockoutUpcoming.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
                     <div><div className="an">{match.home_flag} {match.home} vs {match.away} {match.away_flag}</div><div className="at">{match.match_date} · {match.match_time?.slice(0, 5)}</div></div>
                     <div style={{ display: "flex", gap: 6 }}>
                       <button className="aedt" onClick={() => openEdit(match)}>Edytuj</button>
@@ -942,7 +998,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
               <div className="sh">Zakończone</div>
               <div className="rc" style={{ marginBottom: 10 }}>
                 {knockoutFinished.map((match, i) => (
-                  <div key={match.id} className="ar" style={{ borderBottom: i < knockoutFinished.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
+                  <div key={match.id} className="ar" style={{ borderBottom: i < knockoutFinished.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
                     <div><div className="an">{match.home_flag} {match.home} vs {match.away} {match.away_flag}</div><div className="ares">Wynik: {PICK_LABELS[match.result]}</div></div>
                     <div style={{ display: "flex", gap: 6 }}>
                       <button className="aedt" onClick={() => openEdit(match)}>Edytuj</button>
@@ -956,7 +1012,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
               <div className="sh">Faza grupowa — archiwum</div>
               <div className="rc">
                 {groupMatches.map((match, i) => (
-                  <div key={match.id} className="ar" style={{ borderBottom: i < groupMatches.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none", opacity: 0.7 }}>
+                  <div key={match.id} className="ar" style={{ borderBottom: i < groupMatches.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none", opacity: 0.65 }}>
                     <div><div className="an">{match.home_flag} {match.home} vs {match.away} {match.away_flag}</div><div className="at">{match.match_date} · {match.status === "finished" ? `Wynik: ${PICK_LABELS[match.result]}` : "Nadchodzący"}</div></div>
                     <div style={{ display: "flex", gap: 6 }}>
                       <button className="aedt" onClick={() => openEdit(match)}>Edytuj</button>
@@ -969,6 +1025,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
           </>}
         </div>
 
+        {/* NAV */}
         <div className="nav">
           {tabs.map(t => (
             <button key={t.key} className={`ni ${tab === t.key ? "on" : ""}`} onClick={() => { setTab(t.key); setShowGroupPhase(false); }}>
@@ -979,6 +1036,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
           ))}
         </div>
 
+        {/* MODALS */}
         {resultModal && (
           <div className="mo" onClick={() => setResultModal(null)}>
             <div className="mbox" onClick={e => e.stopPropagation()}>
@@ -988,7 +1046,7 @@ function MainApp({ user, profile: initialProfile, onLogout }) {
                 {["home", "draw", "away"].map(pick => (
                   <button key={pick} className="rbtn" onClick={() => saveResult(resultModal.id, pick)}>
                     <div style={{ fontSize: 22, fontWeight: 700 }}>{PICK_LABELS[pick]}</div>
-                    <div style={{ fontSize: 12, marginTop: 4, color: "rgba(255,255,255,0.5)" }}>{PICK_NAMES[pick]}</div>
+                    <div style={{ fontSize: 12, marginTop: 4, color: "rgba(255,255,255,0.45)" }}>{PICK_NAMES[pick]}</div>
                   </button>
                 ))}
               </div>
@@ -1054,8 +1112,8 @@ export default function App() {
   if (checking) return (
     <>
       <style>{css}</style>
-      <div style={{ minHeight: "100vh", background: "#060f07", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <div style={{ width: 52, height: 52, background: "linear-gradient(135deg,#1e7a38,#4cde6e)", borderRadius: 16, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26 }}>⚽</div>
+      <div style={{ minHeight: "100vh", background: "#0a0000", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ fontSize: 52 }}>🇪🇸</div>
       </div>
     </>
   );
